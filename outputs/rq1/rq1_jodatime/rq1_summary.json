@@ -1,0 +1,33 @@
+{
+  "rq": "RQ1",
+  "libraries": [
+    "jodatime"
+  ],
+  "library_metrics": [
+    {
+      "library": "jodatime",
+      "f1": 0.90462276360513,
+      "precision": 0.8430619380619381,
+      "recall": 0.9888888888888889,
+      "retrieval_mrr": 0.7645969089390142,
+      "retrieval_recall@1": 0.631578947368421,
+      "retrieval_recall@10": 1.0,
+      "retrieval_recall@3": 0.8789473684210526,
+      "retrieval_recall@5": 0.9631578947368421,
+      "retrieval_topk_same_api_hit_rate": 0.5526315789473684,
+      "retrieval_topk_same_label_hit_rate": 0.9631578947368421
+    }
+  ],
+  "macro_average": {
+    "f1": 0.90462276360513,
+    "precision": 0.8430619380619381,
+    "recall": 0.9888888888888889,
+    "retrieval_mrr": 0.7645969089390142,
+    "retrieval_recall@1": 0.631578947368421,
+    "retrieval_recall@10": 1.0,
+    "retrieval_recall@3": 0.8789473684210526,
+    "retrieval_recall@5": 0.9631578947368421,
+    "retrieval_topk_same_api_hit_rate": 0.5526315789473684,
+    "retrieval_topk_same_label_hit_rate": 0.9631578947368421
+  }
+}

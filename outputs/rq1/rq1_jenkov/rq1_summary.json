@@ -1,0 +1,33 @@
+{
+  "rq": "RQ1",
+  "libraries": [
+    "jenkov"
+  ],
+  "library_metrics": [
+    {
+      "library": "jenkov",
+      "f1": 0.8313905055211326,
+      "precision": 0.7466103163388437,
+      "recall": 0.9379914869057067,
+      "retrieval_mrr": 0.8710285930946243,
+      "retrieval_recall@1": 0.8102101551727148,
+      "retrieval_recall@10": 0.9905543628144037,
+      "retrieval_recall@3": 0.9150006109161998,
+      "retrieval_recall@5": 0.9616362081304218,
+      "retrieval_topk_same_api_hit_rate": 0.5891283098566965,
+      "retrieval_topk_same_label_hit_rate": 0.9616362081304218
+    }
+  ],
+  "macro_average": {
+    "f1": 0.8313905055211326,
+    "precision": 0.7466103163388437,
+    "recall": 0.9379914869057067,
+    "retrieval_mrr": 0.8710285930946243,
+    "retrieval_recall@1": 0.8102101551727148,
+    "retrieval_recall@10": 0.9905543628144037,
+    "retrieval_recall@3": 0.9150006109161998,
+    "retrieval_recall@5": 0.9616362081304218,
+    "retrieval_topk_same_api_hit_rate": 0.5891283098566965,
+    "retrieval_topk_same_label_hit_rate": 0.9616362081304218
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "rq": "RQ1",
+  "libraries": [
+    "graphics"
+  ],
+  "library_metrics": [
+    {
+      "library": "graphics",
+      "f1": 0.8293975311468518,
+      "postprocess_only": 1.0,
+      "precision": 0.8070676410667159,
+      "recall": 0.8540952380952381,
+      "retrieval_mrr": 0.7935096573688807,
+      "retrieval_recall@1": 0.6787835522558537,
+      "retrieval_recall@10": 0.9931562916428708,
+      "retrieval_recall@3": 0.8886255473063012,
+      "retrieval_recall@5": 0.9599371787549972,
+      "retrieval_topk_same_api_hit_rate": 0.6893965353131544,
+      "retrieval_topk_same_label_hit_rate": 0.9599371787549972
+    }
+  ],
+  "macro_average": {
+    "f1": 0.8293975311468518,
+    "postprocess_only": 1.0,
+    "precision": 0.8070676410667159,
+    "recall": 0.8540952380952381,
+    "retrieval_mrr": 0.7935096573688807,
+    "retrieval_recall@1": 0.6787835522558537,
+    "retrieval_recall@10": 0.9931562916428708,
+    "retrieval_recall@3": 0.8886255473063012,
+    "retrieval_recall@5": 0.9599371787549972,
+    "retrieval_topk_same_api_hit_rate": 0.6893965353131544,
+    "retrieval_topk_same_label_hit_rate": 0.9599371787549972
+  }
+}

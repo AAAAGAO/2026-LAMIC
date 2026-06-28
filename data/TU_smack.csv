@@ -1,0 +1,2133 @@
+fragment,api,relevance
+"###  Create a Form to fill out
+
+Description
+
+An XMPP entity may need to gather data from another XMPP entity. Therefore, the data-gathering entity will need to create a new Form, specify the fields that will conform the Form and finally send the Form to the data-providing entity.
+
+Usage
+
+In order to create a Form to fill out use the  Form 's constructor passing the constant  Form.TYPE_FORM  as the parameter. The next step is to create the form fields and add them to the form. In order to create and customize a  FormField  use the  FormField 's constructor specifying the variable name of the field as the parameter. Then use  FormField.setType(String type)  to set the field's type (e.g. FormField.TYPE_HIDDEN, FormField.TYPE_TEXT_SINGLE). Once we have the  Form  instance and the FormFields the last step is to send  Form.addField(FormField field)  for each field that we want to add to the form.
+
+Once the form to fill out is finished we will want to send it in a message. Send  Form.getDataFormToSend()  to the form and add the answer as an extension to the message to send.
+
+Examples
+
+In this example we can see how to create and send a form to fill out: 
+
+> 
+>           // Create a new form to gather data
+>     Form formToSend = new Form(Form.TYPE_FORM);
+>     formToSend.setInstructions(
+>     ""Fill out this form to report your case.\nThe case will be created automatically."");
+>     formToSend.setTitle(""Case configurations"");
+>     // Add a hidden variable to the form
+>     FormField field = new FormField(""hidden_var"");
+>     field.setType(FormField.TYPE_HIDDEN);
+>     field.addValue(""Some value for the hidden variable"");
+>     formToSend.addField(field);
+>     // Add a fixed variable to the form
+>     field = new FormField();
+>     field.addValue(""Section 1: Case description"");
+>     formToSend.addField(field);
+>     // Add a text-single variable to the form
+>     field = new FormField(""name"");
+>     field.setLabel(""Enter a name for the case"");
+>     field.setType(FormField.TYPE_TEXT_SINGLE);
+>     formToSend.addField(field);
+>     // Add a text-multi variable to the form
+>     field = new FormField(""description"");
+>     field.setLabel(""Enter a description"");
+>     field.setType(FormField.TYPE_TEXT_MULTI);
+>     formToSend.addField(field);
+>     // Create a chat with ""user2@host.com""
+>     Chat chat = conn1.createChat(""user2@host.com"" );
+>     Message msg = chat.createMessage();
+>     msg.setBody(""To enter a case please fill out this form and send it back to me"");
+>     // Add the form to fill out to the message to send
+>     msg.addExtension(formToSend.getDataFormToSend());
+>     // Send the message with the form to fill out
+>     chat.sendMessage(msg);
+>",Form,1
+"###  Create a Form to fill out
+
+Description
+
+An XMPP entity may need to gather data from another XMPP entity. Therefore, the data-gathering entity will need to create a new Form, specify the fields that will conform the Form and finally send the Form to the data-providing entity.
+
+Usage
+
+In order to create a Form to fill out use the  Form 's constructor passing the constant  Form.TYPE_FORM  as the parameter. The next step is to create the form fields and add them to the form. In order to create and customize a  FormField  use the  FormField 's constructor specifying the variable name of the field as the parameter. Then use  FormField.setType(String type)  to set the field's type (e.g. FormField.TYPE_HIDDEN, FormField.TYPE_TEXT_SINGLE). Once we have the  Form  instance and the FormFields the last step is to send  Form.addField(FormField field)  for each field that we want to add to the form.
+
+Once the form to fill out is finished we will want to send it in a message. Send  Form.getDataFormToSend()  to the form and add the answer as an extension to the message to send.
+
+Examples
+
+In this example we can see how to create and send a form to fill out: 
+
+> 
+>           // Create a new form to gather data
+>     Form formToSend = new Form(Form.TYPE_FORM);
+>     formToSend.setInstructions(
+>     ""Fill out this form to report your case.\nThe case will be created automatically."");
+>     formToSend.setTitle(""Case configurations"");
+>     // Add a hidden variable to the form
+>     FormField field = new FormField(""hidden_var"");
+>     field.setType(FormField.TYPE_HIDDEN);
+>     field.addValue(""Some value for the hidden variable"");
+>     formToSend.addField(field);
+>     // Add a fixed variable to the form
+>     field = new FormField();
+>     field.addValue(""Section 1: Case description"");
+>     formToSend.addField(field);
+>     // Add a text-single variable to the form
+>     field = new FormField(""name"");
+>     field.setLabel(""Enter a name for the case"");
+>     field.setType(FormField.TYPE_TEXT_SINGLE);
+>     formToSend.addField(field);
+>     // Add a text-multi variable to the form
+>     field = new FormField(""description"");
+>     field.setLabel(""Enter a description"");
+>     field.setType(FormField.TYPE_TEXT_MULTI);
+>     formToSend.addField(field);
+>     // Create a chat with ""user2@host.com""
+>     Chat chat = conn1.createChat(""user2@host.com"" );
+>     Message msg = chat.createMessage();
+>     msg.setBody(""To enter a case please fill out this form and send it back to me"");
+>     // Add the form to fill out to the message to send
+>     msg.addExtension(formToSend.getDataFormToSend());
+>     // Send the message with the form to fill out
+>     chat.sendMessage(msg);
+>",FormField,1
+"###  Answer a Form
+
+Description
+
+Under many situations an XMPP entity could receive a form to fill out. For example, some hosts may require to fill out a form in order to register new users. Smack lets the data-providing entity to complete the form in an easy way and send it back to the data-gathering entity.
+
+Usage
+
+The form to fill out contains useful information that could be used for rendering the form. But it cannot be used to actually complete it. Instead it's necessary to create a new form based on the original form whose purpose is to hold all the answers.
+
+In order to create a new  Form  to complete based on the original  Form  just send  Form.createAnswerForm()  to the original  Form . Once you have a valid form that could be actually completed all you have to do is send  Form.setAnswer(String variable, String value)  to the form where variable is the variable of the  FormField  that you want to answer and value is the String representation of the answer. If the answer consist of several values you could then use  Form.setAnswer(String variable, List values)  where values is a List of Strings.",Form,1
+"###  Answer a Form
+
+Description
+
+Under many situations an XMPP entity could receive a form to fill out. For example, some hosts may require to fill out a form in order to register new users. Smack lets the data-providing entity to complete the form in an easy way and send it back to the data-gathering entity.
+
+Usage
+
+The form to fill out contains useful information that could be used for rendering the form. But it cannot be used to actually complete it. Instead it's necessary to create a new form based on the original form whose purpose is to hold all the answers.
+
+In order to create a new  Form  to complete based on the original  Form  just send  Form.createAnswerForm()  to the original  Form . Once you have a valid form that could be actually completed all you have to do is send  Form.setAnswer(String variable, String value)  to the form where variable is the variable of the  FormField  that you want to answer and value is the String representation of the answer. If the answer consist of several values you could then use  Form.setAnswer(String variable, List values)  where values is a List of Strings.",FormField,0
+"### Answer a Form - part 2
+
+Once the form has been completed we will want to send it back in a message. Send  Form.getDataFormToSend()  to the form and add the answer as an extension to the message to send back.
+
+Examples
+
+In this example we can see how to retrieve a form to fill out, complete the form and send it back: 
+
+> 
+>           // Get the message with the form to fill out
+>     Message msg2 = chat2.nextMessage();
+>     // Retrieve the form to fill out from the message
+>     Form formToRespond = Form.getFormFrom(msg2);
+>     // Obtain the form to send with the replies
+>     Form completedForm = formToRespond.createAnswerForm();
+>     // Add the answers to the form
+>     completedForm.setAnswer(""name"", ""Credit card number invalid"");
+>     completedForm.setAnswer(
+>     ""description"",
+>     ""The ATM says that my credit card number is invalid. What's going on?"");
+>     msg2 = chat2.createMessage();
+>     msg2.setBody(""To enter a case please fill out this form and send it back to me"");
+>     // Add the completed form to the message to send back
+>     msg2.addExtension(completedForm.getDataFormToSend());
+>     // Send the message with the completed form
+>     chat2.sendMessage(msg2);
+>",Form,1
+"###  Send a file to another user
+
+Description
+
+A user may wish to send a file to another user. The other user has the option of acception, rejecting, or ignoring the users request. Smack provides a simple interface in order to enable the user to easily send a file. Usage
+
+In order to send a file you must first construct an instance of the  FileTransferManager  class. This class has one constructor with one parameter which is your Connection. In order to instantiate the manager you should call  new FileTransferManager.FileTransferManager(connection) 
+
+Once you have your  FileTransferManager  you will need to create an outgoing file transfer to send a file. The method to use on the  FileTransferManager  is the  FileTransferManager.createOutgoingFileTransfer(userID)  method. The userID you provide to this method is the fully-qualified jabber ID of the user you wish to send the file to. A fully-qualified jabber ID consists of a node, a domain, and a resource, the user must be connected to the resource in order to be able to recieve the file transfer.",FileTransferManager,1
+"### Send a file to another user - part 2
+
+Now that you have your  OutgoingFileTransfer  instance you will want to send the file. The method to send a file is  OutgoingFileTransfer.sendFile(file, description) . The file you provide to this method should be a readable file on the local file system, and the description is a short description of the file to help the user decide whether or not they would like to recieve the file. 
+
+For information on monitoring the progress of a file transfer see the monitoring progress section of this document. 
+
+Other means to send a file are also provided as part of the  OutgoingFileTransfer . Please consult the Javadoc for more information. Examples
+
+In this example we can see how to send a file: 
+
+> 
+>     // Create the file transfer manager
+>     FileTransferManager manager = new FileTransferManager(connection);
+>     // Create the outgoing file transfer
+>     OutgoingFileTransfer transfer = manager.createOutgoingFileTransfer(""romeo@montague.net"");
+>     // Send the file
+>     transfer.sendFile(new File(""shakespeare_complete_works.txt""), ""You won't believe this!"");
+>",OutgoingFileTransfer,1
+"###  Recieving a file from another user
+
+Description
+
+The user may wish to recieve files from another user. The process of recieving a file is event driven, new file transfer requests are recieved from other users via a listener registered with the file transfer manager.
+
+Usage
+
+In order to recieve a file you must first construct an instance of the  FileTransferManager  class. This class has one constructor with one parameter which is your Connection. In order to instantiate the manager you should call  new FileTransferManager.FileTransferManager(connection) 
+
+Once you have your  FileTransferManager  you will need to register a listener with it. The FileTransferListner interface has one method,  FileTransferListener.fileTransferRequest(request) . When a request is recieved through this method, you can either accept or reject the request. To help you make your decision there are several methods in the  FileTransferRequest  class that return information about the transfer request.",FileTransferManager,1
+"###  Recieving a file from another user
+
+Description
+
+The user may wish to recieve files from another user. The process of recieving a file is event driven, new file transfer requests are recieved from other users via a listener registered with the file transfer manager.
+
+Usage
+
+In order to recieve a file you must first construct an instance of the  FileTransferManager  class. This class has one constructor with one parameter which is your Connection. In order to instantiate the manager you should call  new FileTransferManager.FileTransferManager(connection) 
+
+Once you have your  FileTransferManager  you will need to register a listener with it. The FileTransferListner interface has one method,  FileTransferListener.fileTransferRequest(request) . When a request is recieved through this method, you can either accept or reject the request. To help you make your decision there are several methods in the  FileTransferRequest  class that return information about the transfer request.",FileTransferListener,1
+"###  Recieving a file from another user
+
+Description
+
+The user may wish to recieve files from another user. The process of recieving a file is event driven, new file transfer requests are recieved from other users via a listener registered with the file transfer manager.
+
+Usage
+
+In order to recieve a file you must first construct an instance of the  FileTransferManager  class. This class has one constructor with one parameter which is your Connection. In order to instantiate the manager you should call  new FileTransferManager.FileTransferManager(connection) 
+
+Once you have your  FileTransferManager  you will need to register a listener with it. The FileTransferListner interface has one method,  FileTransferListener.fileTransferRequest(request) . When a request is recieved through this method, you can either accept or reject the request. To help you make your decision there are several methods in the  FileTransferRequest  class that return information about the transfer request.",FileTransferRequest,0
+"### Recieving a file from another user - part 2
+
+To accept the file transfer, call the  FileTransferRequest.accept() , this method will create an  IncomingFileTransfer . After you have the file transfer you may start to transfer the file by calling the  IncomingFileTransfer.recieveFile(file)  method. The file provided to this method will be where the data from thefile transfer is saved.
+
+Finally, to reject the file transfer the only method you need to call is  FileTransferRequest.reject()  on the  IncomingFileTransfer . 
+
+For information on monitoring the progress of a file transfer see the monitoring progress section of this document. 
+
+Other means to recieve a file are also provided as part of the  IncomingFileTransfer . Please consult the Javadoc for more information. Examples
+
+In this example we can see how to approve or reject a file transfer request: 
+
+> 
+>           // Create the file transfer manager
+>     final FileTransferManager manager = new FileTransferManager(connection);
+>     // Create the listener
+>     manager.addFileTransferListener(new FileTransferListener() {
+>     public void fileTransferRequest(FileTransferRequest request) {
+>     // Check to see if the request should be accepted
+>     if(shouldAccept(request)) {
+>     // Accept it
+>     IncomingFileTransfer transfer = request.accept();
+>     transfer.recieveFile(new File(""shakespeare_complete_works.txt""));
+>     } else {
+>     // Reject it
+>     request.reject();
+>     }
+>     }
+>     });
+>",FileTransferRequest,1
+"### Recieving a file from another user - part 2
+
+To accept the file transfer, call the  FileTransferRequest.accept() , this method will create an  IncomingFileTransfer . After you have the file transfer you may start to transfer the file by calling the  IncomingFileTransfer.recieveFile(file)  method. The file provided to this method will be where the data from thefile transfer is saved.
+
+Finally, to reject the file transfer the only method you need to call is  FileTransferRequest.reject()  on the  IncomingFileTransfer . 
+
+For information on monitoring the progress of a file transfer see the monitoring progress section of this document. 
+
+Other means to recieve a file are also provided as part of the  IncomingFileTransfer . Please consult the Javadoc for more information. Examples
+
+In this example we can see how to approve or reject a file transfer request: 
+
+> 
+>           // Create the file transfer manager
+>     final FileTransferManager manager = new FileTransferManager(connection);
+>     // Create the listener
+>     manager.addFileTransferListener(new FileTransferListener() {
+>     public void fileTransferRequest(FileTransferRequest request) {
+>     // Check to see if the request should be accepted
+>     if(shouldAccept(request)) {
+>     // Accept it
+>     IncomingFileTransfer transfer = request.accept();
+>     transfer.recieveFile(new File(""shakespeare_complete_works.txt""));
+>     } else {
+>     // Reject it
+>     request.reject();
+>     }
+>     }
+>     });
+>",IncomingFileTransfer,1
+"###  Monitoring the progress of a file transfer
+
+Description
+
+While a file transfer is in progress you may wish to monitor the progress of a file transfer.
+
+Usage
+
+Both the  IncomingFileTransfer  and the  OutgoingFileTransfer  extend the  FileTransfer  class which provides several methods to monitor how a file transfer is progressing: 
+
+  * FileTransfer.getStatus()  \- The file transfer can be in several states, negotiating, rejected, canceled, in progress, error, and complete. This method will return which state the file transfer is currently in. 
+  * FileTransfer.getProgress()  \- if the status of the file transfer is in progress this method will return a number between 0 and 1, 0 being the transfer has not yet started and 1 being the transfer is complete. It may also return a -1 if the transfer is not in progress. 
+  * FileTransfer.isDone()  \- Similar to getProgress() except it returns a boolean. If the state is rejected, canceled, error, or complete then true will be returned and false otherwise. 
+  * FileTransfer.getError()  \- If there is an error during the file transfer this method will return the type of error that occured. 
+
+Examples
+
+In this example we can see how to monitor a file transfer: 
+
+> 
+>           while(!transfer.isDone()) {
+>     if(transfer.getStatus().equals(Status.ERROR)) {
+>     System.out.println(""ERROR!!! "" + transfer.getError());
+>     } else {
+>     System.out.println(transfer.getStatus());
+>     System.out.println(transfer.getProgress());
+>     }
+>     sleep(1000);
+>     }
+>",IncomingFileTransfer,0
+"###  Monitoring the progress of a file transfer
+
+Description
+
+While a file transfer is in progress you may wish to monitor the progress of a file transfer.
+
+Usage
+
+Both the  IncomingFileTransfer  and the  OutgoingFileTransfer  extend the  FileTransfer  class which provides several methods to monitor how a file transfer is progressing: 
+
+  * FileTransfer.getStatus()  \- The file transfer can be in several states, negotiating, rejected, canceled, in progress, error, and complete. This method will return which state the file transfer is currently in. 
+  * FileTransfer.getProgress()  \- if the status of the file transfer is in progress this method will return a number between 0 and 1, 0 being the transfer has not yet started and 1 being the transfer is complete. It may also return a -1 if the transfer is not in progress. 
+  * FileTransfer.isDone()  \- Similar to getProgress() except it returns a boolean. If the state is rejected, canceled, error, or complete then true will be returned and false otherwise. 
+  * FileTransfer.getError()  \- If there is an error during the file transfer this method will return the type of error that occured. 
+
+Examples
+
+In this example we can see how to monitor a file transfer: 
+
+> 
+>           while(!transfer.isDone()) {
+>     if(transfer.getStatus().equals(Status.ERROR)) {
+>     System.out.println(""ERROR!!! "" + transfer.getError());
+>     } else {
+>     System.out.println(transfer.getStatus());
+>     System.out.println(transfer.getProgress());
+>     }
+>     sleep(1000);
+>     }
+>",OutgoingFileTransfer,0
+"###  Monitoring the progress of a file transfer
+
+Description
+
+While a file transfer is in progress you may wish to monitor the progress of a file transfer.
+
+Usage
+
+Both the  IncomingFileTransfer  and the  OutgoingFileTransfer  extend the  FileTransfer  class which provides several methods to monitor how a file transfer is progressing: 
+
+  * FileTransfer.getStatus()  \- The file transfer can be in several states, negotiating, rejected, canceled, in progress, error, and complete. This method will return which state the file transfer is currently in. 
+  * FileTransfer.getProgress()  \- if the status of the file transfer is in progress this method will return a number between 0 and 1, 0 being the transfer has not yet started and 1 being the transfer is complete. It may also return a -1 if the transfer is not in progress. 
+  * FileTransfer.isDone()  \- Similar to getProgress() except it returns a boolean. If the state is rejected, canceled, error, or complete then true will be returned and false otherwise. 
+  * FileTransfer.getError()  \- If there is an error during the file transfer this method will return the type of error that occured. 
+
+Examples
+
+In this example we can see how to monitor a file transfer: 
+
+> 
+>           while(!transfer.isDone()) {
+>     if(transfer.getStatus().equals(Status.ERROR)) {
+>     System.out.println(""ERROR!!! "" + transfer.getError());
+>     } else {
+>     System.out.println(transfer.getStatus());
+>     System.out.println(transfer.getProgress());
+>     }
+>     sleep(1000);
+>     }
+>",FileTransfer,1
+"###  Processing Incoming Packets 
+
+Smack provides a flexible framework for processing incoming packets using two constructs: 
+
+  * ` org.jivesoftware.smack.PacketCollector ` \-- a class that lets you synchronously wait for new packets. 
+  * ` org.jivesoftware.smack.PacketListener ` \-- an interface for asynchronously notifying you of incoming packets. 
+
+A packet listener is used for event style programming, while a packet collector has a result queue of packets that you can do polling and blocking operations on. So, a packet listener is useful when you want to take some action whenever a packet happens to come in, while a packet collector is useful when you want to wait for a specific packet to arrive. Packet collectors and listeners can be created using an ` Connection ` instance. 
+
+The ` org.jivesoftware.smack.filter.PacketFilter ` interface determines which specific packets will be delivered to a ` PacketCollector ` or ` PacketListener `. Many pre-defined filters can be found in the `org.jivesoftware.smack.filter` package. 
+
+The following code snippet demonstrates registering both a packet collector and a packet listener:
+    
+    
+    // Create a packet filter to listen for new messages from a particular
+    // user. We use an AndFilter to combine two other filters.
+    PacketFilter filter = new AndFilter(new PacketTypeFilter(Message.class), 
+    new FromContainsFilter(""mary@jivesoftware.com""));
+    // Assume we've created a Connection name ""connection"".
+    // First, register a packet collector using the filter we created.
+    PacketCollector myCollector = connection.createPacketCollector(filter);
+    // Normally, you'd do something with the collector, like wait for new packets.
+    // Next, create a packet listener. We use an anonymous inner class for brevity.
+    PacketListener myListener = new PacketListener() {
+    public void processPacket(Packet packet) {
+    // Do something with the incoming packet here.
+    }
+    };
+    // Register the listener.
+    connection.addPacketListener(myListener, filter);",PacketCollector,1
+"###  Processing Incoming Packets 
+
+Smack provides a flexible framework for processing incoming packets using two constructs: 
+
+  * ` org.jivesoftware.smack.PacketCollector ` \-- a class that lets you synchronously wait for new packets. 
+  * ` org.jivesoftware.smack.PacketListener ` \-- an interface for asynchronously notifying you of incoming packets. 
+
+A packet listener is used for event style programming, while a packet collector has a result queue of packets that you can do polling and blocking operations on. So, a packet listener is useful when you want to take some action whenever a packet happens to come in, while a packet collector is useful when you want to wait for a specific packet to arrive. Packet collectors and listeners can be created using an ` Connection ` instance. 
+
+The ` org.jivesoftware.smack.filter.PacketFilter ` interface determines which specific packets will be delivered to a ` PacketCollector ` or ` PacketListener `. Many pre-defined filters can be found in the `org.jivesoftware.smack.filter` package. 
+
+The following code snippet demonstrates registering both a packet collector and a packet listener:
+    
+    
+    // Create a packet filter to listen for new messages from a particular
+    // user. We use an AndFilter to combine two other filters.
+    PacketFilter filter = new AndFilter(new PacketTypeFilter(Message.class), 
+    new FromContainsFilter(""mary@jivesoftware.com""));
+    // Assume we've created a Connection name ""connection"".
+    // First, register a packet collector using the filter we created.
+    PacketCollector myCollector = connection.createPacketCollector(filter);
+    // Normally, you'd do something with the collector, like wait for new packets.
+    // Next, create a packet listener. We use an anonymous inner class for brevity.
+    PacketListener myListener = new PacketListener() {
+    public void processPacket(Packet packet) {
+    // Do something with the incoming packet here.
+    }
+    };
+    // Register the listener.
+    connection.addPacketListener(myListener, filter);",PacketListener,1
+"###  Processing Incoming Packets 
+
+Smack provides a flexible framework for processing incoming packets using two constructs: 
+
+  * ` org.jivesoftware.smack.PacketCollector ` \-- a class that lets you synchronously wait for new packets. 
+  * ` org.jivesoftware.smack.PacketListener ` \-- an interface for asynchronously notifying you of incoming packets. 
+
+A packet listener is used for event style programming, while a packet collector has a result queue of packets that you can do polling and blocking operations on. So, a packet listener is useful when you want to take some action whenever a packet happens to come in, while a packet collector is useful when you want to wait for a specific packet to arrive. Packet collectors and listeners can be created using an ` Connection ` instance. 
+
+The ` org.jivesoftware.smack.filter.PacketFilter ` interface determines which specific packets will be delivered to a ` PacketCollector ` or ` PacketListener `. Many pre-defined filters can be found in the `org.jivesoftware.smack.filter` package. 
+
+The following code snippet demonstrates registering both a packet collector and a packet listener:
+    
+    
+    // Create a packet filter to listen for new messages from a particular
+    // user. We use an AndFilter to combine two other filters.
+    PacketFilter filter = new AndFilter(new PacketTypeFilter(Message.class), 
+    new FromContainsFilter(""mary@jivesoftware.com""));
+    // Assume we've created a Connection name ""connection"".
+    // First, register a packet collector using the filter we created.
+    PacketCollector myCollector = connection.createPacketCollector(filter);
+    // Normally, you'd do something with the collector, like wait for new packets.
+    // Next, create a packet listener. We use an anonymous inner class for brevity.
+    PacketListener myListener = new PacketListener() {
+    public void processPacket(Packet packet) {
+    // Do something with the incoming packet here.
+    }
+    };
+    // Register the listener.
+    connection.addPacketListener(myListener, filter);",Connection,0
+"###  Processing Incoming Packets 
+
+Smack provides a flexible framework for processing incoming packets using two constructs: 
+
+  * ` org.jivesoftware.smack.PacketCollector ` \-- a class that lets you synchronously wait for new packets. 
+  * ` org.jivesoftware.smack.PacketListener ` \-- an interface for asynchronously notifying you of incoming packets. 
+
+A packet listener is used for event style programming, while a packet collector has a result queue of packets that you can do polling and blocking operations on. So, a packet listener is useful when you want to take some action whenever a packet happens to come in, while a packet collector is useful when you want to wait for a specific packet to arrive. Packet collectors and listeners can be created using an ` Connection ` instance. 
+
+The ` org.jivesoftware.smack.filter.PacketFilter ` interface determines which specific packets will be delivered to a ` PacketCollector ` or ` PacketListener `. Many pre-defined filters can be found in the `org.jivesoftware.smack.filter` package. 
+
+The following code snippet demonstrates registering both a packet collector and a packet listener:
+    
+    
+    // Create a packet filter to listen for new messages from a particular
+    // user. We use an AndFilter to combine two other filters.
+    PacketFilter filter = new AndFilter(new PacketTypeFilter(Message.class), 
+    new FromContainsFilter(""mary@jivesoftware.com""));
+    // Assume we've created a Connection name ""connection"".
+    // First, register a packet collector using the filter we created.
+    PacketCollector myCollector = connection.createPacketCollector(filter);
+    // Normally, you'd do something with the collector, like wait for new packets.
+    // Next, create a packet listener. We use an anonymous inner class for brevity.
+    PacketListener myListener = new PacketListener() {
+    public void processPacket(Packet packet) {
+    // Do something with the incoming packet here.
+    }
+    };
+    // Register the listener.
+    connection.addPacketListener(myListener, filter);",PacketFilter,0
+"###  Provider Architecture: Packet Extensions and Custom IQ's 
+
+The Smack provider architecture is a system for plugging in custom XML parsing of packet extensions and IQ packets. The standard Smack Extensions are built using the provider architecture. Two types of providers exist:
+
+  * ` IQProvider ` \-- parses IQ requests into Java objects. 
+  * ` PacketExtension ` \-- parses XML sub-documents attached to packets into PacketExtension instances.",IQProvider,0
+"###  Provider Architecture: Packet Extensions and Custom IQ's 
+
+The Smack provider architecture is a system for plugging in custom XML parsing of packet extensions and IQ packets. The standard Smack Extensions are built using the provider architecture. Two types of providers exist:
+
+  * ` IQProvider ` \-- parses IQ requests into Java objects. 
+  * ` PacketExtension ` \-- parses XML sub-documents attached to packets into PacketExtension instances.",PacketExtension,0
+"###  Node creation and configuration
+
+Description
+
+Allowed users may create and configure pubsub nodes. There are two types of nodes that can be created, leaf nodes and collection nodes. 
+
+* Leaf Nodes - contains only messages
+* Collection Nodes - contains only nodes (both Leaf and Collection are allowed), but no messages
+The current version of this API only supports Leaf Nodes. There are many configuration options available for nodes, but the two main options are whether the node is persistent or not and whether it will deliver payload or not. Usage
+
+In order to create a node you will need to first create an instance of  PubSubManager . There are several options for node creation which range from creating an instant node, default configuration, or a fully configured node.
+
+Examples
+
+Create an instant node: 
+
+> 
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Create the node
+>     LeafNode leaf = mgr.createNode();
+>     
+
+Create a node with default configuration and then configure it: 
+
+> 
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Create the node
+>     LeafNode leaf = mgr.createNode(""testNode"");
+>     ConfigureForm form = new ConfigureForm(FormType.submit);
+>     form.setAccessModel(AccessModel.open);
+>     form.setDeliverPayloads(false);
+>     form.setNotifyRetract(true);
+>     form.setPersistentItems(true);
+>     form.setPublishModel(PublishModel.open);
+>     leaf.sendConfigurationForm(form);
+>     
+
+Create and configure a node: 
+
+> 
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Create the node
+>     ConfigureForm form = new ConfigureForm(FormType.submit);
+>     form.setAccessModel(AccessModel.open);
+>     form.setDeliverPayloads(false);
+>     form.setNotifyRetract(true);
+>     form.setPersistentItems(true);
+>     form.setPublishModel(PublishModel.open);
+>     LeafNode leaf = mgr.createNode(""testNode"", form);
+>",PubSubManager,1
+"###  Publishing to a node
+
+Description
+
+This section deals with the  LeafNode.publish  portion of pubsub. Usage of a node typically involves either sending or receiving data, referred to as items. Depending on the context of the nodes usage, the item being sent to it can have different properties. It can contain application data known as payload, or the publisher may choose to supply meaningful unique id's. Determination of an items acceptable properties is defined by a combination of node configuration and its purpose. 
+
+Usage
+
+To publish to a node, you will have to either create or retrieve an existing node and then create and send items to that node. The ability for any given person to publish to the node will be dependent on its configuration. 
+
+Examples
+
+In this example we publish an item to a node that does not take payload: 
+
+> 
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the node
+>     LeafNode node = mgr.getNode(""testNode"");
+>     // Publish an Item, let service set the id
+>     node.send(new Item());
+>     // Publish an Item with the specified id
+>     node.send(new Item(""123abc""));
+>     
+
+In this example we publish an item to a node that does take payload: 
+
+> 
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the node
+>     LeafNode node = mgr.getNode(""testNode"");
+>     // Publish an Item with payload
+>     node.send(new PayloadItem(""test"" + System.currentTimeMillis(), 
+>     new SimplePayload(""book"", ""pubsub:test:book"", 
+>     ""Two Towers"")));
+>",LeafNode,0
+"###  Receiving pubsub messages
+
+Description
+
+This section deals with the  Node.subscribe  portion of pubsub. As mentioned in the last section, usage of a node typically involves either sending or receiving items. Subscribers are interested in being notified when items are published to the pubsub node. These items may or may not have application specific data (payload), as that is dependent on the context in which the node is being used. 
+
+Usage
+
+To get messages asynchronously when items are published to a node, you will have to 
+
+* Get a node.
+* Create and register a listener.
+* Subscribe to the node.
+
+Please note that you should register the listener before subscribing so that all messages sent after subscribing are received. If done in the reverse order, messages that are sent after subscribing but before registering a listener may not be processed as expected.",Node,1
+"###  Retrieving persisted pubsub messages
+
+Description
+
+When persistent nodes are used, the subscription and registration methods described in the last section will not enable the retrieval of items that already exist in the node. This section deals with the specific methods for retrieving these items. There are several means of retrieving existing items. You can retrieve all items at once, the last N items, or the items specified by a collection of id's. Please note that the service may, according to the pubsub specification, reply with a list of items that contains only the item id's (no payload) to save on bandwidth. This will not occur when the id's are specified since this is the means of guaranteeing retrieval of payload.
+
+Usage
+
+To synchronously retrieve existing items from a persistent node, you will have to get an instance of a  LeafNode  and call one of the retrieve methods. 
+
+Examples
+
+In this example we can see how to retrieve the existing items from a node: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the node
+>     LeafNode node = mgr.getNode(""testNode"");
+>     Collection<? extends Item> items = node.getItems();
+>     
+
+In this example we can see how to retrieve the last N existing items: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the node
+>     LeafNode node = mgr.getNode(""testNode"");
+>     List<? extends Item> items = node.getItems(100);
+>     
+
+In this example we can see how to retrieve the specified existing items: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the node
+>     LeafNode node = mgr.getNode(""testNode"");
+>     Collection<String> ids = new ArrayList<String>(3);
+>     ids.add(""1"");
+>     ids.add(""3"");
+>     ids.add(""4"");
+>     List<? extends Item> items = node.getItems(ids);
+>",LeafNode,1
+"###  Discover pubsub information
+
+Description
+
+A user may want to query a server or node for a variety of pubsub related information.
+
+Usage
+
+To retrieve information, a user will simply use either the  PubSubManager  or  Node  classes depending on what type of information is required. Examples
+
+In this example we can see how to get pubsub capabilities: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the pubsub features that are supported
+>     DiscoverInfo supportedFeatures = mgr.getSupportedFeatures();
+>     
+
+In this example we can see how to get pubsub subscriptions for all nodes: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get all the subscriptions in the pubsub service
+>     List<Subscription> subscriptions = mgr.getSubscriptions();
+>     
+
+In this example we can see how to get all affiliations for the users bare JID on the pubsub service: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the affiliations for the users bare JID
+>     List<Affiliation> affiliations = mgr.getAffiliations();
+>     
+
+In this example we can see how to get information about the node: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     Node node = mgr.getNode(""testNode"");
+>     // Get the node information
+>     DiscoverInfo nodeInfo = node.discoverInfo();
+>     
+
+In this example we can see how to discover the node items: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     Node node = mgr.getNode(""testNode"");
+>     // Discover the node items
+>     DiscoverItems nodeItems = node.discoverItems();
+>     
+
+In this example we can see how to get node subscriptions: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     Node node = mgr.getNode(""testNode"");
+>     // Discover the node subscriptions
+>     List<Subscription> subscriptions = node.getSubscriptions();
+>",PubSubManager,1
+"###  Discover pubsub information
+
+Description
+
+A user may want to query a server or node for a variety of pubsub related information.
+
+Usage
+
+To retrieve information, a user will simply use either the  PubSubManager  or  Node  classes depending on what type of information is required. Examples
+
+In this example we can see how to get pubsub capabilities: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the pubsub features that are supported
+>     DiscoverInfo supportedFeatures = mgr.getSupportedFeatures();
+>     
+
+In this example we can see how to get pubsub subscriptions for all nodes: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get all the subscriptions in the pubsub service
+>     List<Subscription> subscriptions = mgr.getSubscriptions();
+>     
+
+In this example we can see how to get all affiliations for the users bare JID on the pubsub service: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     // Get the affiliations for the users bare JID
+>     List<Affiliation> affiliations = mgr.getAffiliations();
+>     
+
+In this example we can see how to get information about the node: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     Node node = mgr.getNode(""testNode"");
+>     // Get the node information
+>     DiscoverInfo nodeInfo = node.discoverInfo();
+>     
+
+In this example we can see how to discover the node items: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     Node node = mgr.getNode(""testNode"");
+>     // Discover the node items
+>     DiscoverItems nodeItems = node.discoverItems();
+>     
+
+In this example we can see how to get node subscriptions: 
+
+> 
+>           
+>     // Create a pubsub manager using an existing Connection
+>     PubSubManager mgr = new PubSubManager(con);
+>     Node node = mgr.getNode(""testNode"");
+>     // Discover the node subscriptions
+>     List<Subscription> subscriptions = node.getSubscriptions();
+>",Node,1
+"###  Debugging with Smack 
+
+Smack includes two built-in debugging consoles that will let you track all XML traffic between the client and server. A lite debugger which is part of the `smack.jar` and an enhanced debugger contained in `smackx-debug.jar`. 
+
+Debugging mode can be enabled in two different ways: 
+
+  1. Add the following line of code before creating new connections:
+
+` Connection.DEBUG_ENABLED = true; `
+
+  2. Set the Java system property `smack.debugEnabled` to true. The system property can be set on the command line such as:
+
+`java -Dsmack.debugEnabled=true SomeApp `
+
+
+
+
+If you wish to explicitly disable debug mode in your application, including using the command-line parameter, add the following line to your application before opening new connections: 
+
+` Connection.DEBUG_ENABLED = false; `
+
+Smack uses the following logic to decide the debugger console to use: 
+
+* It will first try use the debugger class specified in the Java system property `smack.debuggerClass`. If you need to develop your own debugger, implement the ` SmackDebugger ` interface and then set the system property on the command line such as:
+
+`java -Dsmack.debuggerClass=my.company.com.MyDebugger SomeApp `",Connection,1
+"###  Debugging with Smack 
+
+Smack includes two built-in debugging consoles that will let you track all XML traffic between the client and server. A lite debugger which is part of the `smack.jar` and an enhanced debugger contained in `smackx-debug.jar`. 
+
+Debugging mode can be enabled in two different ways: 
+
+  1. Add the following line of code before creating new connections:
+
+` Connection.DEBUG_ENABLED = true; `
+
+  2. Set the Java system property `smack.debugEnabled` to true. The system property can be set on the command line such as:
+
+`java -Dsmack.debugEnabled=true SomeApp `
+
+
+
+
+If you wish to explicitly disable debug mode in your application, including using the command-line parameter, add the following line to your application before opening new connections: 
+
+` Connection.DEBUG_ENABLED = false; `
+
+Smack uses the following logic to decide the debugger console to use: 
+
+* It will first try use the debugger class specified in the Java system property `smack.debuggerClass`. If you need to develop your own debugger, implement the ` SmackDebugger ` interface and then set the system property on the command line such as:
+
+`java -Dsmack.debuggerClass=my.company.com.MyDebugger SomeApp `",SmackDebugger,0
+"###  Manage XMPP entity features
+
+Description
+
+Any XMPP entity may receive a discovery request and must answer with its associated items or information. Therefore, your Smack client may receive a discovery request that must respond to (i.e., if your client supports XHTML-IM). This extension automatically responds to a discovery request with the information that you previously configured.
+
+Usage
+
+In order to configure the supported features by your client you should first obtain the ServiceDiscoveryManager associated with your Connection. To get your ServiceDiscoveryManager send  ServiceDiscoveryManager.getInstanceFor(connection)  to the class  ServiceDiscoveryManager  where connection is your Connection. 
+
+Once you have your ServiceDiscoveryManager you will be able to manage the supported features. To register a new feature send  ServiceDiscoveryManager.addFeature(feature)  to your  ServiceDiscoveryManager  where feature is a String that represents the supported feature. To remove a supported feature send  ServiceDiscoveryManager.removeFeature(feature)  to your  ServiceDiscoveryManager  where feature is a String that represents the feature to remove.
+
+Examples
+
+In this example we can see how to add and remove supported features: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Register that a new feature is supported by this XMPP entity
+>     discoManager.addFeature(namespace1);
+>     // Remove the specified feature from the supported features by this XMPP entity
+>     discoManager.removeFeature(namespace2);
+>",ServiceDiscoveryManager,1
+"###  Provide node information
+
+Description
+
+Your XMPP entity may receive a discovery request for items non-addressable as a JID such as the MUC rooms where you are joined. In order to answer the correct information it is necessary to configure the information providers associated to the items/nodes within the Smack client.
+
+Usage
+
+In order to configure the associated nodes within the Smack client you will need to create a NodeInformationProvider and register it with the  ServiceDiscoveryManager . To get your ServiceDiscoveryManager send  ServiceDiscoveryManager.getInstanceFor(connection)  to the class  ServiceDiscoveryManager  where connection is your Connection. 
+
+Once you have your ServiceDiscoveryManager you will be able to register information providers for the XMPP entity's nodes. To register a new node information provider send  ServiceDiscoveryManager.setNodeInformationProvider(String node, NodeInformationProvider listener)  to your  ServiceDiscoveryManager  where node is the item non-addressable as a JID and listener is the  NodeInformationProvider  to register. To unregister a  NodeInformationProvider  send  ServiceDiscoveryManager.removeNodeInformationProvider(String node)  to your  ServiceDiscoveryManager  where node is the item non-addressable as a JID whose information provider we want to unregister.
+
+Examples
+
+In this example we can see how to register a NodeInformationProvider with a ServiceDiscoveryManager that will provide information concerning a node named ""http://jabber.org/protocol/muc#rooms"": 
+
+> 
+>           // Set the NodeInformationProvider that will provide information about the
+>     // joined rooms whenever a disco request is received 
+>     ServiceDiscoveryManager.getInstanceFor(connection).setNodeInformationProvider(
+>     ""http://jabber.org/protocol/muc#rooms"",
+>     new NodeInformationProvider() {
+>     public Iterator getNodeItems() {
+>     ArrayList answer = new ArrayList();
+>     Iterator rooms = MultiUserChat.getJoinedRooms(connection);
+>     while (rooms.hasNext()) {
+>     answer.add(new DiscoverItems.Item((String)rooms.next()));
+>     }
+>     return answer.iterator(); 
+>     }
+>     });
+>",ServiceDiscoveryManager,1
+"###  Provide node information
+
+Description
+
+Your XMPP entity may receive a discovery request for items non-addressable as a JID such as the MUC rooms where you are joined. In order to answer the correct information it is necessary to configure the information providers associated to the items/nodes within the Smack client.
+
+Usage
+
+In order to configure the associated nodes within the Smack client you will need to create a NodeInformationProvider and register it with the  ServiceDiscoveryManager . To get your ServiceDiscoveryManager send  ServiceDiscoveryManager.getInstanceFor(connection)  to the class  ServiceDiscoveryManager  where connection is your Connection. 
+
+Once you have your ServiceDiscoveryManager you will be able to register information providers for the XMPP entity's nodes. To register a new node information provider send  ServiceDiscoveryManager.setNodeInformationProvider(String node, NodeInformationProvider listener)  to your  ServiceDiscoveryManager  where node is the item non-addressable as a JID and listener is the  NodeInformationProvider  to register. To unregister a  NodeInformationProvider  send  ServiceDiscoveryManager.removeNodeInformationProvider(String node)  to your  ServiceDiscoveryManager  where node is the item non-addressable as a JID whose information provider we want to unregister.
+
+Examples
+
+In this example we can see how to register a NodeInformationProvider with a ServiceDiscoveryManager that will provide information concerning a node named ""http://jabber.org/protocol/muc#rooms"": 
+
+> 
+>           // Set the NodeInformationProvider that will provide information about the
+>     // joined rooms whenever a disco request is received 
+>     ServiceDiscoveryManager.getInstanceFor(connection).setNodeInformationProvider(
+>     ""http://jabber.org/protocol/muc#rooms"",
+>     new NodeInformationProvider() {
+>     public Iterator getNodeItems() {
+>     ArrayList answer = new ArrayList();
+>     Iterator rooms = MultiUserChat.getJoinedRooms(connection);
+>     while (rooms.hasNext()) {
+>     answer.add(new DiscoverItems.Item((String)rooms.next()));
+>     }
+>     return answer.iterator(); 
+>     }
+>     });
+>",NodeInformationProvider,1
+"###  Discover items associated with an XMPP entity
+
+Description
+
+In order to obtain information about a specific item you have to first discover the items available in an XMPP entity.
+
+Usage
+
+Once you have your ServiceDiscoveryManager you will be able to discover items associated with an XMPP entity. To discover the items of a given XMPP entity send  ServiceDiscoveryManager.discoverItems(entityID)  to your  ServiceDiscoveryManager  where entityID is the ID of the entity. The message  ServiceDiscoveryManager.discoverItems(entityID)  will answer an instance of  DiscoverItems  that contains the discovered items.
+
+Examples
+
+In this example we can see how to discover the items associated with an online catalog service: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Get the items of a given XMPP entity
+>     // This example gets the items associated with online catalog service
+>     DiscoverItems discoItems = discoManager.discoverItems(""plays.shakespeare.lit"");
+>     // Get the discovered items of the queried XMPP entity
+>     Iterator it = discoItems.getItems();
+>     // Display the items of the remote XMPP entity
+>     while (it.hasNext()) {
+>     DiscoverItems.Item item = (DiscoverItems.Item) it.next();
+>     System.out.println(item.getEntityID());
+>     System.out.println(item.getNode());
+>     System.out.println(item.getName());
+>     }
+>",ServiceDiscoveryManager,1
+"###  Discover items associated with an XMPP entity
+
+Description
+
+In order to obtain information about a specific item you have to first discover the items available in an XMPP entity.
+
+Usage
+
+Once you have your ServiceDiscoveryManager you will be able to discover items associated with an XMPP entity. To discover the items of a given XMPP entity send  ServiceDiscoveryManager.discoverItems(entityID)  to your  ServiceDiscoveryManager  where entityID is the ID of the entity. The message  ServiceDiscoveryManager.discoverItems(entityID)  will answer an instance of  DiscoverItems  that contains the discovered items.
+
+Examples
+
+In this example we can see how to discover the items associated with an online catalog service: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Get the items of a given XMPP entity
+>     // This example gets the items associated with online catalog service
+>     DiscoverItems discoItems = discoManager.discoverItems(""plays.shakespeare.lit"");
+>     // Get the discovered items of the queried XMPP entity
+>     Iterator it = discoItems.getItems();
+>     // Display the items of the remote XMPP entity
+>     while (it.hasNext()) {
+>     DiscoverItems.Item item = (DiscoverItems.Item) it.next();
+>     System.out.println(item.getEntityID());
+>     System.out.println(item.getNode());
+>     System.out.println(item.getName());
+>     }
+>",DiscoverItems,0
+"###  Discover information about an XMPP entity
+
+Description
+
+Once you have discovered the entity ID and name of an item, you may want to find out more about the item. The information desired generally is of two kinds: 1) The item's identity and 2) The features offered by the item.
+
+This information helps you determine what actions are possible with regard to this item (registration, search, join, etc.) as well as specific feature types of interest, if any (e.g., for the purpose of feature negotiation).
+
+Usage
+
+Once you have your ServiceDiscoveryManager you will be able to discover information associated with an XMPP entity. To discover the information of a given XMPP entity send  ServiceDiscoveryManager.discoverInfo(entityID)  to your  ServiceDiscoveryManager  where entityID is the ID of the entity. The message  ServiceDiscoveryManager.discoverInfo(entityID)  will answer an instance of  DiscoverInfo  that contains the discovered information.
+
+Examples
+
+In this example we can see how to discover the information of a conference room: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Get the information of a given XMPP entity
+>     // This example gets the information of a conference room
+>     DiscoverInfo discoInfo = discoManager.discoverInfo(""balconyscene@plays.shakespeare.lit"");
+>     // Get the discovered identities of the remote XMPP entity
+>     Iterator it = discoInfo.getIdentities();
+>     // Display the identities of the remote XMPP entity
+>     while (it.hasNext()) {
+>     DiscoverInfo.Identity identity = (DiscoverInfo.Identity) it.next();
+>     System.out.println(identity.getName());
+>     System.out.println(identity.getType());
+>     System.out.println(identity.getCategory());
+>     }
+>     // Check if room is password protected
+>     discoInfo.containsFeature(""muc_passwordprotected"");
+>",ServiceDiscoveryManager,1
+"###  Discover information about an XMPP entity
+
+Description
+
+Once you have discovered the entity ID and name of an item, you may want to find out more about the item. The information desired generally is of two kinds: 1) The item's identity and 2) The features offered by the item.
+
+This information helps you determine what actions are possible with regard to this item (registration, search, join, etc.) as well as specific feature types of interest, if any (e.g., for the purpose of feature negotiation).
+
+Usage
+
+Once you have your ServiceDiscoveryManager you will be able to discover information associated with an XMPP entity. To discover the information of a given XMPP entity send  ServiceDiscoveryManager.discoverInfo(entityID)  to your  ServiceDiscoveryManager  where entityID is the ID of the entity. The message  ServiceDiscoveryManager.discoverInfo(entityID)  will answer an instance of  DiscoverInfo  that contains the discovered information.
+
+Examples
+
+In this example we can see how to discover the information of a conference room: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Get the information of a given XMPP entity
+>     // This example gets the information of a conference room
+>     DiscoverInfo discoInfo = discoManager.discoverInfo(""balconyscene@plays.shakespeare.lit"");
+>     // Get the discovered identities of the remote XMPP entity
+>     Iterator it = discoInfo.getIdentities();
+>     // Display the identities of the remote XMPP entity
+>     while (it.hasNext()) {
+>     DiscoverInfo.Identity identity = (DiscoverInfo.Identity) it.next();
+>     System.out.println(identity.getName());
+>     System.out.println(identity.getType());
+>     System.out.println(identity.getCategory());
+>     }
+>     // Check if room is password protected
+>     discoInfo.containsFeature(""muc_passwordprotected"");
+>",DiscoverInfo,0
+"###  Publish publicly available items
+
+Description
+
+Publish your entity items to some kind of persistent storage. This enables other entities to query that entity using the disco#items namespace and receive a result even when the entity being queried is not online (or available).
+
+Usage
+
+Once you have your ServiceDiscoveryManager you will be able to publish items to some kind of persistent storage. To publish the items of a given XMPP entity you have to first create an instance of  DiscoverItems  and configure it with the items to publish. Then you will have to send  ServiceDiscoveryManager.publishItems(String entityID, DiscoverItems discoverItems)  to your  ServiceDiscoveryManager  where entityID is the address of the XMPP entity that will persist the items and discoverItems contains the items to publish.
+
+Examples
+
+In this example we can see how to publish new items: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Create a DiscoverItems with the items to publish
+>     DiscoverItems itemsToPublish = new DiscoverItems();
+>     DiscoverItems.Item itemToPublish = new DiscoverItems.Item(""pubsub.shakespeare.lit"");
+>     itemToPublish.setName(""Avatar"");
+>     itemToPublish.setNode(""romeo/avatar"");
+>     itemToPublish.setAction(DiscoverItems.Item.UPDATE_ACTION);
+>     itemsToPublish.addItem(itemToPublish);
+>     // Publish the new items by sending them to the server
+>     discoManager.publishItems(""host"", itemsToPublish);
+>",DiscoverItems,1
+"###  Publish publicly available items
+
+Description
+
+Publish your entity items to some kind of persistent storage. This enables other entities to query that entity using the disco#items namespace and receive a result even when the entity being queried is not online (or available).
+
+Usage
+
+Once you have your ServiceDiscoveryManager you will be able to publish items to some kind of persistent storage. To publish the items of a given XMPP entity you have to first create an instance of  DiscoverItems  and configure it with the items to publish. Then you will have to send  ServiceDiscoveryManager.publishItems(String entityID, DiscoverItems discoverItems)  to your  ServiceDiscoveryManager  where entityID is the address of the XMPP entity that will persist the items and discoverItems contains the items to publish.
+
+Examples
+
+In this example we can see how to publish new items: 
+
+> 
+>           // Obtain the ServiceDiscoveryManager associated with my Connection
+>     ServiceDiscoveryManager discoManager = ServiceDiscoveryManager.getInstanceFor(connection);
+>     // Create a DiscoverItems with the items to publish
+>     DiscoverItems itemsToPublish = new DiscoverItems();
+>     DiscoverItems.Item itemToPublish = new DiscoverItems.Item(""pubsub.shakespeare.lit"");
+>     itemToPublish.setName(""Avatar"");
+>     itemToPublish.setNode(""romeo/avatar"");
+>     itemToPublish.setAction(DiscoverItems.Item.UPDATE_ACTION);
+>     itemsToPublish.addItem(itemToPublish);
+>     // Publish the new items by sending them to the server
+>     discoManager.publishItems(""host"", itemsToPublish);
+>",ServiceDiscoveryManager,1
+"###  Send a entire roster
+
+Description
+
+Sometimes it is useful to send a whole roster to another user. Smack provides a very easy way to send a complete roster to another XMPP client.
+
+Usage
+
+Create an instance of  RosterExchangeManager  and use the  #RosterExchangeManager.send(Roster, String)  message to send a roster to a given user. The first parameter is the roster to send and the second parameter is the id of the user that will receive the roster entries.
+
+Example
+
+In this example we can see how user1 sends his roster to user2. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a new roster exchange manager on conn1
+>     RosterExchangeManager rosterExchangeManager = new RosterExchangeManager(conn1);
+>     // Send user1's roster to user2
+>     rosterExchangeManager.send(conn1.getRoster(), user2);
+>",RosterExchangeManager,1
+"###  Send a roster group
+
+Description
+
+It is also possible to send a roster group to another XMPP client. A roster group groups a set of roster entries under a name.
+
+Usage
+
+Create an instance of  RosterExchangeManager  and use the  #RosterExchangeManager.send(RosterGroup, String)  message to send a roster group to a given user. The first parameter is the roster group to send and the second parameter is the id of the user that will receive the roster entries.
+
+Example
+
+In this example we can see how user1 sends his roster groups to user2. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a new roster exchange manager on conn1
+>     RosterExchangeManager rosterExchangeManager = new RosterExchangeManager(conn1);
+>     // Send user1's RosterGroups to user2
+>     for (Iterator it = conn1.getRoster().getGroups(); it.hasNext(); )
+>     rosterExchangeManager.send((RosterGroup)it.next(), user2);
+>",RosterExchangeManager,1
+"###  Send a roster entry
+
+Description
+
+Sometimes you may need to send a single roster entry to another XMPP client. Smack also lets you send items at this granularity level.
+
+Usage
+
+Create an instance of  RosterExchangeManager  and use the  #RosterExchangeManager.send(RosterEntry, String)  message to send a roster entry to a given user. The first parameter is the roster entry to send and the second parameter is the id of the user that will receive the roster entries.
+
+Example
+
+In this example we can see how user1 sends a roster entry to user2. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a new roster exchange manager on conn1
+>     RosterExchangeManager rosterExchangeManager = new RosterExchangeManager(conn1);
+>     // Send a roster entry (any) to user2
+>     rosterExchangeManager1.send((RosterEntry)conn1.getRoster().getEntries().next(), user2);
+>",RosterExchangeManager,1
+"###  Receive roster entries
+
+Description
+
+Since roster items are sent between XMPP clients, it is necessary to listen to possible roster entries receptions. Smack provides a mechanism that you can use to execute custom logic when roster entries are received.
+
+Usage
+
+  1. Create a class that implements the  RosterExchangeListener  interface.
+  2. Implement the method  RosterExchangeListener.entriesReceived(String, Iterator)  that will be called when new entries are received with custom logic.
+  3. Add the listener to the  RosterExchangeManager  that works on the desired  Connection .
+
+Example
+
+In this example we can see how user1 sends a roster entry to user2 and user2 adds the received entries to his roster. 
+
+> 
+>           // Connect to the server and log in the users
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     conn2 = new XMPPConnection(host);
+>     conn2.login(server_user2, pass2);
+>     final Roster user2_roster = conn2.getRoster();
+>     // Create a RosterExchangeManager that will help user2 to listen and accept
+>     the entries received
+>     RosterExchangeManager rosterExchangeManager2 = new RosterExchangeManager(conn2);
+>     // Create a RosterExchangeListener that will iterate over the received roster entries
+>     RosterExchangeListener rosterExchangeListener = new RosterExchangeListener() {
+>     public void entriesReceived(String from, Iterator remoteRosterEntries) {
+>     while (remoteRosterEntries.hasNext()) {
+>     try {
+>     // Get the received entry
+>     RemoteRosterEntry remoteRosterEntry = (RemoteRosterEntry) remoteRosterEntries.next();
+>     // Display the remote entry on the console
+>     System.out.println(remoteRosterEntry);
+>     // Add the entry to the user2's roster
+>     user2_roster.createEntry(
+>     remoteRosterEntry.getUser(),
+>     remoteRosterEntry.getName(),
+>     remoteRosterEntry.getGroupArrayNames());
+>     }
+>     catch (XMPPException e) {
+>     e.printStackTrace();
+>     }
+>     }
+>     }
+>     };
+>     // Add the RosterExchangeListener to the RosterExchangeManager that user2 is using
+>     rosterExchangeManager2.addRosterListener(rosterExchangeListener);
+>     // Create a RosterExchangeManager that will help user1 to send his roster
+>     RosterExchangeManager rosterExchangeManager1 = new RosterExchangeManager(conn1);
+>     // Send user1's roster to user2
+>     rosterExchangeManager1.send(conn1.getRoster(), user2);
+>",RosterExchangeListener,1
+"###  Receive roster entries
+
+Description
+
+Since roster items are sent between XMPP clients, it is necessary to listen to possible roster entries receptions. Smack provides a mechanism that you can use to execute custom logic when roster entries are received.
+
+Usage
+
+  1. Create a class that implements the  RosterExchangeListener  interface.
+  2. Implement the method  RosterExchangeListener.entriesReceived(String, Iterator)  that will be called when new entries are received with custom logic.
+  3. Add the listener to the  RosterExchangeManager  that works on the desired  Connection .
+
+Example
+
+In this example we can see how user1 sends a roster entry to user2 and user2 adds the received entries to his roster. 
+
+> 
+>           // Connect to the server and log in the users
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     conn2 = new XMPPConnection(host);
+>     conn2.login(server_user2, pass2);
+>     final Roster user2_roster = conn2.getRoster();
+>     // Create a RosterExchangeManager that will help user2 to listen and accept
+>     the entries received
+>     RosterExchangeManager rosterExchangeManager2 = new RosterExchangeManager(conn2);
+>     // Create a RosterExchangeListener that will iterate over the received roster entries
+>     RosterExchangeListener rosterExchangeListener = new RosterExchangeListener() {
+>     public void entriesReceived(String from, Iterator remoteRosterEntries) {
+>     while (remoteRosterEntries.hasNext()) {
+>     try {
+>     // Get the received entry
+>     RemoteRosterEntry remoteRosterEntry = (RemoteRosterEntry) remoteRosterEntries.next();
+>     // Display the remote entry on the console
+>     System.out.println(remoteRosterEntry);
+>     // Add the entry to the user2's roster
+>     user2_roster.createEntry(
+>     remoteRosterEntry.getUser(),
+>     remoteRosterEntry.getName(),
+>     remoteRosterEntry.getGroupArrayNames());
+>     }
+>     catch (XMPPException e) {
+>     e.printStackTrace();
+>     }
+>     }
+>     }
+>     };
+>     // Add the RosterExchangeListener to the RosterExchangeManager that user2 is using
+>     rosterExchangeManager2.addRosterListener(rosterExchangeListener);
+>     // Create a RosterExchangeManager that will help user1 to send his roster
+>     RosterExchangeManager rosterExchangeManager1 = new RosterExchangeManager(conn1);
+>     // Send user1's roster to user2
+>     rosterExchangeManager1.send(conn1.getRoster(), user2);
+>",RosterExchangeManager,0
+"###  Receive roster entries
+
+Description
+
+Since roster items are sent between XMPP clients, it is necessary to listen to possible roster entries receptions. Smack provides a mechanism that you can use to execute custom logic when roster entries are received.
+
+Usage
+
+  1. Create a class that implements the  RosterExchangeListener  interface.
+  2. Implement the method  RosterExchangeListener.entriesReceived(String, Iterator)  that will be called when new entries are received with custom logic.
+  3. Add the listener to the  RosterExchangeManager  that works on the desired  Connection .
+
+Example
+
+In this example we can see how user1 sends a roster entry to user2 and user2 adds the received entries to his roster. 
+
+> 
+>           // Connect to the server and log in the users
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     conn2 = new XMPPConnection(host);
+>     conn2.login(server_user2, pass2);
+>     final Roster user2_roster = conn2.getRoster();
+>     // Create a RosterExchangeManager that will help user2 to listen and accept
+>     the entries received
+>     RosterExchangeManager rosterExchangeManager2 = new RosterExchangeManager(conn2);
+>     // Create a RosterExchangeListener that will iterate over the received roster entries
+>     RosterExchangeListener rosterExchangeListener = new RosterExchangeListener() {
+>     public void entriesReceived(String from, Iterator remoteRosterEntries) {
+>     while (remoteRosterEntries.hasNext()) {
+>     try {
+>     // Get the received entry
+>     RemoteRosterEntry remoteRosterEntry = (RemoteRosterEntry) remoteRosterEntries.next();
+>     // Display the remote entry on the console
+>     System.out.println(remoteRosterEntry);
+>     // Add the entry to the user2's roster
+>     user2_roster.createEntry(
+>     remoteRosterEntry.getUser(),
+>     remoteRosterEntry.getName(),
+>     remoteRosterEntry.getGroupArrayNames());
+>     }
+>     catch (XMPPException e) {
+>     e.printStackTrace();
+>     }
+>     }
+>     }
+>     };
+>     // Add the RosterExchangeListener to the RosterExchangeManager that user2 is using
+>     rosterExchangeManager2.addRosterListener(rosterExchangeListener);
+>     // Create a RosterExchangeManager that will help user1 to send his roster
+>     RosterExchangeManager rosterExchangeManager1 = new RosterExchangeManager(conn1);
+>     // Send user1's roster to user2
+>     rosterExchangeManager1.send(conn1.getRoster(), user2);
+>",Connection,0
+"###  Roster and Presence 
+
+The roster lets you keep track of the availability (""presence"") of other users. A roster also allows you to organize users into groups such as ""Friends"" and ""Co-workers"". Other IM systems refer to the roster as the buddy list, contact list, etc.
+
+A ` Roster ` instance is obtained using the ` Connection.getRoster() ` method.",Roster,1
+"###  Roster and Presence 
+
+The roster lets you keep track of the availability (""presence"") of other users. A roster also allows you to organize users into groups such as ""Friends"" and ""Co-workers"". Other IM systems refer to the roster as the buddy list, contact list, etc.
+
+A ` Roster ` instance is obtained using the ` Connection.getRoster() ` method.",Connection,0
+"### Compose an XHTML Message - part 2
+
+Create an instance of  XHTMLText  specifying the style and language of the body. You can add several XHTML bodies to the message but each body should be for a different language. Once you have an XHTMLText you can start to append tags and text to it. In order to append tags there are several messages that you can use. For each XHTML defined tag there is a message that you can send. In order to add text you can send the message  #XHTMLText.append(String textToAppend) .
+
+After you have configured the XHTML text, the last step you have to do is to add the XHTML text to the message you want to send. If you decided to create the XHTML text by yourself, you will have to follow this last step too. In order to add the XHTML text to the message send the message  #XHTMLManager.addBody(Message message, String body)  to the  XHTMLManager  class where message is the message that will receive the XHTML body and body is the string to add as an XHTML body to the message.",XHTMLText,1
+"### Compose an XHTML Message - part 2
+
+Create an instance of  XHTMLText  specifying the style and language of the body. You can add several XHTML bodies to the message but each body should be for a different language. Once you have an XHTMLText you can start to append tags and text to it. In order to append tags there are several messages that you can use. For each XHTML defined tag there is a message that you can send. In order to add text you can send the message  #XHTMLText.append(String textToAppend) .
+
+After you have configured the XHTML text, the last step you have to do is to add the XHTML text to the message you want to send. If you decided to create the XHTML text by yourself, you will have to follow this last step too. In order to add the XHTML text to the message send the message  #XHTMLManager.addBody(Message message, String body)  to the  XHTMLManager  class where message is the message that will receive the XHTML body and body is the string to add as an XHTML body to the message.",XHTMLManager,1
+"###  Send an XHTML Message
+
+Description
+
+After you have composed an XHTML message you will want to send it. Once you have added the XHTML content to the message you want to send you are almost done. The last step is to send the message as you do with any other message.
+
+Usage
+
+An XHTML message is like any regular message, therefore to send the message you can follow the usual steps you do in order to send a message. For example, to send a message as part of a chat just use the message #send(Message) of  Chat  or you can use the message #send(Packet) of  Connection .
+
+Example
+
+In this example we can see how to send a message with XHTML content as part of a chat. 
+
+> 
+>           // Create a message to send
+>     Message msg = chat.createMessage();
+>     // Obtain the XHTML text to send from somewhere
+>     String xhtmlBody = getXHTMLTextToSend();
+>     // Add the XHTML text to the message
+>     XHTMLManager.addBody(msg, xhtmlBody);
+>     // Send the message that contains the XHTML
+>     chat.sendMessage(msg);
+>",Chat,0
+"###  Send an XHTML Message
+
+Description
+
+After you have composed an XHTML message you will want to send it. Once you have added the XHTML content to the message you want to send you are almost done. The last step is to send the message as you do with any other message.
+
+Usage
+
+An XHTML message is like any regular message, therefore to send the message you can follow the usual steps you do in order to send a message. For example, to send a message as part of a chat just use the message #send(Message) of  Chat  or you can use the message #send(Packet) of  Connection .
+
+Example
+
+In this example we can see how to send a message with XHTML content as part of a chat. 
+
+> 
+>           // Create a message to send
+>     Message msg = chat.createMessage();
+>     // Obtain the XHTML text to send from somewhere
+>     String xhtmlBody = getXHTMLTextToSend();
+>     // Add the XHTML text to the message
+>     XHTMLManager.addBody(msg, xhtmlBody);
+>     // Send the message that contains the XHTML
+>     chat.sendMessage(msg);
+>",Connection,0
+"###  Receive an XHTML Message
+
+Description
+
+It is also possible to obtain the XHTML content from a received message. Remember that the specification defines that a message may contain several XHTML bodies where each body should be for a different language.
+
+Usage
+
+To get the XHTML bodies of a given message just send the message  #XHTMLManager.getBodies(Message)  to the class  XHTMLManager . The answer of this message will be an Iterator with the different XHTML bodies of the message or null if none.
+
+Example
+
+In this example we can see how to create a PacketListener that obtains the XHTML bodies of any received message. 
+
+> 
+>           // Create a listener for the chat and display any XHTML content
+>     PacketListener packetListener = new PacketListener() {
+>     public void processPacket(Packet packet) {
+>     Message message = (Message) packet;
+>     // Obtain the XHTML bodies of the message
+>     Iterator it = XHTMLManager.getBodies(message);
+>     if (it != null) {
+>     // Display the bodies on the console
+>     while (it.hasNext()) {
+>     String body = (String) it.next();
+>     System.out.println(body);
+>     }
+>     }
+>     };
+>     chat.addMessageListener(packetListener);
+>",XHTMLManager,1
+"###  Discover support for XHTML Messages
+
+Description
+
+Before you start to send XHTML messages to a user you should discover if the user supports XHTML messages. There are two ways to achieve the discovery, explicitly and implicitly. Explicit is when you first try to discover if the user supports XHTML before sending any XHTML message. Implicit is when you send XHTML messages without first discovering if the conversation partner's client supports XHTML and depenging on the answer (normal message or XHTML message) you find out if the user supports XHTML messages or not. This section explains how to explicitly discover for XHTML support.
+
+Usage
+
+In order to discover if a remote user supports XHTML messages send  #XHTMLManager.isServiceEnabled(Connection connection, String userID)  to the class  XHTMLManager  where connection is the connection to use to perform the service discovery and userID is the user to check (A fully qualified xmpp ID, e.g. jdoe@example.com). This message will return true if the specified user handles XHTML messages.
+
+Example
+
+In this example we can see how to discover if a remote user supports XHTML Messages. 
+
+> 
+>           Message msg = chat.createMessage();
+>     // Include a normal body in the message
+>     msg.setBody(getTextToSend());
+>     // Check if the other user supports XHTML messages
+>     if (XHTMLManager.isServiceEnabled(connection, chat.getParticipant())) {
+>     // Obtain the XHTML text to send from somewhere
+>     String xhtmlBody = getXHTMLTextToSend();
+>     // Include an XHTML body in the message
+>     XHTMLManager.addBody(msg, xhtmlBody);
+>     }
+>     // Send the message
+>     chat.sendMessage(msg);
+>",XHTMLManager,1
+"###  Create a new Room
+
+Description
+
+Allowed users may create new rooms. There are two types of rooms that you can create. Instant rooms which are available for immediate access and are automatically created based on some default configuration and Reserved rooms which are manually configured by the room creator before anyone is allowed to enter.
+
+Usage
+
+In order to create a room you will need to first create an instance of  MultiUserChat . The room name passed to the constructor will be the name of the room to create. The next step is to send  MultiUserChat.create(String nickname)  to the  MultiUserChat  instance where nickname is the nickname to use when joining the room.
+
+Depending on the type of room that you want to create you will have to use different configuration forms. In order to create an Instant room just send  MultiUserChat.sendConfigurationForm(Form form)  where form is an empty form. But if you want to create a Reserved room then you should first get the room's configuration form, complete the form and finally send it back to the server.",MultiUserChat,1
+"###  Join a room
+
+Description
+
+Your usual first step in order to send messages to a room is to join the room. Multi User Chat allows to specify several parameter while joining a room. Basically you can control the amount of history to receive after joining the room as well as provide your nickname within the room and a password if the room is password protected.
+
+Usage
+
+In order to join a room you will need to first create an instance of  MultiUserChat . The room name passed to the constructor will be the name of the room to join. The next step is to send  MultiUserChat.join(...)  to the  MultiUserChat  instance. But first you will have to decide which join message to send. If you want to just join the room without a password and without specifying the amount of history to receive then you could use  MultiUserChat.join(String nickname)  where nickname if your nickname in the room. In case the room requires a password in order to join you could then use  MultiUserChat.join(String nickname, String password) . And finally, the most complete way to join a room is to send  MultiUserChat.join(String nickname, String password, DiscussionHistory history, long timeout)  where nickname is your nickname in the room, , password is your password to join the room, history is an object that specifies the amount of history to receive and timeout is the milliseconds to wait for a response from the server.",MultiUserChat,1
+"###  Manage room invitations
+
+Description
+
+It can be useful to invite another user to a room in which one is an occupant. Depending on the room's type the invitee could receive a password to use to join the room and/or be added to the member list if the room is of type members-only. Smack allows to send room invitations and let potential invitees to listening for room invitations and inviters to listen for invitees' rejections.
+
+Usage
+
+In order to invite another user to a room you must be already joined to the room. Once you are joined just send  MultiUserChat.invite(String participant, String reason)  to the  MultiUserChat  where participant is the user to invite to the room (e.g. hecate@shakespeare.lit) and reason is the reason why the user is being invited.
+
+If potential invitees want to listen for room invitations then the invitee must add an  InvitationListener  to the  MultiUserChat  class. Since the  InvitationListener  is an interface, it is necessary to create a class that implements this interface. If an inviter wants to listen for room invitation rejections, just add an  InvitationRejectionListener  to the  MultiUserChat .  InvitationRejectionListener  is also an interface so you will need to create a class that implements this interface.",MultiUserChat,1
+"###  Manage room invitations
+
+Description
+
+It can be useful to invite another user to a room in which one is an occupant. Depending on the room's type the invitee could receive a password to use to join the room and/or be added to the member list if the room is of type members-only. Smack allows to send room invitations and let potential invitees to listening for room invitations and inviters to listen for invitees' rejections.
+
+Usage
+
+In order to invite another user to a room you must be already joined to the room. Once you are joined just send  MultiUserChat.invite(String participant, String reason)  to the  MultiUserChat  where participant is the user to invite to the room (e.g. hecate@shakespeare.lit) and reason is the reason why the user is being invited.
+
+If potential invitees want to listen for room invitations then the invitee must add an  InvitationListener  to the  MultiUserChat  class. Since the  InvitationListener  is an interface, it is necessary to create a class that implements this interface. If an inviter wants to listen for room invitation rejections, just add an  InvitationRejectionListener  to the  MultiUserChat .  InvitationRejectionListener  is also an interface so you will need to create a class that implements this interface.",InvitationListener,0
+"###  Manage room invitations
+
+Description
+
+It can be useful to invite another user to a room in which one is an occupant. Depending on the room's type the invitee could receive a password to use to join the room and/or be added to the member list if the room is of type members-only. Smack allows to send room invitations and let potential invitees to listening for room invitations and inviters to listen for invitees' rejections.
+
+Usage
+
+In order to invite another user to a room you must be already joined to the room. Once you are joined just send  MultiUserChat.invite(String participant, String reason)  to the  MultiUserChat  where participant is the user to invite to the room (e.g. hecate@shakespeare.lit) and reason is the reason why the user is being invited.
+
+If potential invitees want to listen for room invitations then the invitee must add an  InvitationListener  to the  MultiUserChat  class. Since the  InvitationListener  is an interface, it is necessary to create a class that implements this interface. If an inviter wants to listen for room invitation rejections, just add an  InvitationRejectionListener  to the  MultiUserChat .  InvitationRejectionListener  is also an interface so you will need to create a class that implements this interface.",InvitationRejectionListener,0
+"###  Discover MUC support
+
+Description
+
+A user may want to discover if one of the user's contacts supports the Multi-User Chat protocol.
+
+Usage
+
+In order to discover if one of the user's contacts supports MUC just send  MultiUserChat.isServiceEnabled(Connection connection, String user)  to the  MultiUserChat  class where user is a fully qualified XMPP ID, e.g. jdoe@example.com. You will receive a boolean indicating whether the user supports MUC or not.
+
+Examples
+
+In this example we can see how to discover support of MUC: 
+
+> 
+>           // Discover whether user3@host.org supports MUC or not
+>     boolean supports = MultiUserChat.isServiceEnabled(conn, ""user3@host.org/Smack"");
+>",MultiUserChat,1
+"###  Discover joined rooms
+
+Description
+
+A user may also want to query a contact regarding which rooms the contact is in.
+
+Usage
+
+In order to get the rooms where a user is in just send  MultiUserChat.getJoinedRooms(Connection connection, String user)  to the  MultiUserChat  class where user is a fully qualified XMPP ID, e.g. jdoe@example.com. You will get an Iterator of Strings as an answer where each String represents a room name.
+
+Examples
+
+In this example we can see how to get the rooms where a user is in: 
+
+> 
+>           // Get the rooms where user3@host.org has joined
+>     Iterator joinedRooms = MultiUserChat.getJoinedRooms(conn, ""user3@host.org/Smack"");
+>",MultiUserChat,1
+"###  Discover room information
+
+Description
+
+A user may need to discover information about a room without having to actually join the room. The server will provide information only for public rooms.
+
+Usage
+
+In order to discover information about a room just send  MultiUserChat.getRoomInfo(Connection connection, String room)  to the  MultiUserChat  class where room is the XMPP ID of the room, e.g. roomName@conference.myserver. You will get a RoomInfo object that contains the discovered room information.
+
+Examples
+
+In this example we can see how to discover information about a room: 
+
+> 
+>           // Discover information about the room roomName@conference.myserver
+>     RoomInfo info = MultiUserChat.getRoomInfo(conn, ""roomName@conference.myserver"");
+>     System.out.println(""Number of occupants:"" + info.getOccupantsCount());
+>     System.out.println(""Room Subject:"" + info.getSubject());
+>",MultiUserChat,1
+"###  Start a private chat
+
+Description
+
+A room occupant may want to start a private chat with another room occupant even though they don't know the fully qualified XMPP ID (e.g. jdoe@example.com) of each other.
+
+Usage
+
+To create a private chat with another room occupant just send  MultiUserChat.createPrivateChat(String participant)  to the  MultiUserChat  that you used to join the room. The parameter participant is the occupant unique room JID (e.g. 'darkcave@macbeth.shakespeare.lit/Paul'). You will receive a regular  Chat  object that you can use to chat with the other room occupant.
+
+Examples
+
+In this example we can see how to start a private chat with another room occupant: 
+
+> 
+>           // Start a private chat with another participant
+>     Chat chat = muc2.createPrivateChat(""myroom@conference.jabber.org/johndoe"");
+>     chat.sendMessage(""Hello there"");
+>",MultiUserChat,1
+"###  Start a private chat
+
+Description
+
+A room occupant may want to start a private chat with another room occupant even though they don't know the fully qualified XMPP ID (e.g. jdoe@example.com) of each other.
+
+Usage
+
+To create a private chat with another room occupant just send  MultiUserChat.createPrivateChat(String participant)  to the  MultiUserChat  that you used to join the room. The parameter participant is the occupant unique room JID (e.g. 'darkcave@macbeth.shakespeare.lit/Paul'). You will receive a regular  Chat  object that you can use to chat with the other room occupant.
+
+Examples
+
+In this example we can see how to start a private chat with another room occupant: 
+
+> 
+>           // Start a private chat with another participant
+>     Chat chat = muc2.createPrivateChat(""myroom@conference.jabber.org/johndoe"");
+>     chat.sendMessage(""Hello there"");
+>",Chat,0
+"###  Manage changes on room subject
+
+Description
+
+A common feature of multi-user chat rooms is the ability to change the subject within the room. As a default, only users with a role of ""moderator"" are allowed to change the subject in a room. Although some rooms may be configured to allow a mere participant or even a visitor to change the subject.
+
+Every time the room's subject is changed you may want to be notified of the modification. The new subject could be used to display an in-room message.
+
+Usage
+
+In order to modify the room's subject just send  MultiUserChat.changeSubject(String subject)  to the  MultiUserChat  that you used to join the room where subject is the new room's subject. On the other hand, if you want to be notified whenever the room's subject is modified you should add a  SubjectUpdatedListener  to the  MultiUserChat  by sending  MultiUserChat.addSubjectUpdatedListener(SubjectUpdatedListener listener)  to the  MultiUserChat . Since the  SubjectUpdatedListener  is an interface, it is necessary to create a class that implements this interface.
+
+Examples
+
+In this example we can see how to change the room's subject and react whenever the room's subject is modified: 
+
+> 
+>           // An occupant wants to be notified every time the room's subject is changed
+>     muc3.addSubjectUpdatedListener(new SubjectUpdatedListener() {
+>     public void subjectUpdated(String subject, String from) {
+>     ....
+>     }
+>     });
+>     // A room's owner changes the room's subject
+>     muc2.changeSubject(""New Subject"");
+>",MultiUserChat,1
+"###  Manage changes on room subject
+
+Description
+
+A common feature of multi-user chat rooms is the ability to change the subject within the room. As a default, only users with a role of ""moderator"" are allowed to change the subject in a room. Although some rooms may be configured to allow a mere participant or even a visitor to change the subject.
+
+Every time the room's subject is changed you may want to be notified of the modification. The new subject could be used to display an in-room message.
+
+Usage
+
+In order to modify the room's subject just send  MultiUserChat.changeSubject(String subject)  to the  MultiUserChat  that you used to join the room where subject is the new room's subject. On the other hand, if you want to be notified whenever the room's subject is modified you should add a  SubjectUpdatedListener  to the  MultiUserChat  by sending  MultiUserChat.addSubjectUpdatedListener(SubjectUpdatedListener listener)  to the  MultiUserChat . Since the  SubjectUpdatedListener  is an interface, it is necessary to create a class that implements this interface.
+
+Examples
+
+In this example we can see how to change the room's subject and react whenever the room's subject is modified: 
+
+> 
+>           // An occupant wants to be notified every time the room's subject is changed
+>     muc3.addSubjectUpdatedListener(new SubjectUpdatedListener() {
+>     public void subjectUpdated(String subject, String from) {
+>     ....
+>     }
+>     });
+>     // A room's owner changes the room's subject
+>     muc2.changeSubject(""New Subject"");
+>",SubjectUpdatedListener,1
+"### Manage role modifications - part 2
+
+Usage
+
+In order to grant voice (i.e. make someone a participant) just send the message  MultiUserChat.grantVoice(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeVoice(String nickname)  to revoke the occupant's voice (i.e. make the occupant a visitor).
+
+In order to grant moderator privileges to a participant or visitor just send the message  MultiUserChat.grantModerator(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeModerator(String nickname)  to revoke the moderator privilege from the occupant thus making the occupant a participant.
+
+Smack allows you to listen for role modification events. If you are interested in listening role modification events of any occupant then use the listener  ParticipantStatusListener . But if you are interested in listening for your own role modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever an occupant's role has changed.",MultiUserChat,1
+"### Manage role modifications - part 2
+
+Usage
+
+In order to grant voice (i.e. make someone a participant) just send the message  MultiUserChat.grantVoice(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeVoice(String nickname)  to revoke the occupant's voice (i.e. make the occupant a visitor).
+
+In order to grant moderator privileges to a participant or visitor just send the message  MultiUserChat.grantModerator(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeModerator(String nickname)  to revoke the moderator privilege from the occupant thus making the occupant a participant.
+
+Smack allows you to listen for role modification events. If you are interested in listening role modification events of any occupant then use the listener  ParticipantStatusListener . But if you are interested in listening for your own role modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever an occupant's role has changed.",ParticipantStatusListener,1
+"### Manage role modifications - part 2
+
+Usage
+
+In order to grant voice (i.e. make someone a participant) just send the message  MultiUserChat.grantVoice(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeVoice(String nickname)  to revoke the occupant's voice (i.e. make the occupant a visitor).
+
+In order to grant moderator privileges to a participant or visitor just send the message  MultiUserChat.grantModerator(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeModerator(String nickname)  to revoke the moderator privilege from the occupant thus making the occupant a participant.
+
+Smack allows you to listen for role modification events. If you are interested in listening role modification events of any occupant then use the listener  ParticipantStatusListener . But if you are interested in listening for your own role modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever an occupant's role has changed.",UserStatusListener,1
+"### Manage role modifications - part 2
+
+Usage
+
+In order to grant voice (i.e. make someone a participant) just send the message  MultiUserChat.grantVoice(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeVoice(String nickname)  to revoke the occupant's voice (i.e. make the occupant a visitor).
+
+In order to grant moderator privileges to a participant or visitor just send the message  MultiUserChat.grantModerator(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeModerator(String nickname)  to revoke the moderator privilege from the occupant thus making the occupant a participant.
+
+Smack allows you to listen for role modification events. If you are interested in listening role modification events of any occupant then use the listener  ParticipantStatusListener . But if you are interested in listening for your own role modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever an occupant's role has changed.",DefaultUserStatusListener,0
+"### Manage role modifications - part 2
+
+Usage
+
+In order to grant voice (i.e. make someone a participant) just send the message  MultiUserChat.grantVoice(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeVoice(String nickname)  to revoke the occupant's voice (i.e. make the occupant a visitor).
+
+In order to grant moderator privileges to a participant or visitor just send the message  MultiUserChat.grantModerator(String nickname)  to  MultiUserChat . Use  MultiUserChat.revokeModerator(String nickname)  to revoke the moderator privilege from the occupant thus making the occupant a participant.
+
+Smack allows you to listen for role modification events. If you are interested in listening role modification events of any occupant then use the listener  ParticipantStatusListener . But if you are interested in listening for your own role modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever an occupant's role has changed.",DefaultParticipantStatusListener,0
+"### Manage affiliation modifications - part 2
+
+The member affiliation provides a way for a room owner or admin to specify a ""whitelist"" of users who are allowed to enter a members-only room. When a member enters a members-only room, his or her affiliation does not change, no matter what his or her role is. The member affiliation also provides a way for users to effectively register with an open room and thus be permanently associated with that room in some way (one result may be that the user's nickname is reserved in the room).
+
+An outcast is a user who has been banned from a room and who is not allowed to enter the room. Whenever a user's affiliation is changed Smack will trigger specific events.
+
+Usage
+
+In order to grant membership to a room, administrator privileges or owner priveliges just send  MultiUserChat.grantMembership(String jid) ,  MultiUserChat.grantAdmin(String jid)  or  MultiUserChat.grantOwnership(String jid)  to  MultiUserChat  respectively. Use  MultiUserChat.revokeMembership(String jid) ,  MultiUserChat.revokeAdmin(String jid)  or  MultiUserChat.revokeOwnership(String jid)  to revoke the membership to a room, administrator privileges or owner priveliges respectively.",MultiUserChat,1
+"### Manage affiliation modifications - part 3
+
+In order to ban a user from the room just send the message  MultiUserChat.banUser(String jid, String reason)  to  MultiUserChat .
+
+Smack allows you to listen for affiliation modification events. If you are interested in listening affiliation modification events of any user then use the listener  ParticipantStatusListener . But if you are interested in listening for your own affiliation modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever a user's affiliation has changed.",MultiUserChat,1
+"### Manage affiliation modifications - part 3
+
+In order to ban a user from the room just send the message  MultiUserChat.banUser(String jid, String reason)  to  MultiUserChat .
+
+Smack allows you to listen for affiliation modification events. If you are interested in listening affiliation modification events of any user then use the listener  ParticipantStatusListener . But if you are interested in listening for your own affiliation modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever a user's affiliation has changed.",ParticipantStatusListener,1
+"### Manage affiliation modifications - part 3
+
+In order to ban a user from the room just send the message  MultiUserChat.banUser(String jid, String reason)  to  MultiUserChat .
+
+Smack allows you to listen for affiliation modification events. If you are interested in listening affiliation modification events of any user then use the listener  ParticipantStatusListener . But if you are interested in listening for your own affiliation modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever a user's affiliation has changed.",UserStatusListener,1
+"### Manage affiliation modifications - part 3
+
+In order to ban a user from the room just send the message  MultiUserChat.banUser(String jid, String reason)  to  MultiUserChat .
+
+Smack allows you to listen for affiliation modification events. If you are interested in listening affiliation modification events of any user then use the listener  ParticipantStatusListener . But if you are interested in listening for your own affiliation modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever a user's affiliation has changed.",DefaultUserStatusListener,0
+"### Manage affiliation modifications - part 3
+
+In order to ban a user from the room just send the message  MultiUserChat.banUser(String jid, String reason)  to  MultiUserChat .
+
+Smack allows you to listen for affiliation modification events. If you are interested in listening affiliation modification events of any user then use the listener  ParticipantStatusListener . But if you are interested in listening for your own affiliation modification events, use the listener  UserStatusListener . Both listeners should be added to the  MultiUserChat  by using  MultiUserChat.addParticipantStatusListener(ParticipantStatusListener listener)  or  MultiUserChat.addUserStatusListener(UserStatusListener listener)  respectively. These listeners include several notification events but you may be interested in just a few of them. Smack provides default implementations for these listeners avoiding you to implement all the interfaces' methods. The default implementations are  DefaultUserStatusListener  and  DefaultParticipantStatusListener . Below you will find the sent messages to the listeners whenever a user's affiliation has changed.",DefaultParticipantStatusListener,0
+"###  Messaging using Chats
+
+Sending messages back and forth is at the core of instant messaging. Although individual messages can be sent and received as packets, it's generally easier to treat the string of messages as a chat using the ` org.jivesoftware.smack.Chat ` class.",Chat,0
+"###  Requesting Event Notifications
+
+Description
+
+In order to receive event notifications for a given message you first have to specify which events are you interested in. Each message that you send has to request its own event notifications. Therefore, every message that you send as part of a chat should request its own event notifications.
+
+Usage
+
+The class  MessageEventManager  provides an easy way for requesting event notifications. All you have to do is specify the message that requires the event notifications and the events that you are interested in. 
+
+Use the static method  MessageEventManager.MessageEventManager.addNotificationsRequests(Message message, boolean offline, boolean delivered, boolean displayed, boolean composing)  for requesting event notifications. 
+
+Example
+
+Below you can find an example that logs in a user to the server, creates a message, adds the requests for notifications and sends the message. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a chat with user2
+>     Chat chat1 = conn1.createChat(user2);
+>     // Create a message to send
+>     Message msg = chat1.createMessage();
+>     msg.setSubject(""Any subject you want"");
+>     msg.setBody(""An interesting body comes here..."");
+>     // Add to the message all the notifications requests (offline, delivered, displayed,
+>     // composing)
+>     MessageEventManager.addNotificationsRequests(msg, true, true, true, true);
+>     // Send the message that contains the notifications request
+>     chat1.sendMessage(msg);
+>",MessageEventManager,1
+"###  Reacting to Event Notification Requests
+
+Description
+
+You can receive notification requests for the following events: delivered, displayed, composing and offline. You must listen for these requests and react accordingly.
+
+Usage
+
+The general idea is to create a new  DefaultMessageEventRequestListener  that will listen to the event notifications requests and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+Note that  DefaultMessageEventRequestListener  is a default implementation of the  MessageEventRequestListener  interface. The class  DefaultMessageEventRequestListener  automatically sends a delivered notification to the sender of the message if the sender has requested to be notified when the message is delivered. If you decide to create a new class that implements the  MessageEventRequestListener  interface, please remember to send the delivered notification.
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notification requests listener create a subclass of  DefaultMessageEventRequestListener  or create a class that implements the  MessageEventRequestListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventRequestListener(MessageEventRequestListener) .",DefaultMessageEventRequestListener,1
+"###  Reacting to Event Notification Requests
+
+Description
+
+You can receive notification requests for the following events: delivered, displayed, composing and offline. You must listen for these requests and react accordingly.
+
+Usage
+
+The general idea is to create a new  DefaultMessageEventRequestListener  that will listen to the event notifications requests and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+Note that  DefaultMessageEventRequestListener  is a default implementation of the  MessageEventRequestListener  interface. The class  DefaultMessageEventRequestListener  automatically sends a delivered notification to the sender of the message if the sender has requested to be notified when the message is delivered. If you decide to create a new class that implements the  MessageEventRequestListener  interface, please remember to send the delivered notification.
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notification requests listener create a subclass of  DefaultMessageEventRequestListener  or create a class that implements the  MessageEventRequestListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventRequestListener(MessageEventRequestListener) .",MessageEventManager,1
+"###  Reacting to Event Notification Requests
+
+Description
+
+You can receive notification requests for the following events: delivered, displayed, composing and offline. You must listen for these requests and react accordingly.
+
+Usage
+
+The general idea is to create a new  DefaultMessageEventRequestListener  that will listen to the event notifications requests and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+Note that  DefaultMessageEventRequestListener  is a default implementation of the  MessageEventRequestListener  interface. The class  DefaultMessageEventRequestListener  automatically sends a delivered notification to the sender of the message if the sender has requested to be notified when the message is delivered. If you decide to create a new class that implements the  MessageEventRequestListener  interface, please remember to send the delivered notification.
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notification requests listener create a subclass of  DefaultMessageEventRequestListener  or create a class that implements the  MessageEventRequestListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventRequestListener(MessageEventRequestListener) .",Connection,0
+"###  Reacting to Event Notification Requests
+
+Description
+
+You can receive notification requests for the following events: delivered, displayed, composing and offline. You must listen for these requests and react accordingly.
+
+Usage
+
+The general idea is to create a new  DefaultMessageEventRequestListener  that will listen to the event notifications requests and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+Note that  DefaultMessageEventRequestListener  is a default implementation of the  MessageEventRequestListener  interface. The class  DefaultMessageEventRequestListener  automatically sends a delivered notification to the sender of the message if the sender has requested to be notified when the message is delivered. If you decide to create a new class that implements the  MessageEventRequestListener  interface, please remember to send the delivered notification.
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notification requests listener create a subclass of  DefaultMessageEventRequestListener  or create a class that implements the  MessageEventRequestListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventRequestListener(MessageEventRequestListener) .",MessageEventRequestListener,0
+"### Reacting to Event Notification Requests - part 2
+
+Example
+
+Below you can find an example that connects two users to the server. One user will create a message, add the requests for notifications and will send the message to the other user. The other user will add a  DefaultMessageEventRequestListener  to a  MessageEventManager  that will listen and react to the event notification requested by the other user. 
+
+> 
+>           // Connect to the server and log in the users
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     conn2 = new XMPPConnection(host);
+>     conn2.login(server_user2, pass2);
+>     // User2 creates a MessageEventManager
+>     MessageEventManager messageEventManager = new MessageEventManager(conn2);
+>     // User2 adds the listener that will react to the event notifications requests
+>     messageEventManager.addMessageEventRequestListener(new DefaultMessageEventRequestListener() {
+>     public void deliveredNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.deliveredNotificationRequested(from, packetID, messageEventManager);
+>     // DefaultMessageEventRequestListener automatically responds that the message was delivered when receives this request
+>     System.out.println(""Delivered Notification Requested ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void displayedNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.displayedNotificationRequested(from, packetID, messageEventManager);
+>     // Send to the message's sender that the message was displayed
+>     messageEventManager.sendDisplayedNotification(from, packetID);
+>     }
+>     public void composingNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.composingNotificationRequested(from, packetID, messageEventManager);
+>     // Send to the message's sender that the message's receiver is composing a reply
+>     messageEventManager.sendComposingNotification(from, packetID);
+>     }
+>     public void offlineNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.offlineNotificationRequested(from, packetID, messageEventManager);
+>     // The XMPP server should take care of this request. Do nothing.
+>     System.out.println(""Offline Notification Requested ("" + from + "", "" + packetID + "")"");
+>     }
+>     });
+>     // User1 creates a chat with user2
+>     Chat chat1 = conn1.createChat(user2);
+>     // User1 creates a message to send to user2
+>     Message msg = chat1.createMessage();
+>     msg.setSubject(""Any subject you want"");
+>     msg.setBody(""An interesting body comes here..."");
+>     // User1 adds to the message all the notifications requests (offline, delivered, displayed,
+>     // composing)
+>     MessageEventManager.addNotificationsRequests(msg, true, true, true, true);
+>     // User1 sends the message that contains the notifications request
+>     chat1.sendMessage(msg);
+>     Thread.sleep(500);
+>     // User2 sends to the message's sender that the message's receiver cancelled composing a reply
+>     messageEventManager.sendCancelledNotification(user1, msg.getPacketID());
+>",DefaultMessageEventRequestListener,0
+"### Reacting to Event Notification Requests - part 2
+
+Example
+
+Below you can find an example that connects two users to the server. One user will create a message, add the requests for notifications and will send the message to the other user. The other user will add a  DefaultMessageEventRequestListener  to a  MessageEventManager  that will listen and react to the event notification requested by the other user. 
+
+> 
+>           // Connect to the server and log in the users
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     conn2 = new XMPPConnection(host);
+>     conn2.login(server_user2, pass2);
+>     // User2 creates a MessageEventManager
+>     MessageEventManager messageEventManager = new MessageEventManager(conn2);
+>     // User2 adds the listener that will react to the event notifications requests
+>     messageEventManager.addMessageEventRequestListener(new DefaultMessageEventRequestListener() {
+>     public void deliveredNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.deliveredNotificationRequested(from, packetID, messageEventManager);
+>     // DefaultMessageEventRequestListener automatically responds that the message was delivered when receives this request
+>     System.out.println(""Delivered Notification Requested ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void displayedNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.displayedNotificationRequested(from, packetID, messageEventManager);
+>     // Send to the message's sender that the message was displayed
+>     messageEventManager.sendDisplayedNotification(from, packetID);
+>     }
+>     public void composingNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.composingNotificationRequested(from, packetID, messageEventManager);
+>     // Send to the message's sender that the message's receiver is composing a reply
+>     messageEventManager.sendComposingNotification(from, packetID);
+>     }
+>     public void offlineNotificationRequested(
+>     String from,
+>     String packetID,
+>     MessageEventManager messageEventManager) {
+>     super.offlineNotificationRequested(from, packetID, messageEventManager);
+>     // The XMPP server should take care of this request. Do nothing.
+>     System.out.println(""Offline Notification Requested ("" + from + "", "" + packetID + "")"");
+>     }
+>     });
+>     // User1 creates a chat with user2
+>     Chat chat1 = conn1.createChat(user2);
+>     // User1 creates a message to send to user2
+>     Message msg = chat1.createMessage();
+>     msg.setSubject(""Any subject you want"");
+>     msg.setBody(""An interesting body comes here..."");
+>     // User1 adds to the message all the notifications requests (offline, delivered, displayed,
+>     // composing)
+>     MessageEventManager.addNotificationsRequests(msg, true, true, true, true);
+>     // User1 sends the message that contains the notifications request
+>     chat1.sendMessage(msg);
+>     Thread.sleep(500);
+>     // User2 sends to the message's sender that the message's receiver cancelled composing a reply
+>     messageEventManager.sendCancelledNotification(user1, msg.getPacketID());
+>",MessageEventManager,0
+"###  Reacting to Event Notifications
+
+Description
+
+Once you have requested for event notifications you will start to receive notifications of events. You can receive notifications of the following events: delivered, displayed, composing, offline and cancelled. You will probably want to react to some or all of these events.
+
+Usage
+
+The general idea is to create a new  MessageEventNotificationListener  that will listen to the event notifications and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notifications listener create a class that implements the  MessageEventNotificationListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventNotificationListener(MessageEventNotificationListener) .
+
+Example
+
+Below you can find an example that logs in a user to the server, adds a  MessageEventNotificationListener  to a  MessageEventManager  that will listen and react to the event notifications, creates a message, adds the requests for notifications and sends the message. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a MessageEventManager
+>     MessageEventManager messageEventManager = new MessageEventManager(conn1);
+>     // Add the listener that will react to the event notifications
+>     messageEventManager.addMessageEventNotificationListener(new MessageEventNotificationListener() {
+>     public void deliveredNotification(String from, String packetID) {
+>     System.out.println(""The message has been delivered ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void displayedNotification(String from, String packetID) {
+>     System.out.println(""The message has been displayed ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void composingNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver is composing a reply ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void offlineNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver is offline ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void cancelledNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver cancelled composing a reply ("" + from + "", "" + packetID + "")"");
+>     }
+>     });
+>     // Create a chat with user2
+>     Chat chat1 = conn1.createChat(user2);
+>     // Create a message to send
+>     Message msg = chat1.createMessage();
+>     msg.setSubject(""Any subject you want"");
+>     msg.setBody(""An interesting body comes here..."");
+>     // Add to the message all the notifications requests (offline, delivered, displayed,
+>     // composing)
+>     MessageEventManager.addNotificationsRequests(msg, true, true, true, true);
+>     // Send the message that contains the notifications request
+>     chat1.sendMessage(msg);
+>",MessageEventNotificationListener,1
+"###  Reacting to Event Notifications
+
+Description
+
+Once you have requested for event notifications you will start to receive notifications of events. You can receive notifications of the following events: delivered, displayed, composing, offline and cancelled. You will probably want to react to some or all of these events.
+
+Usage
+
+The general idea is to create a new  MessageEventNotificationListener  that will listen to the event notifications and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notifications listener create a class that implements the  MessageEventNotificationListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventNotificationListener(MessageEventNotificationListener) .
+
+Example
+
+Below you can find an example that logs in a user to the server, adds a  MessageEventNotificationListener  to a  MessageEventManager  that will listen and react to the event notifications, creates a message, adds the requests for notifications and sends the message. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a MessageEventManager
+>     MessageEventManager messageEventManager = new MessageEventManager(conn1);
+>     // Add the listener that will react to the event notifications
+>     messageEventManager.addMessageEventNotificationListener(new MessageEventNotificationListener() {
+>     public void deliveredNotification(String from, String packetID) {
+>     System.out.println(""The message has been delivered ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void displayedNotification(String from, String packetID) {
+>     System.out.println(""The message has been displayed ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void composingNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver is composing a reply ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void offlineNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver is offline ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void cancelledNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver cancelled composing a reply ("" + from + "", "" + packetID + "")"");
+>     }
+>     });
+>     // Create a chat with user2
+>     Chat chat1 = conn1.createChat(user2);
+>     // Create a message to send
+>     Message msg = chat1.createMessage();
+>     msg.setSubject(""Any subject you want"");
+>     msg.setBody(""An interesting body comes here..."");
+>     // Add to the message all the notifications requests (offline, delivered, displayed,
+>     // composing)
+>     MessageEventManager.addNotificationsRequests(msg, true, true, true, true);
+>     // Send the message that contains the notifications request
+>     chat1.sendMessage(msg);
+>",MessageEventManager,1
+"###  Reacting to Event Notifications
+
+Description
+
+Once you have requested for event notifications you will start to receive notifications of events. You can receive notifications of the following events: delivered, displayed, composing, offline and cancelled. You will probably want to react to some or all of these events.
+
+Usage
+
+The general idea is to create a new  MessageEventNotificationListener  that will listen to the event notifications and react with custom logic. Then you will have to add the listener to the  MessageEventManager  that works on the desired  Connection . 
+
+  * To create a new  MessageEventManager  use the  MessageEventManager.MessageEventManager(Connection)  constructor. 
+  * To create an event notifications listener create a class that implements the  MessageEventNotificationListener  interface. 
+  * To add a listener to the messageEventManager use the MessageEventManager's message  MessageEventManager.addMessageEventNotificationListener(MessageEventNotificationListener) .
+
+Example
+
+Below you can find an example that logs in a user to the server, adds a  MessageEventNotificationListener  to a  MessageEventManager  that will listen and react to the event notifications, creates a message, adds the requests for notifications and sends the message. 
+
+> 
+>           // Connect to the server and log in
+>     conn1 = new XMPPConnection(host);
+>     conn1.login(server_user1, pass1);
+>     // Create a MessageEventManager
+>     MessageEventManager messageEventManager = new MessageEventManager(conn1);
+>     // Add the listener that will react to the event notifications
+>     messageEventManager.addMessageEventNotificationListener(new MessageEventNotificationListener() {
+>     public void deliveredNotification(String from, String packetID) {
+>     System.out.println(""The message has been delivered ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void displayedNotification(String from, String packetID) {
+>     System.out.println(""The message has been displayed ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void composingNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver is composing a reply ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void offlineNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver is offline ("" + from + "", "" + packetID + "")"");
+>     }
+>     public void cancelledNotification(String from, String packetID) {
+>     System.out.println(""The message's receiver cancelled composing a reply ("" + from + "", "" + packetID + "")"");
+>     }
+>     });
+>     // Create a chat with user2
+>     Chat chat1 = conn1.createChat(user2);
+>     // Create a message to send
+>     Message msg = chat1.createMessage();
+>     msg.setSubject(""Any subject you want"");
+>     msg.setBody(""An interesting body comes here..."");
+>     // Add to the message all the notifications requests (offline, delivered, displayed,
+>     // composing)
+>     MessageEventManager.addNotificationsRequests(msg, true, true, true, true);
+>     // Send the message that contains the notifications request
+>     chat1.sendMessage(msg);
+>",Connection,0

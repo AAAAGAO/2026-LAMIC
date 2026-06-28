@@ -1,0 +1,269 @@
+{
+  "rq": "RQ4",
+  "libraries": [
+    "data",
+    "graphics",
+    "jenkov",
+    "jodatime",
+    "math",
+    "official",
+    "resources",
+    "smack",
+    "text"
+  ],
+  "test_size": 100,
+  "language_counts": {
+    "android": 50,
+    "java": 50
+  },
+  "pool_size": 9972,
+  "seed": 42,
+  "runs": [
+    {
+      "setting": "within_language",
+      "query_language": "java",
+      "pool_language": "java",
+      "num_queries": 50,
+      "num_pool_samples": 7618,
+      "raw": {
+        "overall": {
+          "precision": 0.7096774193548387,
+          "recall": 0.9166666666666666,
+          "f1": 0.7999999999999999
+        },
+        "java": {
+          "precision": 0.7096774193548387,
+          "recall": 0.9166666666666666,
+          "f1": 0.7999999999999999
+        }
+      },
+      "final": {
+        "overall": {
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875
+        },
+        "java": {
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875
+        }
+      },
+      "metrics": {
+        "precision": 0.875,
+        "recall": 0.875,
+        "f1": 0.875,
+        "retrieval_recall@1": 0.78,
+        "retrieval_recall@3": 0.92,
+        "retrieval_recall@5": 1.0,
+        "retrieval_recall@10": 1.0,
+        "retrieval_mrr": 0.858,
+        "retrieval_topk_same_label_hit_rate": 1.0,
+        "retrieval_topk_same_api_hit_rate": 0.64
+      }
+    },
+    {
+      "setting": "within_language",
+      "query_language": "android",
+      "pool_language": "android",
+      "num_queries": 50,
+      "num_pool_samples": 2354,
+      "raw": {
+        "overall": {
+          "precision": 0.46153846153846156,
+          "recall": 0.48,
+          "f1": 0.47058823529411764
+        },
+        "android": {
+          "precision": 0.46153846153846156,
+          "recall": 0.48,
+          "f1": 0.47058823529411764
+        }
+      },
+      "final": {
+        "overall": {
+          "precision": 0.6956521739130435,
+          "recall": 0.64,
+          "f1": 0.6666666666666666
+        },
+        "android": {
+          "precision": 0.6956521739130435,
+          "recall": 0.64,
+          "f1": 0.6666666666666666
+        }
+      },
+      "metrics": {
+        "precision": 0.6956521739130435,
+        "recall": 0.64,
+        "f1": 0.6666666666666666,
+        "retrieval_recall@1": 0.74,
+        "retrieval_recall@3": 0.9,
+        "retrieval_recall@5": 0.92,
+        "retrieval_recall@10": 0.98,
+        "retrieval_mrr": 0.8316666666666666,
+        "retrieval_topk_same_label_hit_rate": 0.92,
+        "retrieval_topk_same_api_hit_rate": 0.52
+      }
+    },
+    {
+      "setting": "cross_language",
+      "query_language": "java",
+      "pool_language": "android",
+      "num_queries": 50,
+      "num_pool_samples": 2354,
+      "raw": {
+        "overall": {
+          "precision": 0.5277777777777778,
+          "recall": 0.7916666666666666,
+          "f1": 0.6333333333333333
+        },
+        "java": {
+          "precision": 0.5277777777777778,
+          "recall": 0.7916666666666666,
+          "f1": 0.6333333333333333
+        }
+      },
+      "final": {
+        "overall": {
+          "precision": 0.5135135135135135,
+          "recall": 0.7916666666666666,
+          "f1": 0.6229508196721311
+        },
+        "java": {
+          "precision": 0.5135135135135135,
+          "recall": 0.7916666666666666,
+          "f1": 0.6229508196721311
+        }
+      },
+      "metrics": {
+        "precision": 0.5135135135135135,
+        "recall": 0.7916666666666666,
+        "f1": 0.6229508196721311,
+        "retrieval_recall@1": 0.54,
+        "retrieval_recall@3": 0.76,
+        "retrieval_recall@5": 0.88,
+        "retrieval_recall@10": 1.0,
+        "retrieval_mrr": 0.681047619047619,
+        "retrieval_topk_same_label_hit_rate": 0.88,
+        "retrieval_topk_same_api_hit_rate": 0.0
+      }
+    },
+    {
+      "setting": "cross_language",
+      "query_language": "android",
+      "pool_language": "java",
+      "num_queries": 50,
+      "num_pool_samples": 7618,
+      "raw": {
+        "overall": {
+          "precision": 0.5428571428571428,
+          "recall": 0.76,
+          "f1": 0.6333333333333332
+        },
+        "android": {
+          "precision": 0.5428571428571428,
+          "recall": 0.76,
+          "f1": 0.6333333333333332
+        }
+      },
+      "final": {
+        "overall": {
+          "precision": 0.5135135135135135,
+          "recall": 0.76,
+          "f1": 0.6129032258064517
+        },
+        "android": {
+          "precision": 0.5135135135135135,
+          "recall": 0.76,
+          "f1": 0.6129032258064517
+        }
+      },
+      "metrics": {
+        "precision": 0.5135135135135135,
+        "recall": 0.76,
+        "f1": 0.6129032258064517,
+        "retrieval_recall@1": 0.54,
+        "retrieval_recall@3": 0.8,
+        "retrieval_recall@5": 0.88,
+        "retrieval_recall@10": 0.98,
+        "retrieval_mrr": 0.6884365079365079,
+        "retrieval_topk_same_label_hit_rate": 0.88,
+        "retrieval_topk_same_api_hit_rate": 0.02
+      }
+    }
+  ],
+  "platform_results": {
+    "within_language": {
+      "raw": {
+        "overall": {
+          "precision": 0.5964912280701754,
+          "recall": 0.6938775510204082,
+          "f1": 0.6415094339622641
+        },
+        "java": {
+          "precision": 0.7096774193548387,
+          "recall": 0.9166666666666666,
+          "f1": 0.7999999999999999
+        },
+        "android": {
+          "precision": 0.46153846153846156,
+          "recall": 0.48,
+          "f1": 0.47058823529411764
+        }
+      },
+      "final": {
+        "overall": {
+          "precision": 0.7872340425531915,
+          "recall": 0.7551020408163265,
+          "f1": 0.7708333333333333
+        },
+        "java": {
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875
+        },
+        "android": {
+          "precision": 0.6956521739130435,
+          "recall": 0.64,
+          "f1": 0.6666666666666666
+        }
+      }
+    },
+    "cross_language": {
+      "raw": {
+        "overall": {
+          "precision": 0.5352112676056338,
+          "recall": 0.7755102040816326,
+          "f1": 0.6333333333333333
+        },
+        "java": {
+          "precision": 0.5277777777777778,
+          "recall": 0.7916666666666666,
+          "f1": 0.6333333333333333
+        },
+        "android": {
+          "precision": 0.5428571428571428,
+          "recall": 0.76,
+          "f1": 0.6333333333333332
+        }
+      },
+      "final": {
+        "overall": {
+          "precision": 0.5135135135135135,
+          "recall": 0.7755102040816326,
+          "f1": 0.6178861788617885
+        },
+        "java": {
+          "precision": 0.5135135135135135,
+          "recall": 0.7916666666666666,
+          "f1": 0.6229508196721311
+        },
+        "android": {
+          "precision": 0.5135135135135135,
+          "recall": 0.76,
+          "f1": 0.6129032258064517
+        }
+      }
+    }
+  }
+}

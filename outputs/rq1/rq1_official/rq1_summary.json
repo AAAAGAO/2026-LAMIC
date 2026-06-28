@@ -1,0 +1,33 @@
+{
+  "rq": "RQ1",
+  "libraries": [
+    "official"
+  ],
+  "library_metrics": [
+    {
+      "library": "official",
+      "f1": 0.826126845579313,
+      "precision": 0.7412494227292952,
+      "recall": 0.9334129732236788,
+      "retrieval_mrr": 0.8666733551198256,
+      "retrieval_recall@1": 0.8049204991087344,
+      "retrieval_recall@10": 0.9885090909090909,
+      "retrieval_recall@3": 0.9118067736185383,
+      "retrieval_recall@5": 0.9551030303030303,
+      "retrieval_topk_same_api_hit_rate": 0.5440976827094475,
+      "retrieval_topk_same_label_hit_rate": 0.9551030303030303
+    }
+  ],
+  "macro_average": {
+    "f1": 0.826126845579313,
+    "precision": 0.7412494227292952,
+    "recall": 0.9334129732236788,
+    "retrieval_mrr": 0.8666733551198256,
+    "retrieval_recall@1": 0.8049204991087344,
+    "retrieval_recall@10": 0.9885090909090909,
+    "retrieval_recall@3": 0.9118067736185383,
+    "retrieval_recall@5": 0.9551030303030303,
+    "retrieval_topk_same_api_hit_rate": 0.5440976827094475,
+    "retrieval_topk_same_label_hit_rate": 0.9551030303030303
+  }
+}
