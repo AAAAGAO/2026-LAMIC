@@ -10,11 +10,6 @@ LAMIC constructs $\langle$API, KU$\rangle$ tuples from API tutorials and Stack O
 - `requirements.txt`: Python dependencies required to run the experiments.
 - `application/`: materials used in the API knowledge retrieval application study.
 - `user-study/`: anonymized evaluation sheets and ground-truth data used in the user study.
-- `SO/`: Stack Overflow datasets used in the experiment.
-
-## API tutorial Datasets
-
-The repository follows the API tutorial datasets and construction procedures reported in the source papers. Dataset access and detailed preprocessing descriptions are available from the corresponding publications: [An Unsupervised Approach for Discovering Relevant Tutorial Fragments for APIs](https://ieeexplore.ieee.org/document/7985648)).
 
 
 
