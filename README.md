@@ -1,7 +1,7 @@
 # LAMIC
 This repository contains the implementation and experimental materials for the paper **"LAMIC: Locating Relevant API Knowledge with Multi-Perspective Demonstration Enhancement In-Context Learning."**
 
-LAMIC constructs $\langle$API, KU$\rangle$ tuples from API tutorials and Stack Overflow. It then applies a multi-perspective demonstration enhancement ICL framework with two main components. The multi-perspective demonstration selection strategy integrates lexical, semantic, and structural rankings to retrieve informative demonstrations. The clue-based demonstration enhancement strategy enriches each retrieved demonstration with explicit clues and a reasoning statement. Finally, LAMIC prompts the LLM with the enhanced demonstrations to locate relevant KUs for the target API.
+LAMIC constructs <API, KU> tuples from API tutorials and Stack Overflow. It then applies a multi-perspective demonstration enhancement ICL framework with two main components. The multi-perspective demonstration selection strategy integrates lexical, semantic, and structural rankings to retrieve informative demonstrations. The clue-based demonstration enhancement strategy enriches each retrieved demonstration with explicit clues and a reasoning statement. Finally, LAMIC prompts the LLM with the enhanced demonstrations to locate relevant KUs for the target API.
 
 
 ## Repository Structure
