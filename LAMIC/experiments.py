@@ -8,12 +8,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from pathlib import Path
 from statistics import mean
-import re
 import torch
 from .clues import build_sample_clue_features, export_augmented_samples, infer_sample_decision_profile, render_demo_reason, render_sample_clue_text
 from .config import AppConfig
 from .data import ANDROID_DATASETS, ApiSample, JAVA_DATASETS, build_kfold_splits, group_samples_by_library, load_samples, stratified_holdout, stratified_split
-from .error_analysis import build_error_analysis
 from .evaluation import case_studies, classification_metrics, retrieval_metrics
 from .icl import ClueBasedDemoEnhancer, DeepSeekClient, Prediction, SO_POSITIVE_PROFILES, build_prompt, fallback_demo_augmentation, parse_prediction, select_demonstrations
 from .retrieval import MultiPerspectiveRetriever
@@ -35,28 +33,6 @@ def _safe_classification_metrics(labels: list[int], predictions: list[int]) -> d
         return {'precision': 0.0, 'recall': 0.0, 'f1': 0.0}
     return classification_metrics(labels, predictions)
 
-def _source_metrics(queries: list[ApiSample], predictions: list[int]) -> dict[str, dict[str, float]]:
-    grouped_labels: dict[str, list[int]] = {}
-    grouped_predictions: dict[str, list[int]] = {}
-    for query, prediction in zip(queries, predictions, strict=True):
-        grouped_labels.setdefault(query.source, []).append(query.label)
-        grouped_predictions.setdefault(query.source, []).append(prediction)
-    return {source: _safe_classification_metrics(grouped_labels[source], grouped_predictions[source]) for source in sorted(grouped_labels)}
-
-def _confusion_counts_by_source(queries: list[ApiSample], predictions: list[int]) -> dict[str, dict[str, int]]:
-    counts: dict[str, dict[str, int]] = {}
-    for query, prediction in zip(queries, predictions, strict=True):
-        current = counts.setdefault(query.source, {'tp': 0, 'tn': 0, 'fp': 0, 'fn': 0})
-        if query.label == 1 and prediction == 1:
-            current['tp'] += 1
-        elif query.label == 0 and prediction == 0:
-            current['tn'] += 1
-        elif query.label == 0 and prediction == 1:
-            current['fp'] += 1
-        else:
-            current['fn'] += 1
-    return counts
-
 def _language_metrics_from_prediction_rows(rows: list[dict]) -> dict[str, dict[str, dict[str, float]]]:
 
     def grouped_metrics(prediction_key: str) -> dict[str, dict[str, float]]:
@@ -73,26 +49,6 @@ def _language_metrics_from_prediction_rows(rows: list[dict]) -> dict[str, dict[s
         return {group: _safe_classification_metrics(labels_by_group[group], predictions_by_group[group]) for group in ('overall', 'java', 'android') if group in labels_by_group}
     return {'raw': grouped_metrics('llm_predicted_label'), 'final': grouped_metrics('predicted_label')}
 
-def _summarize_query(query: ApiSample, reason: str) -> dict[str, str | int]:
-    return {'sample_id': query.sample_id, 'api': query.api, 'dataset': query.dataset, 'source': query.source, 'label': query.label, 'reason': reason, 'fragment_preview': query.fragment[:500]}
-
-def _bucket_so_errors(prediction_rows: list[dict], queries: list[ApiSample], prompt_rows: list[list[dict]]) -> dict[str, dict[str, list[dict]]]:
-    by_id = {query.sample_id: query for query in queries}
-    false_positives = {'low_quality_qa_mistaken_as_positive': [], 'useful_answer_but_wrong_api_focus': []}
-    false_negatives = {'short_but_valid_api_guidance_missed': [], 'other_missed_positive': []}
-    for row, prompt_demo_rows in zip(prediction_rows, prompt_rows, strict=True):
-        query = by_id[row['sample_id']]
-        if query.source != 'SO':
-            continue
-        if row['gold_label'] == 0 and row['predicted_label'] == 1:
-            wrong_api_focus = any((demo['label'] == 0 and demo['api'] != query.api for demo in prompt_demo_rows))
-            bucket = 'useful_answer_but_wrong_api_focus' if wrong_api_focus else 'low_quality_qa_mistaken_as_positive'
-            false_positives[bucket].append(_summarize_query(query, row['reason']))
-        elif row['gold_label'] == 1 and row['predicted_label'] == 0:
-            bucket = 'short_but_valid_api_guidance_missed' if len(query.fragment) <= 900 else 'other_missed_positive'
-            false_negatives[bucket].append(_summarize_query(query, row['reason']))
-    return {'false_positives': false_positives, 'false_negatives': false_negatives}
-
 def _validate_library(config: AppConfig, grouped: dict[str, list[ApiSample]]) -> None:
     if config.library and config.library not in grouped:
         raise ValueError(f"Unknown library: {config.library}. Available: {', '.join(grouped)}")
@@ -101,16 +57,6 @@ def _filter_samples_by_source(samples: list[ApiSample], source: str | None) -> l
     if source is None:
         return samples
     return [sample for sample in samples if sample.source == source]
-
-def _normalize_fragment(fragment: str) -> str:
-    return re.sub('\\s+', ' ', fragment).strip().lower()
-
-def _same_fragment_label_stats(pool: list[ApiSample]) -> dict[tuple[str, str], list[int]]:
-    stats: dict[tuple[str, str], list[int]] = {}
-    for sample in pool:
-        key = (sample.source, _normalize_fragment(sample.fragment))
-        stats.setdefault(key, []).append(sample.label)
-    return stats
 
 def _write_prediction_cache(cache_path, prediction_cache: dict[str, str]) -> None:
     cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -132,16 +78,6 @@ def _write_prediction_cache(cache_path, prediction_cache: dict[str, str]) -> Non
                 pass
             time.sleep(0.5 * (attempt + 1))
     raise OSError(f'Failed to save prediction cache: {cache_path}') from last_error
-
-def _api_prior_stats(pool: list[ApiSample]) -> dict[tuple[str, str], dict[str, float | int]]:
-    stats: dict[tuple[str, str], dict[str, float | int]] = {}
-    for sample in pool:
-        key = (sample.source, sample.api)
-        if key not in stats:
-            stats[key] = {'support': 0, 'positive': 0}
-        stats[key]['support'] = int(stats[key]['support']) + 1
-        stats[key]['positive'] = int(stats[key]['positive']) + int(sample.label)
-    return stats
 
 def _fallback_prediction(query: ApiSample, demonstrations) -> Prediction:
     profile = infer_sample_decision_profile(query)
@@ -254,8 +190,6 @@ def run_icl_fold(config: AppConfig, pool: list[ApiSample], queries: list[ApiSamp
     rankings = []
     prediction_rows = []
     prompt_rows_by_query: list[list[dict[str, str | int | float]]] = []
-    api_prior_stats = _api_prior_stats(pool)
-    same_fragment_stats = _same_fragment_label_stats(pool)
     prediction_cache_lock = threading.Lock()
 
     def process_query(query_index: int, query: ApiSample):
