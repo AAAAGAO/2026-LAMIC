@@ -1,0 +1,2632 @@
+fragment,api,relevance
+"# Java's  Stack Class
+
+The ` java.util.Stack ` class deserves a little explanation on its own. In the text on the ` List ` interface the ` Stack ` class is listed as an implementation. The typical use of a ` Stack ` is not as a ` List ` though. 
+
+A ` Stack ` is a data structure where you add elements to the ""top"" of the stack, and also remove elements from the top again. This is also referred to as the ""Last In First Out (LIFO)"" principle. In contrast, a ` Queue ` uses a ""First In First Out (FIFO)"" principle. 
+
+` Stack `'s are really handy for some types of data processing, for instance if you are parsing an XML file using either SAX or StAX. For an example, see my Java SAX Example in my Java XML tutorial. 
+
+Here is a ` Stack ` usage example: 
+    
+    
+    Stack stack = new Stack();
+    stack.push(""1"");
+    stack.push(""2"");
+    stack.push(""3"");
+    //look at top object (""3""), without taking it off the stack.    
+    Object objTop = stack.peek();
+    Object obj3 = stack.pop(); //the string ""3"" is at the top of the stack.
+    Object obj2 = stack.pop(); //the string ""2"" is at the top of the stack.
+    Object obj1 = stack.pop(); //the string ""1"" is at the top of the stack.   
+    
+
+The ` Stack.push() ` method pushes an object onto the top of the ` Stack `. 
+
+The ` Stack.peek() ` method returns the object at the top of the ` Stack `, but leaves the object on of the ` Stack `. 
+
+The ` Stack.pop() ` method returns the object at the top of the `stack`, and removes the object from the ` Stack `.",Stack,1
+"# Java's  Stack Class
+
+The ` java.util.Stack ` class deserves a little explanation on its own. In the text on the ` List ` interface the ` Stack ` class is listed as an implementation. The typical use of a ` Stack ` is not as a ` List ` though. 
+
+A ` Stack ` is a data structure where you add elements to the ""top"" of the stack, and also remove elements from the top again. This is also referred to as the ""Last In First Out (LIFO)"" principle. In contrast, a ` Queue ` uses a ""First In First Out (FIFO)"" principle. 
+
+` Stack `'s are really handy for some types of data processing, for instance if you are parsing an XML file using either SAX or StAX. For an example, see my Java SAX Example in my Java XML tutorial. 
+
+Here is a ` Stack ` usage example: 
+    
+    
+    Stack stack = new Stack();
+    stack.push(""1"");
+    stack.push(""2"");
+    stack.push(""3"");
+    //look at top object (""3""), without taking it off the stack.    
+    Object objTop = stack.peek();
+    Object obj3 = stack.pop(); //the string ""3"" is at the top of the stack.
+    Object obj2 = stack.pop(); //the string ""2"" is at the top of the stack.
+    Object obj1 = stack.pop(); //the string ""1"" is at the top of the stack.   
+    
+
+The ` Stack.push() ` method pushes an object onto the top of the ` Stack `. 
+
+The ` Stack.peek() ` method returns the object at the top of the ` Stack `, but leaves the object on of the ` Stack `. 
+
+The ` Stack.pop() ` method returns the object at the top of the `stack`, and removes the object from the ` Stack `.",List,0
+"# Java's  Stack Class
+
+The ` java.util.Stack ` class deserves a little explanation on its own. In the text on the ` List ` interface the ` Stack ` class is listed as an implementation. The typical use of a ` Stack ` is not as a ` List ` though. 
+
+A ` Stack ` is a data structure where you add elements to the ""top"" of the stack, and also remove elements from the top again. This is also referred to as the ""Last In First Out (LIFO)"" principle. In contrast, a ` Queue ` uses a ""First In First Out (FIFO)"" principle. 
+
+` Stack `'s are really handy for some types of data processing, for instance if you are parsing an XML file using either SAX or StAX. For an example, see my Java SAX Example in my Java XML tutorial. 
+
+Here is a ` Stack ` usage example: 
+    
+    
+    Stack stack = new Stack();
+    stack.push(""1"");
+    stack.push(""2"");
+    stack.push(""3"");
+    //look at top object (""3""), without taking it off the stack.    
+    Object objTop = stack.peek();
+    Object obj3 = stack.pop(); //the string ""3"" is at the top of the stack.
+    Object obj2 = stack.pop(); //the string ""2"" is at the top of the stack.
+    Object obj1 = stack.pop(); //the string ""1"" is at the top of the stack.   
+    
+
+The ` Stack.push() ` method pushes an object onto the top of the ` Stack `. 
+
+The ` Stack.peek() ` method returns the object at the top of the ` Stack `, but leaves the object on of the ` Stack `. 
+
+The ` Stack.pop() ` method returns the object at the top of the `stack`, and removes the object from the ` Stack `.",Queue,0
+"## Searching the Stack
+
+You can search for an object on the stack to get it's index, using the ` Stack.search() ` method. The object's `equals()` method is called on every object on the ` Stack ` to determine if the searched-for object is present on the ` Stack `. The index you get is the index from the top of the ` Stack `, meaning the top element on the ` Stack ` has index 1. 
+
+Here is how you search a ` Stack ` for an object: 
+    
+    
+    Stack stack = new Stack();
+    stack.push(""1"");
+    stack.push(""2"");
+    stack.push(""3"");
+    int index = stack.search(""3"");     //index = 3",Stack,1
+"# Java's  NavigableMap Interface
+
+The ` java.util.NavigableMap ` interface is a subtype of the ` java.util.SortedMap ` interface. It has a few extensions to the ` SortedSet ` which makes it possible to navigate the map. I will take a closer look at these navigation methods in this text. 
+
+The `java.util` package only has one implementation of the ` NavigableMap ` interface: ` java.util.TreeMap `. There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingKeySet() and descendingMap()
+  2. headMap(), tailMap() and subMap()
+  3. ceilingKey(), floorKey(), higherKey() and lowerKey()
+  4. ceilingEntry(), floorEntry(), higherEntry() and lowerEntry()
+  5. pollFirstEntry() and pollLastEntry()
+  6. More detail in the JavaDoc",NavigableMap,0
+"# Java's  NavigableMap Interface
+
+The ` java.util.NavigableMap ` interface is a subtype of the ` java.util.SortedMap ` interface. It has a few extensions to the ` SortedSet ` which makes it possible to navigate the map. I will take a closer look at these navigation methods in this text. 
+
+The `java.util` package only has one implementation of the ` NavigableMap ` interface: ` java.util.TreeMap `. There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingKeySet() and descendingMap()
+  2. headMap(), tailMap() and subMap()
+  3. ceilingKey(), floorKey(), higherKey() and lowerKey()
+  4. ceilingEntry(), floorEntry(), higherEntry() and lowerEntry()
+  5. pollFirstEntry() and pollLastEntry()
+  6. More detail in the JavaDoc",SortedMap,0
+"# Java's  NavigableMap Interface
+
+The ` java.util.NavigableMap ` interface is a subtype of the ` java.util.SortedMap ` interface. It has a few extensions to the ` SortedSet ` which makes it possible to navigate the map. I will take a closer look at these navigation methods in this text. 
+
+The `java.util` package only has one implementation of the ` NavigableMap ` interface: ` java.util.TreeMap `. There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingKeySet() and descendingMap()
+  2. headMap(), tailMap() and subMap()
+  3. ceilingKey(), floorKey(), higherKey() and lowerKey()
+  4. ceilingEntry(), floorEntry(), higherEntry() and lowerEntry()
+  5. pollFirstEntry() and pollLastEntry()
+  6. More detail in the JavaDoc",SortedSet,0
+"# Java's  NavigableMap Interface
+
+The ` java.util.NavigableMap ` interface is a subtype of the ` java.util.SortedMap ` interface. It has a few extensions to the ` SortedSet ` which makes it possible to navigate the map. I will take a closer look at these navigation methods in this text. 
+
+The `java.util` package only has one implementation of the ` NavigableMap ` interface: ` java.util.TreeMap `. There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingKeySet() and descendingMap()
+  2. headMap(), tailMap() and subMap()
+  3. ceilingKey(), floorKey(), higherKey() and lowerKey()
+  4. ceilingEntry(), floorEntry(), higherEntry() and lowerEntry()
+  5. pollFirstEntry() and pollLastEntry()
+  6. More detail in the JavaDoc",TreeMap,0
+"## descendingKeySet() and descendingMap()
+
+The first interesting navigation methods are the ` NavigableMap.descendingKeySet() ` and ` NavigableMap.descendingMap() ` methods. 
+
+The ` NavigableMap.descendingKeySet() ` method returns a ` NavigableSet ` in which the order of the elements is reversed compared to the original key set. The returned ""view"" is backed by the original ` NavigableSet ` ket set, so changes to the descending set are also reflected in the original set. However, you should not remove elements directly from the key set. Use the ` Map.Map.remove() ` method instead. 
+
+Here is a simple example: 
+    
+    
+    NavigableSet reverse = map.descendingKeySet();
+    
+
+The ` NavigableMap.descendingMap() ` method returns a ` NavigableMap ` which is a view of the original ` Map `. The order of the elements in this view map is reverse of the order of the original map. Being a view of the original map, any changes to this view is also reflected in the original map. 
+
+Here is a simple example: 
+    
+    
+    NavigableMap descending = map.descendingMap();",NavigableMap,1
+"## descendingKeySet() and descendingMap()
+
+The first interesting navigation methods are the ` NavigableMap.descendingKeySet() ` and ` NavigableMap.descendingMap() ` methods. 
+
+The ` NavigableMap.descendingKeySet() ` method returns a ` NavigableSet ` in which the order of the elements is reversed compared to the original key set. The returned ""view"" is backed by the original ` NavigableSet ` ket set, so changes to the descending set are also reflected in the original set. However, you should not remove elements directly from the key set. Use the ` Map.Map.remove() ` method instead. 
+
+Here is a simple example: 
+    
+    
+    NavigableSet reverse = map.descendingKeySet();
+    
+
+The ` NavigableMap.descendingMap() ` method returns a ` NavigableMap ` which is a view of the original ` Map `. The order of the elements in this view map is reverse of the order of the original map. Being a view of the original map, any changes to this view is also reflected in the original map. 
+
+Here is a simple example: 
+    
+    
+    NavigableMap descending = map.descendingMap();",NavigableSet,1
+"## descendingKeySet() and descendingMap()
+
+The first interesting navigation methods are the ` NavigableMap.descendingKeySet() ` and ` NavigableMap.descendingMap() ` methods. 
+
+The ` NavigableMap.descendingKeySet() ` method returns a ` NavigableSet ` in which the order of the elements is reversed compared to the original key set. The returned ""view"" is backed by the original ` NavigableSet ` ket set, so changes to the descending set are also reflected in the original set. However, you should not remove elements directly from the key set. Use the ` Map.Map.remove() ` method instead. 
+
+Here is a simple example: 
+    
+    
+    NavigableSet reverse = map.descendingKeySet();
+    
+
+The ` NavigableMap.descendingMap() ` method returns a ` NavigableMap ` which is a view of the original ` Map `. The order of the elements in this view map is reverse of the order of the original map. Being a view of the original map, any changes to this view is also reflected in the original map. 
+
+Here is a simple example: 
+    
+    
+    NavigableMap descending = map.descendingMap();",Map,0
+"## headMap(), tailMap() and subMap()
+
+The ` NavigableMap.headMap() ` method returns a view of the original ` NavigableMap ` which only contains elements that are ""less than"" the given element. Here is an example: 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.put(""2"", ""2"");
+    original.put(""3"", ""3"");
+    //this headmap1 will contain ""1"" and ""2""
+    SortedMap headmap1 = original.headMap(""3"");
+    //this headmap2 will contain ""1"", ""2"", and ""3"" because ""inclusive""=true
+    NavigableMap headmap2 = original.headMap(""3"", true);
+    
+
+The ` NavigableMap.tailMap() ` method works the same way, except it returns all elements that are higher than the given parameter element. 
+
+The ` NavigableMap.subMap() ` allows you to pass two parameters demarcating the boundaries of the view map to return. Here is an example: 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.add(""2"", ""2"");
+    original.add(""3"", ""3"");
+    original.add(""4"", ""4"");
+    original.add(""5"", ""5"");
+    //this submap1 will contain ""3"", ""3""
+    SortedMap    submap1  = original.subMap(""2"", ""4"");
+    //this submap2 will contain (""2"", ""2"") (""3"", ""3"") and (""4"", ""4"") because
+    //    fromInclusive=true, and toInclusive=true
+    NavigableMap submap2 = original.subMap(""2"", true, ""4"", true);",NavigableMap,1
+"## ceilingKey(), floorKey(), higherKey() and lowerKey()
+
+The ` NavigableMap.ceilingKey() ` method returns the least (smallest) key in this map that is greater than or equal to the element passed as parameter to the ` NavigableMap.ceilingKey() ` method. Here is an example: 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.put(""2"", ""2"");
+    original.put(""3"", ""3"");
+    //ceilingKey will be ""2"".
+    Object ceilingKey = original.ceilingKey(""2"");
+    //floorKey will be ""2"".
+    Object floorKey = original.floorKey(""2"");
+    
+
+The ` NavigableMap.floorKey() ` method does the opposite of ` NavigableMap.ceilingKey() `
+
+The ` NavigableMap.higherKey() ` method returns the least (smallest) element in this map that is greater than (not equal too) the element passed as parameter to the ` NavigableMap.higherKey() ` method. Here is an example: 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.put(""2"", ""2"");
+    original.put(""3"", ""3"");
+    //higherKey will be ""3"".
+    Object higherKey = original.higherKey(""2"");
+    //lowerKey will be ""1""
+    Object lowerKey = original.lowerKey(""2"");
+    
+
+The ` NavigableMap.lowerKey() ` method does the opposite of the ` NavigableMap.higherKey() ` method.",NavigableMap,1
+"## celingEntry(), floorEntry(), higherEntry(), lowerEntry()
+
+The ` NavigableMap ` also has methods to get the entry for a given key, rather than the key itself. These methods behave like the ` NavigableMap.ceilingKey() ` etc. methods, except they return an ` Map.Entry ` instead of the key object itself. 
+
+A ` Map.Entry ` maps a single key to a single value. 
+
+Here is a simple example. For more details, check out the JavaDoc. 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.put(""2"", ""2"");
+    original.put(""3"", ""3"");
+    //higherEntry will be (""3"", ""3"").
+    Map.Entry higherEntry = original.higherEntry(""2"");
+    //lowerEntry will be (""1"", ""1"")
+    Map.Entry lowerEntry = original.lowerEntry(""2"");",NavigableMap,0
+"## celingEntry(), floorEntry(), higherEntry(), lowerEntry()
+
+The ` NavigableMap ` also has methods to get the entry for a given key, rather than the key itself. These methods behave like the ` NavigableMap.ceilingKey() ` etc. methods, except they return an ` Map.Entry ` instead of the key object itself. 
+
+A ` Map.Entry ` maps a single key to a single value. 
+
+Here is a simple example. For more details, check out the JavaDoc. 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.put(""2"", ""2"");
+    original.put(""3"", ""3"");
+    //higherEntry will be (""3"", ""3"").
+    Map.Entry higherEntry = original.higherEntry(""2"");
+    //lowerEntry will be (""1"", ""1"")
+    Map.Entry lowerEntry = original.lowerEntry(""2"");",Entry,0
+"## pollFirstEntry() and pollLastEntry()
+
+The ` NavigableMap.pollFirstEntry() ` method returns and removes the ""first"" entry (key + value) in the ` NavigableMap ` or null if the map is empty. The ` NavigableMap.pollLastEntry() ` returns and removes the ""last"" element in the map or null if the map is empty. ""First"" means smallest element according to the sort order of the keys. ""Last"" means largest key according to the element sorting order of the map. 
+
+Here are two examples: 
+    
+    
+    NavigableMap original = new TreeMap();
+    original.put(""1"", ""1"");
+    original.put(""2"", ""2"");
+    original.put(""3"", ""3"");
+    //first is (""1"", ""1"")
+    Map.Entry first = original.pollFirstEntry();
+    //last is (""3"", ""3"")
+    Map.Entry last = original.pollLastEntry();",NavigableMap,1
+"## More Detail in the JavaDoc
+
+There are still a few interesting methods left in the ` NavigableMap ` interface that I have not covered here. For instance, the ` NavigableMap.firstEntry() ` and ` NavigableMap.lastEntry() ` methods. You can check out these last methods in the official JavaDoc.",NavigableMap,0
+"# Java's  List Interface
+
+The ` java.util.List ` interface is a subtype of the ` java.util.Collection ` interface. It represents an ordered list of objects, meaning you can access the elements of a ` List ` in a specific order, and by an index too. You can also add the same element more than once to a ` List `. 
+
+Here is a list of the topics covered in this text: 
+
+  1. List Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Lists
+  5. More Details in the JavaDoc",List,0
+"# Java's  List Interface
+
+The ` java.util.List ` interface is a subtype of the ` java.util.Collection ` interface. It represents an ordered list of objects, meaning you can access the elements of a ` List ` in a specific order, and by an index too. You can also add the same element more than once to a ` List `. 
+
+Here is a list of the topics covered in this text: 
+
+  1. List Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Lists
+  5. More Details in the JavaDoc",Collection,0
+"## List Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` List ` interface. 
+
+Since ` List ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` List ` implementations in the Java Collections API: 
+
+  * java.util.ArrayList
+  * java.util.LinkedList
+  * java.util.Vector
+  * java.util.Stack
+
+
+
+There are also ` List ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` List ` instance: 
+    
+    
+    List listA = new ArrayList();
+    List listB = new LinkedList();
+    List listC = new Vector();
+    List listD = new Stack();",Collection,0
+"## List Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` List ` interface. 
+
+Since ` List ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` List ` implementations in the Java Collections API: 
+
+  * java.util.ArrayList
+  * java.util.LinkedList
+  * java.util.Vector
+  * java.util.Stack
+
+
+
+There are also ` List ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` List ` instance: 
+    
+    
+    List listA = new ArrayList();
+    List listB = new LinkedList();
+    List listC = new Vector();
+    List listD = new Stack();",List,0
+"## Adding and Accessing Elements
+
+To add elements to a ` List ` you call its ` List.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    listA.add(""element 3"");
+    listA.add(0, ""element 0"");
+    
+
+The first three ` List.add() ` calls add a ` String ` instance to the end of the list. The last ` List.add() ` call adds a ` String ` at index 0, meaning at the beginning of the list. 
+
+The order in which the elements are added to the ` List ` is stored, so you can access the elements in the same order. You can do so using either the ` List.get(int index) ` method, or via the ` Iterator ` returned by the ` List.iterator() ` method. Here is how: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 0"");
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    //access via index
+    String element0 = listA.get(0);
+    String element1 = listA.get(1);
+    String element3 = listA.get(2);
+    //access via Iterator
+    Iterator iterator = listA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : listA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the list via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene), the elements are iterated in the same sequence they are stored in the list.",List,1
+"## Adding and Accessing Elements
+
+To add elements to a ` List ` you call its ` List.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    listA.add(""element 3"");
+    listA.add(0, ""element 0"");
+    
+
+The first three ` List.add() ` calls add a ` String ` instance to the end of the list. The last ` List.add() ` call adds a ` String ` at index 0, meaning at the beginning of the list. 
+
+The order in which the elements are added to the ` List ` is stored, so you can access the elements in the same order. You can do so using either the ` List.get(int index) ` method, or via the ` Iterator ` returned by the ` List.iterator() ` method. Here is how: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 0"");
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    //access via index
+    String element0 = listA.get(0);
+    String element1 = listA.get(1);
+    String element3 = listA.get(2);
+    //access via Iterator
+    Iterator iterator = listA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : listA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the list via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene), the elements are iterated in the same sequence they are stored in the list.",Collection,0
+"## Adding and Accessing Elements
+
+To add elements to a ` List ` you call its ` List.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    listA.add(""element 3"");
+    listA.add(0, ""element 0"");
+    
+
+The first three ` List.add() ` calls add a ` String ` instance to the end of the list. The last ` List.add() ` call adds a ` String ` at index 0, meaning at the beginning of the list. 
+
+The order in which the elements are added to the ` List ` is stored, so you can access the elements in the same order. You can do so using either the ` List.get(int index) ` method, or via the ` Iterator ` returned by the ` List.iterator() ` method. Here is how: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 0"");
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    //access via index
+    String element0 = listA.get(0);
+    String element1 = listA.get(1);
+    String element3 = listA.get(2);
+    //access via Iterator
+    Iterator iterator = listA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : listA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the list via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene), the elements are iterated in the same sequence they are stored in the list.",String,0
+"## Adding and Accessing Elements
+
+To add elements to a ` List ` you call its ` List.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    listA.add(""element 3"");
+    listA.add(0, ""element 0"");
+    
+
+The first three ` List.add() ` calls add a ` String ` instance to the end of the list. The last ` List.add() ` call adds a ` String ` at index 0, meaning at the beginning of the list. 
+
+The order in which the elements are added to the ` List ` is stored, so you can access the elements in the same order. You can do so using either the ` List.get(int index) ` method, or via the ` Iterator ` returned by the ` List.iterator() ` method. Here is how: 
+    
+    
+    List listA = new ArrayList();
+    listA.add(""element 0"");
+    listA.add(""element 1"");
+    listA.add(""element 2"");
+    //access via index
+    String element0 = listA.get(0);
+    String element1 = listA.get(1);
+    String element3 = listA.get(2);
+    //access via Iterator
+    Iterator iterator = listA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : listA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the list via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene), the elements are iterated in the same sequence they are stored in the list.",Iterator,0
+"## Removing Elements
+
+You can remove elements in two ways: 
+
+  1. remove(Object element)
+  2. remove(int index)
+
+
+
+` List.remove(Object element) ` removes that element in the list, if it is present. All subsequent elements in the list are then moved up in the list. Their index thus decreases by 1. 
+
+` List.remove(int index) ` removes the element at the given index. All subsequent elements in the list are then moved up in the list. Their index thus decreases by 1.",List,1
+"## Generic Lists
+
+By default you can put any ` Object ` into a ` List `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` List `. Here is an example: 
+    
+    
+    List<MyObject> list = new ArrayList<MyObject>();
+    
+
+This ` List ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    MyObject myObject = list.get(0);
+    for(MyObject anObject : list){
+    //do someting to anObject...   
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Object,0
+"## Generic Lists
+
+By default you can put any ` Object ` into a ` List `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` List `. Here is an example: 
+    
+    
+    List<MyObject> list = new ArrayList<MyObject>();
+    
+
+This ` List ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    MyObject myObject = list.get(0);
+    for(MyObject anObject : list){
+    //do someting to anObject...   
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",List,0
+"## More Details in the JavaDoc
+
+There is a lot more you can do with a ` List `, but you will have to check out the JavaDoc for more details. This text focused on the two most common operations: Adding / removing elements, and iterating the elements.",List,0
+"# Java  Collections Overview
+
+In order to understand and use the Java Collections API effectively it is useful to have an overview of the interfaces it contains. So, that is what I will provide here. 
+
+There are two ""groups"" of interfaces: ` Collection `'s and ` Map `'s. 
+
+Here is a graphical overview of the ` Collection ` interface hierarchy: 
+
+And here is a graphical overview of the ` Map ` interface hierarchy: 
+
+You can find links to explanations of most (if not all) of these interfaces and implementations in the sub-menu at the top right of this page. That top-menu exists on all pages in this trail.",Collections,0
+"# Java  Collections Overview
+
+In order to understand and use the Java Collections API effectively it is useful to have an overview of the interfaces it contains. So, that is what I will provide here. 
+
+There are two ""groups"" of interfaces: ` Collection `'s and ` Map `'s. 
+
+Here is a graphical overview of the ` Collection ` interface hierarchy: 
+
+And here is a graphical overview of the ` Map ` interface hierarchy: 
+
+You can find links to explanations of most (if not all) of these interfaces and implementations in the sub-menu at the top right of this page. That top-menu exists on all pages in this trail.",Collection,0
+"# Java  Collections Overview
+
+In order to understand and use the Java Collections API effectively it is useful to have an overview of the interfaces it contains. So, that is what I will provide here. 
+
+There are two ""groups"" of interfaces: ` Collection `'s and ` Map `'s. 
+
+Here is a graphical overview of the ` Collection ` interface hierarchy: 
+
+And here is a graphical overview of the ` Map ` interface hierarchy: 
+
+You can find links to explanations of most (if not all) of these interfaces and implementations in the sub-menu at the top right of this page. That top-menu exists on all pages in this trail.",Map,0
+"# Java's  Iterable Interface
+
+The ` Iterable ` interface (` java.lang.Iterable `) is one of the root interfaces of the Java collection classes. The ` Collection ` interface extends ` Iterable `, so all subtypes of ` Collection ` also implement the ` Iterable ` interface. 
+
+A class that implements the ` Iterable ` can be used with the new for-loop. Here is such an example: 
+    
+    
+    List list = new ArrayList();
+    for(Object o : list){
+    //do something o;    
+    }
+    
+
+The ` Iterable ` interface has only one method: 
+    
+    
+    public interface Iterable<T> {
+    public Iterator<T> iterator();    
+    }
+    
+
+How you implement this ` Iterable ` interface so that you can use it with the new for-loop, is explained in the text Implementing the Iterable Interface, in my Java Generics tutorial.",Iterable,1
+"# Java's  Iterable Interface
+
+The ` Iterable ` interface (` java.lang.Iterable `) is one of the root interfaces of the Java collection classes. The ` Collection ` interface extends ` Iterable `, so all subtypes of ` Collection ` also implement the ` Iterable ` interface. 
+
+A class that implements the ` Iterable ` can be used with the new for-loop. Here is such an example: 
+    
+    
+    List list = new ArrayList();
+    for(Object o : list){
+    //do something o;    
+    }
+    
+
+The ` Iterable ` interface has only one method: 
+    
+    
+    public interface Iterable<T> {
+    public Iterator<T> iterator();    
+    }
+    
+
+How you implement this ` Iterable ` interface so that you can use it with the new for-loop, is explained in the text Implementing the Iterable Interface, in my Java Generics tutorial.",Collection,0
+"# Sorting Java Collections
+
+You can sort ` List ` collections using the ` java.util.Collections.sort() ` method. You can sort these two types of ` List `'s. 
+
+  1. List
+  2. LinkedList",List,0
+"# Sorting Java Collections
+
+You can sort ` List ` collections using the ` java.util.Collections.sort() ` method. You can sort these two types of ` List `'s. 
+
+  1. List
+  2. LinkedList",Collections,0
+"## Sorting Objects by their Natural Order
+
+To sort a ` List ` you do this: 
+    
+    
+    List list = new ArrayList();
+    //add elements to the list
+    Collections.sort(list);
+    
+
+When sorting a list like this the elements are ordered according to their ""natural order"". For objects to have a natural order they must implement the interface ` java.lang.Comparable `. In other words, the objects must be comparable to determine their order. Here is how the ` Comparable ` interface looks: 
+    
+    
+    public interface Comparable<T> {
+    int compareTo(T o);
+    }
+    
+
+The ` Comparable.compareTo() ` method should compare this object to another object, return an `int` value. Here are the rules for that `int` value: 
+
+  * Return a negative value if this object is smaller than the other object
+  * Return 0 (zero) if this object is equal to the other object.
+  * Return a positive value if this object is larger than the other object.
+
+
+
+There are a few more specific rules to obey in the implementation, but the above is the primary requirements. Check out the JavaDoc for the details.",List,0
+"## Sorting Objects by their Natural Order
+
+To sort a ` List ` you do this: 
+    
+    
+    List list = new ArrayList();
+    //add elements to the list
+    Collections.sort(list);
+    
+
+When sorting a list like this the elements are ordered according to their ""natural order"". For objects to have a natural order they must implement the interface ` java.lang.Comparable `. In other words, the objects must be comparable to determine their order. Here is how the ` Comparable ` interface looks: 
+    
+    
+    public interface Comparable<T> {
+    int compareTo(T o);
+    }
+    
+
+The ` Comparable.compareTo() ` method should compare this object to another object, return an `int` value. Here are the rules for that `int` value: 
+
+  * Return a negative value if this object is smaller than the other object
+  * Return 0 (zero) if this object is equal to the other object.
+  * Return a positive value if this object is larger than the other object.
+
+
+
+There are a few more specific rules to obey in the implementation, but the above is the primary requirements. Check out the JavaDoc for the details.",Comparable,1
+"### Sorting Objects by their Natural Order - part 2
+
+Let's say you are sorting a ` List ` of ` String ` elements. To sort them, each string is compared to the others according to some sorting algorithm (not interesting here). Each string compares itself to another string by alphabetic comparison. So, if a string is less than another string by alphabetic comparison it will return a negative number from the ` Comparable.compareTo() ` method. 
+
+When you implement the ` Comparable.compareTo() ` method in your own classes you will have to decide how these objects should be compared to each other. For instance, `Employee` objects can be compared by their first name, last name, salary, start year or whatever else you think makes sense.",List,0
+"### Sorting Objects by their Natural Order - part 2
+
+Let's say you are sorting a ` List ` of ` String ` elements. To sort them, each string is compared to the others according to some sorting algorithm (not interesting here). Each string compares itself to another string by alphabetic comparison. So, if a string is less than another string by alphabetic comparison it will return a negative number from the ` Comparable.compareTo() ` method. 
+
+When you implement the ` Comparable.compareTo() ` method in your own classes you will have to decide how these objects should be compared to each other. For instance, `Employee` objects can be compared by their first name, last name, salary, start year or whatever else you think makes sense.",String,0
+"### Sorting Objects by their Natural Order - part 2
+
+Let's say you are sorting a ` List ` of ` String ` elements. To sort them, each string is compared to the others according to some sorting algorithm (not interesting here). Each string compares itself to another string by alphabetic comparison. So, if a string is less than another string by alphabetic comparison it will return a negative number from the ` Comparable.compareTo() ` method. 
+
+When you implement the ` Comparable.compareTo() ` method in your own classes you will have to decide how these objects should be compared to each other. For instance, `Employee` objects can be compared by their first name, last name, salary, start year or whatever else you think makes sense.",Comparable,1
+"## Sorting Objects Using a Comparator
+
+Sometimes you may want to sort a list according to another order than their natural order. Perhaps the objects you are sorting do not even have a natural order. In that case you can use a ` Comparator ` instead. Here is how you sort a list using a ` Comparator `: 
+    
+    
+    List list = new ArrayList();
+    //add elements to the list
+    Comparator comparator = new SomeComparator();
+    Collections.sort(list, comparator);
+    
+
+Notice how the ` Collections.sort() ` method now takes a ` java.util.Comparator ` as parameter in addition to the ` List `. This ` Comparator ` compares the elements in the list two by two. Here is how the ` Comparator ` interface looks: 
+    
+    
+    public interface Comparator<T> {
+    int compare(T object1, T object2);
+    }
+    
+
+The ` Comparator.compare() ` method compares two objects to each other and should: 
+
+  * Return a negative value if object1 is smaller than object2
+  * Return 0 (zero) if objec1 is equal to object2.
+  * Return a positive value if object1 is larger than object2.
+
+
+
+There are a few more requirements to the implementation of the ` Comparator.compare() ` method, but these are the primary requirements. Check out the JavaDoc for more specific details.",Comparator,1
+"## Sorting Objects Using a Comparator
+
+Sometimes you may want to sort a list according to another order than their natural order. Perhaps the objects you are sorting do not even have a natural order. In that case you can use a ` Comparator ` instead. Here is how you sort a list using a ` Comparator `: 
+    
+    
+    List list = new ArrayList();
+    //add elements to the list
+    Comparator comparator = new SomeComparator();
+    Collections.sort(list, comparator);
+    
+
+Notice how the ` Collections.sort() ` method now takes a ` java.util.Comparator ` as parameter in addition to the ` List `. This ` Comparator ` compares the elements in the list two by two. Here is how the ` Comparator ` interface looks: 
+    
+    
+    public interface Comparator<T> {
+    int compare(T object1, T object2);
+    }
+    
+
+The ` Comparator.compare() ` method compares two objects to each other and should: 
+
+  * Return a negative value if object1 is smaller than object2
+  * Return 0 (zero) if objec1 is equal to object2.
+  * Return a positive value if object1 is larger than object2.
+
+
+
+There are a few more requirements to the implementation of the ` Comparator.compare() ` method, but these are the primary requirements. Check out the JavaDoc for more specific details.",Collections,0
+"## Sorting Objects Using a Comparator
+
+Sometimes you may want to sort a list according to another order than their natural order. Perhaps the objects you are sorting do not even have a natural order. In that case you can use a ` Comparator ` instead. Here is how you sort a list using a ` Comparator `: 
+    
+    
+    List list = new ArrayList();
+    //add elements to the list
+    Comparator comparator = new SomeComparator();
+    Collections.sort(list, comparator);
+    
+
+Notice how the ` Collections.sort() ` method now takes a ` java.util.Comparator ` as parameter in addition to the ` List `. This ` Comparator ` compares the elements in the list two by two. Here is how the ` Comparator ` interface looks: 
+    
+    
+    public interface Comparator<T> {
+    int compare(T object1, T object2);
+    }
+    
+
+The ` Comparator.compare() ` method compares two objects to each other and should: 
+
+  * Return a negative value if object1 is smaller than object2
+  * Return 0 (zero) if objec1 is equal to object2.
+  * Return a positive value if object1 is larger than object2.
+
+
+
+There are a few more requirements to the implementation of the ` Comparator.compare() ` method, but these are the primary requirements. Check out the JavaDoc for more specific details.",List,0
+"### Sorting Objects Using a Comparator - part 2
+
+Here is an example ` Comparator ` that compares two fictive Employee objects: 
+    
+    
+    public class MyComparator<Employee> implements Comparator<Employee> {
+    public int compare(Employee emp1, Employee emp2){
+    if(emp1.getSalary() <  emp2.getSalary()) return -1;
+    if(emp1.getSalary() == emp2.getSalary()) return 0;
+    return 1;
+    }
+    }
+    
+
+A shorter way to write the comparison would be like this: 
+    
+    
+    public class MyComparator<Employee> implements Comparator<Employee> {
+    public int compare(Employee emp1, Employee emp2){
+    return emp1.getSalary() - emp2.getSalary();
+    }
+    }
+    
+
+By subtracting one salary from the other, the resulting value is automatically either negative, 0 or positive. Smart, right? 
+
+If you want to compare objects by more than one factor, start by comparing by the first factor (e.g first name). Then, if the first factors are equal, compare by the second factor (e.g. last name, or salary) etc.",Comparator,0
+"# Java's  Map Interface
+
+The ` java.util.Map ` interface represents a mapping between a key and a value. The ` Map ` interface is not a subtype of the ` Collection ` interface. Therefore it behaves a bit different from the rest of the collection types. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Map Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Maps
+  5. More Details in the JavaDoc",Map,0
+"# Java's  Map Interface
+
+The ` java.util.Map ` interface represents a mapping between a key and a value. The ` Map ` interface is not a subtype of the ` Collection ` interface. Therefore it behaves a bit different from the rest of the collection types. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Map Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Maps
+  5. More Details in the JavaDoc",Collection,0
+"## Map Implementations
+
+Since ` Map ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Map ` implementations in the Java Collections API: 
+
+  * java.util.HashMap
+  * java.util.Hashtable
+  * java.util.EnumMap
+  * java.util.IdentityHashMap
+  * java.util.LinkedHashMap
+  * java.util.Properties
+  * java.util.TreeMap
+  * java.util.WeakHashMap
+
+
+
+In my experience, the most commonly used ` Map ` implementations are ` HashMap ` and ` TreeMap `. 
+
+Each of these ` Map ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Map `, and the time (big O notation) it takes to insert and access elements in the maps. 
+
+` HashMap ` maps a key and a value. It does not guarantee any order of the elements stored internally in the map. 
+
+` TreeMap ` also maps a key and a value. Furthermore it guarantees the order in which keys or values are iterated - which is the sort order of the keys or values. Check out the JavaDoc for more details. 
+
+Here are a few examples of how to create a ` Map ` instance: 
+    
+    
+    Map mapA = new HashMap();
+    Map mapB = new TreeMap();",Map,1
+"## Map Implementations
+
+Since ` Map ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Map ` implementations in the Java Collections API: 
+
+  * java.util.HashMap
+  * java.util.Hashtable
+  * java.util.EnumMap
+  * java.util.IdentityHashMap
+  * java.util.LinkedHashMap
+  * java.util.Properties
+  * java.util.TreeMap
+  * java.util.WeakHashMap
+
+
+
+In my experience, the most commonly used ` Map ` implementations are ` HashMap ` and ` TreeMap `. 
+
+Each of these ` Map ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Map `, and the time (big O notation) it takes to insert and access elements in the maps. 
+
+` HashMap ` maps a key and a value. It does not guarantee any order of the elements stored internally in the map. 
+
+` TreeMap ` also maps a key and a value. Furthermore it guarantees the order in which keys or values are iterated - which is the sort order of the keys or values. Check out the JavaDoc for more details. 
+
+Here are a few examples of how to create a ` Map ` instance: 
+    
+    
+    Map mapA = new HashMap();
+    Map mapB = new TreeMap();",HashMap,1
+"## Map Implementations
+
+Since ` Map ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Map ` implementations in the Java Collections API: 
+
+  * java.util.HashMap
+  * java.util.Hashtable
+  * java.util.EnumMap
+  * java.util.IdentityHashMap
+  * java.util.LinkedHashMap
+  * java.util.Properties
+  * java.util.TreeMap
+  * java.util.WeakHashMap
+
+
+
+In my experience, the most commonly used ` Map ` implementations are ` HashMap ` and ` TreeMap `. 
+
+Each of these ` Map ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Map `, and the time (big O notation) it takes to insert and access elements in the maps. 
+
+` HashMap ` maps a key and a value. It does not guarantee any order of the elements stored internally in the map. 
+
+` TreeMap ` also maps a key and a value. Furthermore it guarantees the order in which keys or values are iterated - which is the sort order of the keys or values. Check out the JavaDoc for more details. 
+
+Here are a few examples of how to create a ` Map ` instance: 
+    
+    
+    Map mapA = new HashMap();
+    Map mapB = new TreeMap();",TreeMap,1
+"## Adding and Accessing Elements
+
+To add elements to a ` Map ` you call its ` Map.put() ` method. Here are a few examples: 
+    
+    
+    Map mapA = new HashMap();
+    mapA.put(""key1"", ""element 1"");
+    mapA.put(""key2"", ""element 2"");
+    mapA.put(""key3"", ""element 3"");
+    
+
+The three ` Map.put() ` calls maps a string value to a string key. You can then obtain the value using the key. To do that you use the ` Map.get() ` method like this: 
+    
+    
+    String element1 = (String) mapA.get(""key1"");
+    
+
+You can iterate either the keys or the values of a ` Map `. Here is how you do that: 
+    
+    
+    // key iterator
+    Iterator iterator = mapA.keySet().iterator();
+    // value iterator
+    Iterator iterator = mapA.values();
+    
+
+Most often you iterate the keys of the ` Map ` and then get the corresponding values during the iteration. Here is how it looks: 
+    
+    
+    Iterator iterator = mapA.keySet().iterator();
+    while(iterator.hasNext(){
+    Object key   = iterator.next();
+    Object value = mapA.get(key);
+    }
+    //access via new for-loop
+    for(Object key : mapA.keySet()) {
+    Object value = mapA.get(key);
+    }",Map,1
+"## Removing Elements
+
+You remove elements by calling the ` Map.remove(Object key) ` method. You thus remove the (key, value) pair matching the key.",Map,0
+"## Generic Maps
+
+By default you can put any ` Object ` into a ` Map `, but from Java 5, Java Generics makes it possible to limit the types of object you can use for both keys and values in a ` Map `. Here is an example: 
+    
+    
+    Map<String, MyObject> map = new HashSet<String, MyObject>();
+    
+
+This ` Map ` can now only accept ` String ` objects for keys, and `MyObject` instances for values. You can then access and iterate keys and values without casting them. Here is how it looks: 
+    
+    
+    for(MyObject anObject : map.values()){
+    //do someting to anObject...
+    }
+    for(String key : map.keySet()){
+    MyObject value = map.get(key);
+    //do something to value
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Object,0
+"## Generic Maps
+
+By default you can put any ` Object ` into a ` Map `, but from Java 5, Java Generics makes it possible to limit the types of object you can use for both keys and values in a ` Map `. Here is an example: 
+    
+    
+    Map<String, MyObject> map = new HashSet<String, MyObject>();
+    
+
+This ` Map ` can now only accept ` String ` objects for keys, and `MyObject` instances for values. You can then access and iterate keys and values without casting them. Here is how it looks: 
+    
+    
+    for(MyObject anObject : map.values()){
+    //do someting to anObject...
+    }
+    for(String key : map.keySet()){
+    MyObject value = map.get(key);
+    //do something to value
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Map,0
+"## Generic Maps
+
+By default you can put any ` Object ` into a ` Map `, but from Java 5, Java Generics makes it possible to limit the types of object you can use for both keys and values in a ` Map `. Here is an example: 
+    
+    
+    Map<String, MyObject> map = new HashSet<String, MyObject>();
+    
+
+This ` Map ` can now only accept ` String ` objects for keys, and `MyObject` instances for values. You can then access and iterate keys and values without casting them. Here is how it looks: 
+    
+    
+    for(MyObject anObject : map.values()){
+    //do someting to anObject...
+    }
+    for(String key : map.keySet()){
+    MyObject value = map.get(key);
+    //do something to value
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",String,0
+"## More Details in the JavaDoc
+
+There is more you can do with a ` Map `, but you will have to check out the JavaDoc for more details. This text focused on the two most common operations: Adding / removing elements, and iterating the keys and values.",Map,0
+"# Java's  Set Interface
+
+The ` java.util.Set ` interface is a subtype of the ` java.util.Collection ` interface. It represents set of objects, meaning each element can only exists once in a ` Set `. 
+
+Table of contents: 
+
+  * Java Set Example
+  * Set Implementations
+  * Adding and Accessing Elements
+  * Removing Elements
+  * Generic Sets
+  * More Details in the JavaDoc",Set,0
+"# Java's  Set Interface
+
+The ` java.util.Set ` interface is a subtype of the ` java.util.Collection ` interface. It represents set of objects, meaning each element can only exists once in a ` Set `. 
+
+Table of contents: 
+
+  * Java Set Example
+  * Set Implementations
+  * Adding and Accessing Elements
+  * Removing Elements
+  * Generic Sets
+  * More Details in the JavaDoc",Collection,0
+"## Java  Set Example
+
+Here is first a simple Java ` Set ` example to give you a feel for how sets work: 
+    
+    
+    Set setA = new HashSet();
+    String element = ""element 1"";
+    setA.add(element);
+    System.out.println( set.contains(element) );
+    
+
+This example creates a ` HashSet ` which is one of the classes in the Java APIs that implement the ` Set ` interface. Then it adds a string object to the set, and finally it checks if the set contains the element just added.",Set,1
+"## Java  Set Example
+
+Here is first a simple Java ` Set ` example to give you a feel for how sets work: 
+    
+    
+    Set setA = new HashSet();
+    String element = ""element 1"";
+    setA.add(element);
+    System.out.println( set.contains(element) );
+    
+
+This example creates a ` HashSet ` which is one of the classes in the Java APIs that implement the ` Set ` interface. Then it adds a string object to the set, and finally it checks if the set contains the element just added.",HashSet,0
+"## Set Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Set ` interface. 
+
+Since ` Set ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Set ` implementations in the Java Collections API: 
+
+  * java.util.EnumSet
+  * java.util.HashSet
+  * java.util.LinkedHashSet
+  * java.util.TreeSet
+
+
+
+Each of these ` Set ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Set `, and the time (big O notation) it takes to insert and access elements in the sets. 
+
+` HashSet ` is backed by a ` HashMap `. It makes no guarantees about the sequence of the elements when you iterate them. 
+
+` LinkedHashSet ` differs from ` HashSet ` by guaranteeing that the order of the elements during iteration is the same as the order they were inserted into the ` LinkedHashSet `. Reinserting an element that is already in the ` LinkedHashSet ` does not change this order.",Collection,0
+"## Set Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Set ` interface. 
+
+Since ` Set ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Set ` implementations in the Java Collections API: 
+
+  * java.util.EnumSet
+  * java.util.HashSet
+  * java.util.LinkedHashSet
+  * java.util.TreeSet
+
+
+
+Each of these ` Set ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Set `, and the time (big O notation) it takes to insert and access elements in the sets. 
+
+` HashSet ` is backed by a ` HashMap `. It makes no guarantees about the sequence of the elements when you iterate them. 
+
+` LinkedHashSet ` differs from ` HashSet ` by guaranteeing that the order of the elements during iteration is the same as the order they were inserted into the ` LinkedHashSet `. Reinserting an element that is already in the ` LinkedHashSet ` does not change this order.",Set,1
+"## Set Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Set ` interface. 
+
+Since ` Set ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Set ` implementations in the Java Collections API: 
+
+  * java.util.EnumSet
+  * java.util.HashSet
+  * java.util.LinkedHashSet
+  * java.util.TreeSet
+
+
+
+Each of these ` Set ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Set `, and the time (big O notation) it takes to insert and access elements in the sets. 
+
+` HashSet ` is backed by a ` HashMap `. It makes no guarantees about the sequence of the elements when you iterate them. 
+
+` LinkedHashSet ` differs from ` HashSet ` by guaranteeing that the order of the elements during iteration is the same as the order they were inserted into the ` LinkedHashSet `. Reinserting an element that is already in the ` LinkedHashSet ` does not change this order.",HashSet,1
+"## Set Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Set ` interface. 
+
+Since ` Set ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Set ` implementations in the Java Collections API: 
+
+  * java.util.EnumSet
+  * java.util.HashSet
+  * java.util.LinkedHashSet
+  * java.util.TreeSet
+
+
+
+Each of these ` Set ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Set `, and the time (big O notation) it takes to insert and access elements in the sets. 
+
+` HashSet ` is backed by a ` HashMap `. It makes no guarantees about the sequence of the elements when you iterate them. 
+
+` LinkedHashSet ` differs from ` HashSet ` by guaranteeing that the order of the elements during iteration is the same as the order they were inserted into the ` LinkedHashSet `. Reinserting an element that is already in the ` LinkedHashSet ` does not change this order.",HashMap,0
+"## Set Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Set ` interface. 
+
+Since ` Set ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Set ` implementations in the Java Collections API: 
+
+  * java.util.EnumSet
+  * java.util.HashSet
+  * java.util.LinkedHashSet
+  * java.util.TreeSet
+
+
+
+Each of these ` Set ` implementations behaves a little differently with respect to the order of the elements when iterating the ` Set `, and the time (big O notation) it takes to insert and access elements in the sets. 
+
+` HashSet ` is backed by a ` HashMap `. It makes no guarantees about the sequence of the elements when you iterate them. 
+
+` LinkedHashSet ` differs from ` HashSet ` by guaranteeing that the order of the elements during iteration is the same as the order they were inserted into the ` LinkedHashSet `. Reinserting an element that is already in the ` LinkedHashSet ` does not change this order.",LinkedHashSet,1
+"### Set Implementations - part 2
+
+` TreeSet ` also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. In other words, the order in which the elements whould be sorted if you used a ` Collections.sort() ` on a ` List ` or array containing these elements. This order is determined either by their natural order (if they implement ` Comparable `), or by a specific ` Comparator ` implementation. 
+
+There are also ` Set ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Set ` instance: 
+    
+    
+    Set setA = new EnumSet();
+    Set setB = new HashSet();
+    Set setC = new LinkedHashSet();
+    Set setD = new TreeSet();",TreeSet,1
+"### Set Implementations - part 2
+
+` TreeSet ` also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. In other words, the order in which the elements whould be sorted if you used a ` Collections.sort() ` on a ` List ` or array containing these elements. This order is determined either by their natural order (if they implement ` Comparable `), or by a specific ` Comparator ` implementation. 
+
+There are also ` Set ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Set ` instance: 
+    
+    
+    Set setA = new EnumSet();
+    Set setB = new HashSet();
+    Set setC = new LinkedHashSet();
+    Set setD = new TreeSet();",Collections,0
+"### Set Implementations - part 2
+
+` TreeSet ` also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. In other words, the order in which the elements whould be sorted if you used a ` Collections.sort() ` on a ` List ` or array containing these elements. This order is determined either by their natural order (if they implement ` Comparable `), or by a specific ` Comparator ` implementation. 
+
+There are also ` Set ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Set ` instance: 
+    
+    
+    Set setA = new EnumSet();
+    Set setB = new HashSet();
+    Set setC = new LinkedHashSet();
+    Set setD = new TreeSet();",List,0
+"### Set Implementations - part 2
+
+` TreeSet ` also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. In other words, the order in which the elements whould be sorted if you used a ` Collections.sort() ` on a ` List ` or array containing these elements. This order is determined either by their natural order (if they implement ` Comparable `), or by a specific ` Comparator ` implementation. 
+
+There are also ` Set ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Set ` instance: 
+    
+    
+    Set setA = new EnumSet();
+    Set setB = new HashSet();
+    Set setC = new LinkedHashSet();
+    Set setD = new TreeSet();",Comparable,0
+"### Set Implementations - part 2
+
+` TreeSet ` also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. In other words, the order in which the elements whould be sorted if you used a ` Collections.sort() ` on a ` List ` or array containing these elements. This order is determined either by their natural order (if they implement ` Comparable `), or by a specific ` Comparator ` implementation. 
+
+There are also ` Set ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Set ` instance: 
+    
+    
+    Set setA = new EnumSet();
+    Set setB = new HashSet();
+    Set setC = new LinkedHashSet();
+    Set setD = new TreeSet();",Comparator,0
+"### Set Implementations - part 2
+
+` TreeSet ` also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. In other words, the order in which the elements whould be sorted if you used a ` Collections.sort() ` on a ` List ` or array containing these elements. This order is determined either by their natural order (if they implement ` Comparable `), or by a specific ` Comparator ` implementation. 
+
+There are also ` Set ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Set ` instance: 
+    
+    
+    Set setA = new EnumSet();
+    Set setB = new HashSet();
+    Set setC = new LinkedHashSet();
+    Set setD = new TreeSet();",Set,0
+"## Adding and Accessing Elements
+
+To add elements to a ` Set ` you call its ` Set.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    Set setA = new HashSet();
+    setA.add(""element 1"");
+    setA.add(""element 2"");
+    setA.add(""element 3"");
+    
+
+The three ` Set.add() ` calls add a ` String ` instance to the set. 
+
+When iterating the elements in the ` Set ` the order of the elements depends on what ` Set ` implementation you use, as mentioned earlier. Here is an iteration example: 
+    
+    
+    Set setA = new HashSet();
+    setA.add(""element 0"");
+    setA.add(""element 1"");
+    setA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = setA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : setA) {
+    String element = (String) object;
+    }",Set,1
+"## Adding and Accessing Elements
+
+To add elements to a ` Set ` you call its ` Set.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    Set setA = new HashSet();
+    setA.add(""element 1"");
+    setA.add(""element 2"");
+    setA.add(""element 3"");
+    
+
+The three ` Set.add() ` calls add a ` String ` instance to the set. 
+
+When iterating the elements in the ` Set ` the order of the elements depends on what ` Set ` implementation you use, as mentioned earlier. Here is an iteration example: 
+    
+    
+    Set setA = new HashSet();
+    setA.add(""element 0"");
+    setA.add(""element 1"");
+    setA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = setA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : setA) {
+    String element = (String) object;
+    }",Collection,0
+"## Adding and Accessing Elements
+
+To add elements to a ` Set ` you call its ` Set.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    Set setA = new HashSet();
+    setA.add(""element 1"");
+    setA.add(""element 2"");
+    setA.add(""element 3"");
+    
+
+The three ` Set.add() ` calls add a ` String ` instance to the set. 
+
+When iterating the elements in the ` Set ` the order of the elements depends on what ` Set ` implementation you use, as mentioned earlier. Here is an iteration example: 
+    
+    
+    Set setA = new HashSet();
+    setA.add(""element 0"");
+    setA.add(""element 1"");
+    setA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = setA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : setA) {
+    String element = (String) object;
+    }",String,0
+"## Removing Elements
+
+You remove elements by calling the ` Set.remove(Object o) ` method. There is no way to remove an object based on index in a ` Set `, since the order of the elements depends on the ` Set ` implementation.",Set,1
+"## Generic Sets
+
+By default you can put any ` Object ` into a ` Set `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` Set `. Here is an example: 
+    
+    
+    Set<MyObject> set = new HashSet<MyObject>();
+    
+
+This ` Set ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    for(MyObject anObject : set){
+    //do someting to anObject...
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Object,0
+"## Generic Sets
+
+By default you can put any ` Object ` into a ` Set `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` Set `. Here is an example: 
+    
+    
+    Set<MyObject> set = new HashSet<MyObject>();
+    
+
+This ` Set ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    for(MyObject anObject : set){
+    //do someting to anObject...
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Set,0
+"## More Details in the JavaDoc
+
+There is a lot more you can do with a ` Set `, but you will have to check out the JavaDoc for more details. This text focused on the two most common operations: Adding / removing elements, and iterating the elements.",Set,0
+"# Java's  Queue Interface
+
+The ` java.util.Queue ` interface is a subtype of the ` java.util.Collection ` interface. It represents an ordered list of objects just like a ` List `, but its intended use is slightly different. A queue is designed to have elements inserted at the end of the queue, and elements removed from the beginning of the queue. Just like a queue in a supermarket. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Queue Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Queues
+  5. More Details in the JavaDoc",Queue,0
+"# Java's  Queue Interface
+
+The ` java.util.Queue ` interface is a subtype of the ` java.util.Collection ` interface. It represents an ordered list of objects just like a ` List `, but its intended use is slightly different. A queue is designed to have elements inserted at the end of the queue, and elements removed from the beginning of the queue. Just like a queue in a supermarket. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Queue Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Queues
+  5. More Details in the JavaDoc",Collection,0
+"# Java's  Queue Interface
+
+The ` java.util.Queue ` interface is a subtype of the ` java.util.Collection ` interface. It represents an ordered list of objects just like a ` List `, but its intended use is slightly different. A queue is designed to have elements inserted at the end of the queue, and elements removed from the beginning of the queue. Just like a queue in a supermarket. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Queue Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Queues
+  5. More Details in the JavaDoc",List,0
+"## Queue Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Queue ` interface. 
+
+Since ` Queue ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Queue ` implementations in the Java Collections API: 
+
+  * java.util.LinkedList
+  * java.util.PriorityQueue
+
+
+
+` LinkedList ` is a pretty standard queue implementation. 
+
+` PriorityQueue ` stores its elements internally according to their natural order (if they implement ` Comparable `), or according to a ` Comparator ` passed to the ` PriorityQueue `. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Queue ` instance: 
+    
+    
+    Queue queueA = new LinkedList();
+    Queue queueB = new PriorityQueue();",Collection,0
+"## Queue Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Queue ` interface. 
+
+Since ` Queue ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Queue ` implementations in the Java Collections API: 
+
+  * java.util.LinkedList
+  * java.util.PriorityQueue
+
+
+
+` LinkedList ` is a pretty standard queue implementation. 
+
+` PriorityQueue ` stores its elements internally according to their natural order (if they implement ` Comparable `), or according to a ` Comparator ` passed to the ` PriorityQueue `. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Queue ` instance: 
+    
+    
+    Queue queueA = new LinkedList();
+    Queue queueB = new PriorityQueue();",Queue,1
+"## Queue Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Queue ` interface. 
+
+Since ` Queue ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Queue ` implementations in the Java Collections API: 
+
+  * java.util.LinkedList
+  * java.util.PriorityQueue
+
+
+
+` LinkedList ` is a pretty standard queue implementation. 
+
+` PriorityQueue ` stores its elements internally according to their natural order (if they implement ` Comparable `), or according to a ` Comparator ` passed to the ` PriorityQueue `. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Queue ` instance: 
+    
+    
+    Queue queueA = new LinkedList();
+    Queue queueB = new PriorityQueue();",LinkedList,0
+"## Queue Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Queue ` interface. 
+
+Since ` Queue ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Queue ` implementations in the Java Collections API: 
+
+  * java.util.LinkedList
+  * java.util.PriorityQueue
+
+
+
+` LinkedList ` is a pretty standard queue implementation. 
+
+` PriorityQueue ` stores its elements internally according to their natural order (if they implement ` Comparable `), or according to a ` Comparator ` passed to the ` PriorityQueue `. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Queue ` instance: 
+    
+    
+    Queue queueA = new LinkedList();
+    Queue queueB = new PriorityQueue();",PriorityQueue,1
+"## Queue Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Queue ` interface. 
+
+Since ` Queue ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Queue ` implementations in the Java Collections API: 
+
+  * java.util.LinkedList
+  * java.util.PriorityQueue
+
+
+
+` LinkedList ` is a pretty standard queue implementation. 
+
+` PriorityQueue ` stores its elements internally according to their natural order (if they implement ` Comparable `), or according to a ` Comparator ` passed to the ` PriorityQueue `. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Queue ` instance: 
+    
+    
+    Queue queueA = new LinkedList();
+    Queue queueB = new PriorityQueue();",Comparable,0
+"## Queue Implementations
+
+Being a ` Collection ` subtype all methods in the ` Collection ` interface are also available in the ` Queue ` interface. 
+
+Since ` Queue ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Queue ` implementations in the Java Collections API: 
+
+  * java.util.LinkedList
+  * java.util.PriorityQueue
+
+
+
+` LinkedList ` is a pretty standard queue implementation. 
+
+` PriorityQueue ` stores its elements internally according to their natural order (if they implement ` Comparable `), or according to a ` Comparator ` passed to the ` PriorityQueue `. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Queue ` instance: 
+    
+    
+    Queue queueA = new LinkedList();
+    Queue queueB = new PriorityQueue();",Comparator,0
+"## Adding and Accessing Elements
+
+To add elements to a ` Queue ` you call its ` Queue.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    Queue queueA = new LinkedList();
+    queueA.add(""element 1"");
+    queueA.add(""element 2"");
+    queueA.add(""element 3"");
+    
+
+The order in which the elements added to the ` Queue ` are stored internally, depends on the implementation. The same is true for the order in which elements are retrieved from the queue. You should consult the JavaDoc's for more information about the specific ` Queue ` implementations. 
+
+You can peek at the element at the head of the queue without taking the element out of the queue. This is done via the ` Queue.element() ` method. Here is how that looks: 
+    
+    
+    Object firstElement = queueA.element();
+    
+
+To take the first element out of the queue, you use the ` Queue.remove() ` method which is described later. 
+
+You can also iterate all elements of a queue, instead of just processing one at a time. Here is how that looks: 
+    
+    
+    Queue queueA = new LinkedList();
+    queueA.add(""element 0"");
+    queueA.add(""element 1"");
+    queueA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = queueA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : queueA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the queue via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene, the sequence in which the elements are iterated depends on the queue implementation.",Queue,1
+"## Adding and Accessing Elements
+
+To add elements to a ` Queue ` you call its ` Queue.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    Queue queueA = new LinkedList();
+    queueA.add(""element 1"");
+    queueA.add(""element 2"");
+    queueA.add(""element 3"");
+    
+
+The order in which the elements added to the ` Queue ` are stored internally, depends on the implementation. The same is true for the order in which elements are retrieved from the queue. You should consult the JavaDoc's for more information about the specific ` Queue ` implementations. 
+
+You can peek at the element at the head of the queue without taking the element out of the queue. This is done via the ` Queue.element() ` method. Here is how that looks: 
+    
+    
+    Object firstElement = queueA.element();
+    
+
+To take the first element out of the queue, you use the ` Queue.remove() ` method which is described later. 
+
+You can also iterate all elements of a queue, instead of just processing one at a time. Here is how that looks: 
+    
+    
+    Queue queueA = new LinkedList();
+    queueA.add(""element 0"");
+    queueA.add(""element 1"");
+    queueA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = queueA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : queueA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the queue via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene, the sequence in which the elements are iterated depends on the queue implementation.",Collection,0
+"## Adding and Accessing Elements
+
+To add elements to a ` Queue ` you call its ` Queue.add() ` method. This method is inherited from the ` Collection ` interface. Here are a few examples: 
+    
+    
+    Queue queueA = new LinkedList();
+    queueA.add(""element 1"");
+    queueA.add(""element 2"");
+    queueA.add(""element 3"");
+    
+
+The order in which the elements added to the ` Queue ` are stored internally, depends on the implementation. The same is true for the order in which elements are retrieved from the queue. You should consult the JavaDoc's for more information about the specific ` Queue ` implementations. 
+
+You can peek at the element at the head of the queue without taking the element out of the queue. This is done via the ` Queue.element() ` method. Here is how that looks: 
+    
+    
+    Object firstElement = queueA.element();
+    
+
+To take the first element out of the queue, you use the ` Queue.remove() ` method which is described later. 
+
+You can also iterate all elements of a queue, instead of just processing one at a time. Here is how that looks: 
+    
+    
+    Queue queueA = new LinkedList();
+    queueA.add(""element 0"");
+    queueA.add(""element 1"");
+    queueA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = queueA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : queueA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the queue via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene, the sequence in which the elements are iterated depends on the queue implementation.",Iterator,0
+"## Removing Elements
+
+To remove elements from a queue, you call the ` Queue.remove() ` method. This method removes the element at the head of the queue. In most ` Queue ` implementations the head and tail of the queue are at opposite ends. It is possible, however, to implement the ` Queue ` interface so that the head and tail of the queue is in the same end. In that case you would have a stack. 
+
+Here is a remove example(); 
+    
+    
+    Object firstElement = queueA.remove();",Queue,1
+"## Generic Queue
+
+By default you can put any ` Object ` into a ` Queue `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` Queue `. Here is an example: 
+    
+    
+    Queue<MyObject> queue = new LinkedList<MyObject>();
+    
+
+This ` Queue ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    MyObject myObject = queue.remove();
+    for(MyObject anObject : queue){
+    //do someting to anObject...   
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Object,0
+"## Generic Queue
+
+By default you can put any ` Object ` into a ` Queue `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` Queue `. Here is an example: 
+    
+    
+    Queue<MyObject> queue = new LinkedList<MyObject>();
+    
+
+This ` Queue ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    MyObject myObject = queue.remove();
+    for(MyObject anObject : queue){
+    //do someting to anObject...   
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Queue,0
+"## More Details in the JavaDoc
+
+There is a lot more you can do with a ` Queue `, but you will have to check out the JavaDoc for more details. This text focused on the two most common operations: Adding / removing elements, and iterating the elements.",Queue,0
+"## equals()
+
+`equals()` is used in most collections to determine if a collection contains a given element. For instance: 
+    
+    
+    List list = new ArrayList();
+    list.add(""123"");
+    boolean contains123 = list.contains(""123"");
+    
+
+The ` ArrayList ` iterates all its elements and execute `""123"".equals(element)` to determine if the element is equal to the parameter object ""123"". It is the ` String.equals() ` implementation that determines if two strings are equal. 
+
+The `equals()` method is also used when removing elements. For instance: 
+    
+    
+    List list = new ArrayList();
+    list.add(""123"");
+    boolean removed = list.remove(""123"");
+    
+
+The ` ArrayList ` again iterates all its elements and execute `""123"".equals(element)` to determine if the element is equal to the parameter object ""123"". The first element it finds that is equal to the given parameter ""123"" is removed. 
+
+As you can see, a proper implementation of `.equals()` is essential for your own classes to work well with the Java Collection classes. So how do you implement `equals()` ""properly""?",ArrayList,0
+"## equals()
+
+`equals()` is used in most collections to determine if a collection contains a given element. For instance: 
+    
+    
+    List list = new ArrayList();
+    list.add(""123"");
+    boolean contains123 = list.contains(""123"");
+    
+
+The ` ArrayList ` iterates all its elements and execute `""123"".equals(element)` to determine if the element is equal to the parameter object ""123"". It is the ` String.equals() ` implementation that determines if two strings are equal. 
+
+The `equals()` method is also used when removing elements. For instance: 
+    
+    
+    List list = new ArrayList();
+    list.add(""123"");
+    boolean removed = list.remove(""123"");
+    
+
+The ` ArrayList ` again iterates all its elements and execute `""123"".equals(element)` to determine if the element is equal to the parameter object ""123"". The first element it finds that is equal to the given parameter ""123"" is removed. 
+
+As you can see, a proper implementation of `.equals()` is essential for your own classes to work well with the Java Collection classes. So how do you implement `equals()` ""properly""?",String,0
+"## hashCode()
+
+The `hashCode()` method of objects is used when you insert them into a `HashTable`, ` HashMap ` or ` HashSet `. If you do not know the theory of how a hashtable works internally, you can read about hastables on Wikipedia.org. 
+
+When inserting an object into a hastable you use a key. The hash code of this key is calculated, and used to determine where to store the object internally. When you need to lookup an object in a hashtable you also use a key. The hash code of this key is calculated and used to determine where to search for the object. 
+
+The hash code only points to a certain ""area"" (or list, bucket etc) internally. Since different key objects could potentially have the same hash code, the hash code itself is no guarantee that the right key is found. The hashtable then iterates this area (all keys with the same hash code) and uses the key's `equals()` method to find the right key. Once the right key is found, the object stored for that key is returned.",HashMap,0
+"## hashCode()
+
+The `hashCode()` method of objects is used when you insert them into a `HashTable`, ` HashMap ` or ` HashSet `. If you do not know the theory of how a hashtable works internally, you can read about hastables on Wikipedia.org. 
+
+When inserting an object into a hastable you use a key. The hash code of this key is calculated, and used to determine where to store the object internally. When you need to lookup an object in a hashtable you also use a key. The hash code of this key is calculated and used to determine where to search for the object. 
+
+The hash code only points to a certain ""area"" (or list, bucket etc) internally. Since different key objects could potentially have the same hash code, the hash code itself is no guarantee that the right key is found. The hashtable then iterates this area (all keys with the same hash code) and uses the key's `equals()` method to find the right key. Once the right key is found, the object stored for that key is returned.",HashSet,0
+"# Java  Collections Tutorial
+
+The Java Collections API's provide Java developers with a set of classes and interfaces that makes it easier to handle collections of objects. In a sense Collection's works a bit like arrays, except their size can change dynamically, and they have more advanced behaviour than arrays. 
+
+Rather than having to write your own collection classes, Java provides these ready-to-use collection classes for you. This tutorial will look closer at the Java Collection's, as they are also sometimes referred to, and more specifically the Java Collections available in Java 6. 
+
+The purpose of this tutorial is to give you an overview of the Java Collection classes. Thus it will not describe each and every little detail of the Java Collection classes. But, once you have an overview of what is there, it is much easier to read the rest in the JavaDoc's afterwards.",Collections,0
+"## Java  Collections and Generics
+
+The fifth text in this Java Collections tutorial covers how to use Generics in Java Collections. Generics is very useful when working with Java's Collection classes.",Collections,0
+"## Java  Collections and the equals() and hashCode() Methods
+
+The last two texts in this Java Collections tutorial explains the central role the two ` java.lang.Object ` methods `equals()` and `hashCode()` play when using Java Collections. You should read this, if you plan to use Java Collections with your own classes, and thus need to implement `equals()` and `hashCode()`.",Collections,0
+"## Java  Collections and the equals() and hashCode() Methods
+
+The last two texts in this Java Collections tutorial explains the central role the two ` java.lang.Object ` methods `equals()` and `hashCode()` play when using Java Collections. You should read this, if you plan to use Java Collections with your own classes, and thus need to implement `equals()` and `hashCode()`.",Object,0
+"# Java's  Deque Interface
+
+The ` java.util.Deque ` interface is a subtype of the ` java.util.Queue ` interface. It represents a queue where you can insert and remove elements from both ends of the queue. Thus, ""Deque"" is short for ""Double Ended Queue"" and is pronounced ""deck"", like a deck of cards. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Deque Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Deques
+  5. More Details in the JavaDoc",Deque,1
+"# Java's  Deque Interface
+
+The ` java.util.Deque ` interface is a subtype of the ` java.util.Queue ` interface. It represents a queue where you can insert and remove elements from both ends of the queue. Thus, ""Deque"" is short for ""Double Ended Queue"" and is pronounced ""deck"", like a deck of cards. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Deque Implementations
+  2. Adding and Accessing Elements
+  3. Removing Elements
+  4. Generic Deques
+  5. More Details in the JavaDoc",Queue,0
+"## Deque Implementations
+
+Being a ` Queue ` subtype all methods in the ` Queue ` and ` Collection ` interfaces are also available in the ` Deque ` interface. 
+
+Since ` Deque ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Deque ` implementations in the Java Collections API: 
+
+  * java.util.ArrayDeque
+  * java.util.LinkedList
+
+
+
+` LinkedList ` is a pretty standard deque / queue implementation. 
+
+` ArrayDeque ` stores its elements internally in an array. If the number of elements exceeds the space in the array, a new array is allocated, and all elements moved over. In other words, the ` ArrayDeque ` grows as needed, even if it stores its elements in an array. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Deque ` instance: 
+    
+    
+    Deque dequeA = new LinkedList();
+    Deque dequeB = new ArrayDeque();",Queue,0
+"## Deque Implementations
+
+Being a ` Queue ` subtype all methods in the ` Queue ` and ` Collection ` interfaces are also available in the ` Deque ` interface. 
+
+Since ` Deque ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Deque ` implementations in the Java Collections API: 
+
+  * java.util.ArrayDeque
+  * java.util.LinkedList
+
+
+
+` LinkedList ` is a pretty standard deque / queue implementation. 
+
+` ArrayDeque ` stores its elements internally in an array. If the number of elements exceeds the space in the array, a new array is allocated, and all elements moved over. In other words, the ` ArrayDeque ` grows as needed, even if it stores its elements in an array. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Deque ` instance: 
+    
+    
+    Deque dequeA = new LinkedList();
+    Deque dequeB = new ArrayDeque();",Collection,0
+"## Deque Implementations
+
+Being a ` Queue ` subtype all methods in the ` Queue ` and ` Collection ` interfaces are also available in the ` Deque ` interface. 
+
+Since ` Deque ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Deque ` implementations in the Java Collections API: 
+
+  * java.util.ArrayDeque
+  * java.util.LinkedList
+
+
+
+` LinkedList ` is a pretty standard deque / queue implementation. 
+
+` ArrayDeque ` stores its elements internally in an array. If the number of elements exceeds the space in the array, a new array is allocated, and all elements moved over. In other words, the ` ArrayDeque ` grows as needed, even if it stores its elements in an array. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Deque ` instance: 
+    
+    
+    Deque dequeA = new LinkedList();
+    Deque dequeB = new ArrayDeque();",Deque,1
+"## Deque Implementations
+
+Being a ` Queue ` subtype all methods in the ` Queue ` and ` Collection ` interfaces are also available in the ` Deque ` interface. 
+
+Since ` Deque ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Deque ` implementations in the Java Collections API: 
+
+  * java.util.ArrayDeque
+  * java.util.LinkedList
+
+
+
+` LinkedList ` is a pretty standard deque / queue implementation. 
+
+` ArrayDeque ` stores its elements internally in an array. If the number of elements exceeds the space in the array, a new array is allocated, and all elements moved over. In other words, the ` ArrayDeque ` grows as needed, even if it stores its elements in an array. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Deque ` instance: 
+    
+    
+    Deque dequeA = new LinkedList();
+    Deque dequeB = new ArrayDeque();",LinkedList,0
+"## Deque Implementations
+
+Being a ` Queue ` subtype all methods in the ` Queue ` and ` Collection ` interfaces are also available in the ` Deque ` interface. 
+
+Since ` Deque ` is an interface you need to instantiate a concrete implementation of the interface in order to use it. You can choose between the following ` Deque ` implementations in the Java Collections API: 
+
+  * java.util.ArrayDeque
+  * java.util.LinkedList
+
+
+
+` LinkedList ` is a pretty standard deque / queue implementation. 
+
+` ArrayDeque ` stores its elements internally in an array. If the number of elements exceeds the space in the array, a new array is allocated, and all elements moved over. In other words, the ` ArrayDeque ` grows as needed, even if it stores its elements in an array. 
+
+There are also ` Queue ` implementations in the `java.util.concurrent` package, but I will leave the concurrency utilities out of this tutorial. 
+
+Here are a few examples of how to create a ` Deque ` instance: 
+    
+    
+    Deque dequeA = new LinkedList();
+    Deque dequeB = new ArrayDeque();",ArrayDeque,1
+"## Adding and Accessing Elements
+
+To add elements to the tail of a ` Deque ` you call its ` Deque.add() ` method. You can also use the ` Deque.addFirst() ` and ` Deque.addLast() ` methods, which add elements to the head and tail of the deque. 
+    
+    
+    Deque dequeA = new LinkedList();
+    dequeA.add     (""element 1""); //add element at tail
+    dequeA.addFirst(""element 2""); //add element at head
+    dequeA.addLast (""element 3""); //add element at tail
+    
+
+The order in which the elements added to the ` Deque ` are stored internally, depends on the implementation. The two implementations mentioned earlier both store the elements in the order (first or last) in which they are inserted. 
+
+You can peek at the element at the head of the queue without taking the element out of the queue. This is done via the ` Deque.element() ` method. You can also use the ` Deque.getFirst ` and ` Deque.getLast() ` methods, which return the first and last element in the ` Deque `. Here is how that looks: 
+    
+    
+    Object firstElement = dequeA.element();
+    Object firstElement = dequeA.getFirst();
+    Object lastElement  = dequeA.getLast();
+    
+
+Taking elements from the deque is covered later. 
+
+You can also iterate all elements of a deque, instead of just processing one at a time. Here is how that looks: 
+    
+    
+    Deque dequeA = new LinkedList();
+    dequeA.add(""element 0"");
+    dequeA.add(""element 1"");
+    dequeA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = dequeA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : dequeA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the deque via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene, the sequence in which the elements are iterated depends on the deque implementation.",Deque,1
+"## Adding and Accessing Elements
+
+To add elements to the tail of a ` Deque ` you call its ` Deque.add() ` method. You can also use the ` Deque.addFirst() ` and ` Deque.addLast() ` methods, which add elements to the head and tail of the deque. 
+    
+    
+    Deque dequeA = new LinkedList();
+    dequeA.add     (""element 1""); //add element at tail
+    dequeA.addFirst(""element 2""); //add element at head
+    dequeA.addLast (""element 3""); //add element at tail
+    
+
+The order in which the elements added to the ` Deque ` are stored internally, depends on the implementation. The two implementations mentioned earlier both store the elements in the order (first or last) in which they are inserted. 
+
+You can peek at the element at the head of the queue without taking the element out of the queue. This is done via the ` Deque.element() ` method. You can also use the ` Deque.getFirst ` and ` Deque.getLast() ` methods, which return the first and last element in the ` Deque `. Here is how that looks: 
+    
+    
+    Object firstElement = dequeA.element();
+    Object firstElement = dequeA.getFirst();
+    Object lastElement  = dequeA.getLast();
+    
+
+Taking elements from the deque is covered later. 
+
+You can also iterate all elements of a deque, instead of just processing one at a time. Here is how that looks: 
+    
+    
+    Deque dequeA = new LinkedList();
+    dequeA.add(""element 0"");
+    dequeA.add(""element 1"");
+    dequeA.add(""element 2"");
+    //access via Iterator
+    Iterator iterator = dequeA.iterator();
+    while(iterator.hasNext(){
+    String element = (String) iterator.next();
+    }
+    //access via new for-loop
+    for(Object object : dequeA) {
+    String element = (String) object;
+    }
+    
+
+When iterating the deque via its ` Iterator ` or via the for-loop (which also uses the Iterator behind the scene, the sequence in which the elements are iterated depends on the deque implementation.",Iterator,0
+"## Removing Elements
+
+To remove elements from a deque, you call the ` Deque.remove() `, ` Deque.removeFirst() ` and ` Deque.removeLast ` methods. Here are a few examples: 
+    
+    
+    Object firstElement = dequeA.remove();
+    Object firstElement = dequeA.removeFirst();
+    Object lastElement  = dequeA.removeLast();",Deque,0
+"## Generic Deque
+
+By default you can put any ` Object ` into a ` Deque `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` Deque `. Here is an example: 
+    
+    
+    Deque<MyObject> deque = new LinkedList<MyObject>();
+    
+
+This ` Deque ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    MyObject myObject = deque.remove();
+    for(MyObject anObject : deque){
+    //do someting to anObject...   
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Object,0
+"## Generic Deque
+
+By default you can put any ` Object ` into a ` Deque `, but from Java 5, Java Generics makes it possible to limit the types of object you can insert into a ` Deque `. Here is an example: 
+    
+    
+    Deque<MyObject> deque = new LinkedList<MyObject>();
+    
+
+This ` Deque ` can now only have `MyObject` instances inserted into it. You can then access and iterate its elements without casting them. Here is how it looks: 
+    
+    
+    MyObject myObject = deque.remove();
+    for(MyObject anObject : deque){
+    //do someting to anObject...   
+    }
+    
+
+For more information about Java Generics, see the Java Generics Tutorial.",Deque,0
+"## More Details in the JavaDoc
+
+There is a lot more you can do with a ` Deque `, but you will have to check out the JavaDoc for more details. This text focused on the two most common operations: Adding / removing elements, and iterating the elements.",Deque,0
+"# Java's  Collection Interface
+
+The Collection interface (java.util.Collection) is one of the root interfaces of the Java collection classes. Though you do not instantiate a Collection directly, but rather a subtype of Collection, you may often treat these subtypes uniformly as a Collection. In this text you will see how. 
+
+Here is a list of the topics covered in this text: 
+
+  1. Collection Subtypes
+  2. Adding and Removing Elements
+  3. Checking if a Collection Contains a Certain Element
+  4. Collection Size
+  5. Iterating a Collection",Collection,0
+"## Adding and Removing Elements
+
+Regardless of what Collection subtype you are using there are a few standard methods to add and remove elements from a Collection. Adding and removing single elements is done like this: 
+    
+    
+    String     anElement  = ""an element"";
+    Collection collection = new HashSet();
+    boolean didCollectionChange = collection.add(anElement);
+    boolean wasElementRemoved   = collection.remove(anElement);    
+    
+
+` Collection.add() ` adds the given element to the collection, and returns true if the Collection changed as a result of calling the ` Collection.add() ` method. A ` Set ` for instance may not have changed. If the ` Set ` already contained that element, it is not added again. On the other hand, if you called ` Collection.add() ` on a ` List ` and the ` List ` already contained that element, the element would then exist twice in the ` List `. 
+
+` Collection.remove() ` removes the given element and returns true if the removed element was present in the Collection, and was removed. If the element was not present, the ` Collection.remove() ` method returns false.",Collection,1
+"## Adding and Removing Elements
+
+Regardless of what Collection subtype you are using there are a few standard methods to add and remove elements from a Collection. Adding and removing single elements is done like this: 
+    
+    
+    String     anElement  = ""an element"";
+    Collection collection = new HashSet();
+    boolean didCollectionChange = collection.add(anElement);
+    boolean wasElementRemoved   = collection.remove(anElement);    
+    
+
+` Collection.add() ` adds the given element to the collection, and returns true if the Collection changed as a result of calling the ` Collection.add() ` method. A ` Set ` for instance may not have changed. If the ` Set ` already contained that element, it is not added again. On the other hand, if you called ` Collection.add() ` on a ` List ` and the ` List ` already contained that element, the element would then exist twice in the ` List `. 
+
+` Collection.remove() ` removes the given element and returns true if the removed element was present in the Collection, and was removed. If the element was not present, the ` Collection.remove() ` method returns false.",Set,0
+"## Adding and Removing Elements
+
+Regardless of what Collection subtype you are using there are a few standard methods to add and remove elements from a Collection. Adding and removing single elements is done like this: 
+    
+    
+    String     anElement  = ""an element"";
+    Collection collection = new HashSet();
+    boolean didCollectionChange = collection.add(anElement);
+    boolean wasElementRemoved   = collection.remove(anElement);    
+    
+
+` Collection.add() ` adds the given element to the collection, and returns true if the Collection changed as a result of calling the ` Collection.add() ` method. A ` Set ` for instance may not have changed. If the ` Set ` already contained that element, it is not added again. On the other hand, if you called ` Collection.add() ` on a ` List ` and the ` List ` already contained that element, the element would then exist twice in the ` List `. 
+
+` Collection.remove() ` removes the given element and returns true if the removed element was present in the Collection, and was removed. If the element was not present, the ` Collection.remove() ` method returns false.",List,0
+"### Adding and Removing Elements - part 2
+
+You can also add and remove collections of objects. Here are a few examples: 
+    
+    
+    Set  aSet  = ... // get Set  with elements from somewhere
+    List aList = ... // get List with elements from somewhere
+    Collection collection = new HashSet();
+    collection.addAll(aSet);    //returns boolean too, but ignored here.
+    collection.addAll(aList);   //returns boolean too, but ignored here.
+    collection.removeAll(aList);   //returns boolean too...
+    collection.retainAll(aSet);    //returns boolean too...
+    
+
+` Collection.addAll() ` adds all elements found in the Collection passed as parameter to the method. The Collection object itself is not added. Only its elements. If you had called ` Collection.add() ` with the Collection as parameter instead, the Collection object itself would have been added, not its elements. 
+
+Exactly how thet ` Collection.addAll() ` method behaves depends on the Collection subtype. Some Collection subtypes allows the same element to be added more than once, and others don't. 
+
+` Collection.removeAll() ` removes all elements found the Collection passed as parameter to the method. If the Collection parameter contains any elements not found the target collection, these are just ignored. 
+
+` Collection.retainAll() ` does the opposite of ` Collection.removeAll() `. Instead of removing all the elements found in the parameter Collection, it keeps all these elements, and removes all other elements. Keep in mind, that only if the elements were already contained in the target collection, are they retained. Any new elements found in the parameter Collection which are not in the target collection, are not automatically added. They are just ignored.",Collection,1
+"## Checking if a  Collection Contains a Certain Element
+
+The Collection interface has two methods to check if a Collection contains one or more certain elements. These are the ` Collection.contains() ` and ` Collection.containsAll() ` methods. They are illustrated here: 
+    
+    
+    Collection collection   = new HashSet();
+    boolean containsElement = collection.contains(""an element"");
+    Collection elements     = new HashSet();
+    boolean containsAll     = collection.containsAll(elements);
+    
+
+` Collection.contains() ` returns true if the collection contains the element, and false if not. 
+
+` Collection.containsAll() ` returns true if the collection contains all the elements in the parameter collection, and false if not.",Collection,1
+"## Collection Size
+
+You can check the size of a collection using the ` Collection.size() ` method. By ""size"" is meant the number of elements in the collection. Here is an example: 
+    
+    
+    int numberOfElements = collection.size();",Collection,0
+"## Iterating a Collection
+
+You can iterate all elements of a collection. This is done by obtaining an ` Iterator ` from the collection, and iterate through that. Here is how it looks: 
+    
+    
+    Collection collection = new HashSet();
+    //... add elements to the collection
+    Iterator iterator = collection.iterator();
+    while(iterator.hasNext()){
+    Object object = iterator.next();
+    //do something to object;    
+    }
+    
+
+You can also use the new for-loop: 
+    
+    
+    Collection collection = new HashSet();
+    //... add elements to the collection
+    for(Object object : collection) {
+    //do something to object;
+    }",Iterator,0
+"# Java's  SortedMap Interface
+
+The ` java.util.SortedMap ` interface is a subtype of the ` java.util.Map ` interface, with the addition that the elements stored in the map are sorted internally. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeMap.descendingKeySet() `. 
+
+The Java Collections API only has one implementation of the ` SortedMap ` interface - the ` java.util.TreeMap ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedMap `: 
+    
+    
+    SortedMap mapA = new TreeMap();
+    Comparator comparator = new MyComparator();
+    SortedMap mapB = new TreeMap(comparator);",SortedMap,1
+"# Java's  SortedMap Interface
+
+The ` java.util.SortedMap ` interface is a subtype of the ` java.util.Map ` interface, with the addition that the elements stored in the map are sorted internally. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeMap.descendingKeySet() `. 
+
+The Java Collections API only has one implementation of the ` SortedMap ` interface - the ` java.util.TreeMap ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedMap `: 
+    
+    
+    SortedMap mapA = new TreeMap();
+    Comparator comparator = new MyComparator();
+    SortedMap mapB = new TreeMap(comparator);",Map,0
+"# Java's  SortedMap Interface
+
+The ` java.util.SortedMap ` interface is a subtype of the ` java.util.Map ` interface, with the addition that the elements stored in the map are sorted internally. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeMap.descendingKeySet() `. 
+
+The Java Collections API only has one implementation of the ` SortedMap ` interface - the ` java.util.TreeMap ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedMap `: 
+    
+    
+    SortedMap mapA = new TreeMap();
+    Comparator comparator = new MyComparator();
+    SortedMap mapB = new TreeMap(comparator);",Comparable,0
+"# Java's  SortedMap Interface
+
+The ` java.util.SortedMap ` interface is a subtype of the ` java.util.Map ` interface, with the addition that the elements stored in the map are sorted internally. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeMap.descendingKeySet() `. 
+
+The Java Collections API only has one implementation of the ` SortedMap ` interface - the ` java.util.TreeMap ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedMap `: 
+    
+    
+    SortedMap mapA = new TreeMap();
+    Comparator comparator = new MyComparator();
+    SortedMap mapB = new TreeMap(comparator);",Comparator,0
+"# Java's  SortedMap Interface
+
+The ` java.util.SortedMap ` interface is a subtype of the ` java.util.Map ` interface, with the addition that the elements stored in the map are sorted internally. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeMap.descendingKeySet() `. 
+
+The Java Collections API only has one implementation of the ` SortedMap ` interface - the ` java.util.TreeMap ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedMap `: 
+    
+    
+    SortedMap mapA = new TreeMap();
+    Comparator comparator = new MyComparator();
+    SortedMap mapB = new TreeMap(comparator);",SortedSet,0
+"# Java's  SortedMap Interface
+
+The ` java.util.SortedMap ` interface is a subtype of the ` java.util.Map ` interface, with the addition that the elements stored in the map are sorted internally. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeMap.descendingKeySet() `. 
+
+The Java Collections API only has one implementation of the ` SortedMap ` interface - the ` java.util.TreeMap ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedMap `: 
+    
+    
+    SortedMap mapA = new TreeMap();
+    Comparator comparator = new MyComparator();
+    SortedMap mapB = new TreeMap(comparator);",TreeMap,0
+"## More Details in the JavaDoc
+
+There is actually a lot more you can do with a ` TreeMap ` that is not part of the ` SortedMap ` interface, like getting a descending key set etc. Check out the JavaDoc's for more detail about these features.",TreeMap,0
+"## More Details in the JavaDoc
+
+There is actually a lot more you can do with a ` TreeMap ` that is not part of the ` SortedMap ` interface, like getting a descending key set etc. Check out the JavaDoc's for more detail about these features.",SortedMap,0
+"# Java's  SortedSet Interface
+
+The ` java.util.SortedSet ` interface is a subtype of the ` java.util.Set ` interface. It behaves like a normal set with the exception that the elements are sorted internally. This means that when you iterate the elements of a ` SortedSet ` the elements are returned in the sorted order. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeSet.descendingIterator() `. 
+
+The Java Collections API only has one implementation of the ` SortedSet ` interface - the ` java.util.TreeSet ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedSet `: 
+    
+    
+    SortedSet setA = new TreeSet();
+    Comparator comparator = new MyComparator();
+    SortedSet setB = new TreeSet(comparator);",SortedSet,1
+"# Java's  SortedSet Interface
+
+The ` java.util.SortedSet ` interface is a subtype of the ` java.util.Set ` interface. It behaves like a normal set with the exception that the elements are sorted internally. This means that when you iterate the elements of a ` SortedSet ` the elements are returned in the sorted order. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeSet.descendingIterator() `. 
+
+The Java Collections API only has one implementation of the ` SortedSet ` interface - the ` java.util.TreeSet ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedSet `: 
+    
+    
+    SortedSet setA = new TreeSet();
+    Comparator comparator = new MyComparator();
+    SortedSet setB = new TreeSet(comparator);",Set,0
+"# Java's  SortedSet Interface
+
+The ` java.util.SortedSet ` interface is a subtype of the ` java.util.Set ` interface. It behaves like a normal set with the exception that the elements are sorted internally. This means that when you iterate the elements of a ` SortedSet ` the elements are returned in the sorted order. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeSet.descendingIterator() `. 
+
+The Java Collections API only has one implementation of the ` SortedSet ` interface - the ` java.util.TreeSet ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedSet `: 
+    
+    
+    SortedSet setA = new TreeSet();
+    Comparator comparator = new MyComparator();
+    SortedSet setB = new TreeSet(comparator);",Comparable,0
+"# Java's  SortedSet Interface
+
+The ` java.util.SortedSet ` interface is a subtype of the ` java.util.Set ` interface. It behaves like a normal set with the exception that the elements are sorted internally. This means that when you iterate the elements of a ` SortedSet ` the elements are returned in the sorted order. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeSet.descendingIterator() `. 
+
+The Java Collections API only has one implementation of the ` SortedSet ` interface - the ` java.util.TreeSet ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedSet `: 
+    
+    
+    SortedSet setA = new TreeSet();
+    Comparator comparator = new MyComparator();
+    SortedSet setB = new TreeSet(comparator);",Comparator,0
+"# Java's  SortedSet Interface
+
+The ` java.util.SortedSet ` interface is a subtype of the ` java.util.Set ` interface. It behaves like a normal set with the exception that the elements are sorted internally. This means that when you iterate the elements of a ` SortedSet ` the elements are returned in the sorted order. 
+
+The order of the sorting is either the natural sorting order of the elements (if they implement ` java.lang.Comparable `), or the order determined by a ` Comparator ` that you can give to the ` SortedSet `. 
+
+By default the elements are iterated in ascending order, starting with the ""smallest"" and moving towards the ""largest"". But it is also possible to iterate the elements in descending order using the method ` TreeSet.descendingIterator() `. 
+
+The Java Collections API only has one implementation of the ` SortedSet ` interface - the ` java.util.TreeSet ` class. The `java.util.concurrent` package also has an implementation of this interface, but I will leave the concurrency utilities out of this trail. 
+
+Here are two examples of how to create a ` SortedSet `: 
+    
+    
+    SortedSet setA = new TreeSet();
+    Comparator comparator = new MyComparator();
+    SortedSet setB = new TreeSet(comparator);",TreeSet,1
+"## More Details in the JavaDoc
+
+There is actually a lot more you can do with a ` TreeSet ` that is not part of the ` SortedSet ` interface, like getting the highest and lowest element, splitting the set into subsets based on two values etc. Check out the JavaDoc if you need any of these more special features.",TreeSet,0
+"## More Details in the JavaDoc
+
+There is actually a lot more you can do with a ` TreeSet ` that is not part of the ` SortedSet ` interface, like getting the highest and lowest element, splitting the set into subsets based on two values etc. Check out the JavaDoc if you need any of these more special features.",SortedSet,0
+"# Java's  NavigableSet Interface
+
+The ` java.util.NavigableSet ` interface is a subtype of the ` java.util.SortedSet ` interface. It behaves like a ` SortedSet ` with the exception you have navigation methods available in addition to the sorting mechanisms of the ` SortedSet `. In this text I will look closer at some of these navigation methods. 
+
+In Java 6 there is only one implementation of the ` NavigableSet ` interface in the `java.util` package: ` java.util.TreeSet ` There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingIterator() and descendingSet()
+  2. headSet(), tailSet() and subSet()
+  3. ceiling(), floor(), higher() and lower()
+  4. pollFirst() and pollLast()",NavigableSet,0
+"# Java's  NavigableSet Interface
+
+The ` java.util.NavigableSet ` interface is a subtype of the ` java.util.SortedSet ` interface. It behaves like a ` SortedSet ` with the exception you have navigation methods available in addition to the sorting mechanisms of the ` SortedSet `. In this text I will look closer at some of these navigation methods. 
+
+In Java 6 there is only one implementation of the ` NavigableSet ` interface in the `java.util` package: ` java.util.TreeSet ` There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingIterator() and descendingSet()
+  2. headSet(), tailSet() and subSet()
+  3. ceiling(), floor(), higher() and lower()
+  4. pollFirst() and pollLast()",SortedSet,0
+"# Java's  NavigableSet Interface
+
+The ` java.util.NavigableSet ` interface is a subtype of the ` java.util.SortedSet ` interface. It behaves like a ` SortedSet ` with the exception you have navigation methods available in addition to the sorting mechanisms of the ` SortedSet `. In this text I will look closer at some of these navigation methods. 
+
+In Java 6 there is only one implementation of the ` NavigableSet ` interface in the `java.util` package: ` java.util.TreeSet ` There is an implementation in the `java.util.concurrent` package but that is outside the scope of this trail. 
+
+Here is a list of the topics covered in this text: 
+
+  1. descendingIterator() and descendingSet()
+  2. headSet(), tailSet() and subSet()
+  3. ceiling(), floor(), higher() and lower()
+  4. pollFirst() and pollLast()",TreeSet,0
+"## descendingIterator() and descendingSet()
+
+The first interesting navigation methods are the ` NavigableSet.descendingIterator() ` and ` NavigableSet.descendingSet() ` methods. 
+
+The ` NavigableSet.descendingSet() ` method returns a ` NavigableSet ` in which the order of the elements is reversed compared to this one. The returned ""view"" is backed by the original ` NavigableSet `, so changes to the descending set are also reflected in the original set. 
+
+Here is a simple example: 
+    
+    
+    NavigableSet reverse = original.descendingSet();
+    
+
+The ` NavigableSet.descendingIterator() ` method allows you to iterate the elements of the ` NavigableSet ` (which is also a ` SortedSet `) in reverse order, without changing the order of the elements internally. 
+    
+    
+    Iterator reverse = original.descendingIterator();",NavigableSet,1
+"## descendingIterator() and descendingSet()
+
+The first interesting navigation methods are the ` NavigableSet.descendingIterator() ` and ` NavigableSet.descendingSet() ` methods. 
+
+The ` NavigableSet.descendingSet() ` method returns a ` NavigableSet ` in which the order of the elements is reversed compared to this one. The returned ""view"" is backed by the original ` NavigableSet `, so changes to the descending set are also reflected in the original set. 
+
+Here is a simple example: 
+    
+    
+    NavigableSet reverse = original.descendingSet();
+    
+
+The ` NavigableSet.descendingIterator() ` method allows you to iterate the elements of the ` NavigableSet ` (which is also a ` SortedSet `) in reverse order, without changing the order of the elements internally. 
+    
+    
+    Iterator reverse = original.descendingIterator();",SortedSet,0
+"## headSet(), tailSet() and subSet()
+
+The ` NavigableSet.headSet() ` method returns a view of the original ` NavigableSet ` which only contains elements that are ""less than"" the given element. Here is an example: 
+    
+    
+    NavigableSet original = new TreeSet();
+    original.add(""1"");
+    original.add(""2"");
+    original.add(""3"");
+    //this headset will contain ""1"" and ""2""
+    SortedSet headset = original.headSet(""3"");
+    //this headset will contain ""1"", ""2"", and ""3"" because ""inclusive""=true
+    NavigableSet headset = original.headSet(""3"", true);
+    
+
+The ` NavigableSet.tailSet() ` method works the same way, except it returns all elements that are higher than the given parameter element. 
+
+The ` NavigableSet.subSet() ` allows you to pass two parameters demarcating the boundaries of the view set to return. The elements matching the first boundary is included, where as elements matching the last boundary are not. Here is an example: 
+    
+    
+    NavigableSet original = new TreeSet();
+    original.add(""1"");
+    original.add(""2"");
+    original.add(""3"");
+    original.add(""4"");
+    original.add(""5"");
+    //this subset will contain ""2"" and ""3""
+    SortedSet    subset  = original.subSet(""2"", ""4"");
+    //this subset will contain ""2"", ""3"" and ""4"" because
+    //    fromInclusive=true, and toInclusive=true 
+    NavigableSet subset = original.subSet(""2"", true, ""4"", true);",NavigableSet,1
+"## ceiling(), floor(), higher(), and lower()
+
+The ` NavigableSet.ceiling() ` method returns the least (smallest) element in this set that is greater than or equal to the element passed as parameter to the ` NavigableSet.ceiling() ` method. Here is an example: 
+    
+    
+    NavigableSet original = new TreeSet();
+    original.add(""1"");
+    original.add(""2"");
+    original.add(""3"");
+    //ceiling will be ""2"".
+    Object ceiling = original.ceiling(""2"");
+    //floor will be ""2"".
+    Object floor = original.floor(""2"");
+    
+
+The ` NavigableSet.floor() ` method does the opposite of ` NavigableSet.ceiling() `
+
+The ` NavigableSet.higher() ` method returns the least (smallest) element in this set that is greater than (not equal too) the element passed as parameter to the ` NavigableSet.higher() ` method. Here is an example: 
+    
+    
+    NavigableSet original = new TreeSet();
+    original.add(""1"");
+    original.add(""2"");
+    original.add(""3"");
+    //higher will be ""3"".
+    Object higher = original.higher(""2"");
+    //lower will be ""1""
+    Object lower = original.lower(""2"");
+    
+
+The ` NavigableSet.lower() ` method does the opposite of the ` NavigableSet.higher() ` method.",NavigableSet,1
+"## pollFirst() and pollLast()
+
+The ` NavigableSet.pollFirst() ` method returns and removes the ""first"" element in the ` NavigableSet ` or null if the set is empty. The ` NavigableSet.pollLast() ` returns and removes the ""last"" element in the set or null if the set is empty. ""First"" means smallest element according to the sort order of the set. ""Last"" means largest according to teh element sorting order of the set. 
+
+Here are two examples: 
+    
+    
+    NavigableSet original = new TreeSet();
+    original.add(""1"");
+    original.add(""2"");
+    original.add(""3"");
+    //first is ""1""
+    Object first = original.pollFirst();
+    //last is ""3""
+    Object last = original.pollLast();",NavigableSet,1
+"# Generic  Collections in Java
+
+It is possible to generify the various Collection and Map types and subtypes in the Java collection API. This text will not cover generics in detail. Java Generics is covered in my Java Generics tutorial. 
+
+The Collection interface can be generified like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    
+
+This `stringCollection` can now only contain ` String ` instances. If you try to add anything else, or cast the elements in the collection to any other type than ` String `, the compiler will complain. 
+
+Actually, it is possible to insert other objects than String objects, if you cheat a little (or is just plain stupid), but this is not recommended. 
+
+You can iterate the above collection using the new for-loop, like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    for(String stringElement : stringCollection) {
+    //do something with each stringElement    
+    }
+    
+
+You can do the same thing with ` List's `, ` Set's ` etc. 
+
+I won't get into much more detail about generic collections here. Like I said in the beginning, I have a separate Java Generics tutorial. Additionally, more generic examples will be shown in the texts on the specific collection types.",Collections,0
+"# Generic  Collections in Java
+
+It is possible to generify the various Collection and Map types and subtypes in the Java collection API. This text will not cover generics in detail. Java Generics is covered in my Java Generics tutorial. 
+
+The Collection interface can be generified like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    
+
+This `stringCollection` can now only contain ` String ` instances. If you try to add anything else, or cast the elements in the collection to any other type than ` String `, the compiler will complain. 
+
+Actually, it is possible to insert other objects than String objects, if you cheat a little (or is just plain stupid), but this is not recommended. 
+
+You can iterate the above collection using the new for-loop, like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    for(String stringElement : stringCollection) {
+    //do something with each stringElement    
+    }
+    
+
+You can do the same thing with ` List's `, ` Set's ` etc. 
+
+I won't get into much more detail about generic collections here. Like I said in the beginning, I have a separate Java Generics tutorial. Additionally, more generic examples will be shown in the texts on the specific collection types.",String,0
+"# Generic  Collections in Java
+
+It is possible to generify the various Collection and Map types and subtypes in the Java collection API. This text will not cover generics in detail. Java Generics is covered in my Java Generics tutorial. 
+
+The Collection interface can be generified like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    
+
+This `stringCollection` can now only contain ` String ` instances. If you try to add anything else, or cast the elements in the collection to any other type than ` String `, the compiler will complain. 
+
+Actually, it is possible to insert other objects than String objects, if you cheat a little (or is just plain stupid), but this is not recommended. 
+
+You can iterate the above collection using the new for-loop, like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    for(String stringElement : stringCollection) {
+    //do something with each stringElement    
+    }
+    
+
+You can do the same thing with ` List's `, ` Set's ` etc. 
+
+I won't get into much more detail about generic collections here. Like I said in the beginning, I have a separate Java Generics tutorial. Additionally, more generic examples will be shown in the texts on the specific collection types.",List,0
+"# Generic  Collections in Java
+
+It is possible to generify the various Collection and Map types and subtypes in the Java collection API. This text will not cover generics in detail. Java Generics is covered in my Java Generics tutorial. 
+
+The Collection interface can be generified like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    
+
+This `stringCollection` can now only contain ` String ` instances. If you try to add anything else, or cast the elements in the collection to any other type than ` String `, the compiler will complain. 
+
+Actually, it is possible to insert other objects than String objects, if you cheat a little (or is just plain stupid), but this is not recommended. 
+
+You can iterate the above collection using the new for-loop, like this: 
+    
+    
+    Collection<String> stringCollection = new HashSet<String>();
+    for(String stringElement : stringCollection) {
+    //do something with each stringElement    
+    }
+    
+
+You can do the same thing with ` List's `, ` Set's ` etc. 
+
+I won't get into much more detail about generic collections here. Like I said in the beginning, I have a separate Java Generics tutorial. Additionally, more generic examples will be shown in the texts on the specific collection types.",Set,0

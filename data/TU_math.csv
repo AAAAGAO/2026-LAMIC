@@ -1,0 +1,1852 @@
+fragment,api,relevance
+"### 4.3 Root-finding
+
+UnivariateSolver ,  UnivariateDifferentiableSolver  and  PolynomialSolver  provide means to find roots of univariate real-valued functions, differentiable univariate real-valued functions, and polynomial functions respectively. A root is the value where the function takes the value 0. Commons-Math includes implementations of the several root-finding algorithms: 
+
+Root solvers  
+---  
+Name | Function type | Convergence | Needs initial bracketing | Bracket side selection  
+Bisection | univariate real-valued functions | linear, guaranteed | yes | yes  
+Brent-Dekker | univariate real-valued functions | super-linear, guaranteed | yes | no  
+bracketing nth order Brent | univariate real-valued functions | variable order, guaranteed | yes | yes  
+Illinois Method | univariate real-valued functions | super-linear, guaranteed | yes | yes  
+Laguerre's Method | polynomial functions | cubic for simple root, linear for multiple root | yes | no  
+Muller's Method using bracketing to deal with real-valued functions | univariate real-valued functions | quadratic close to roots | yes | no  
+Muller's Method using modulus to deal with real-valued functions | univariate real-valued functions | quadratic close to root | yes | no  
+Newton-Raphson's Method | differentiable univariate real-valued functions | quadratic, non-guaranteed | no | no  
+Pegasus Method | univariate real-valued functions | super-linear, guaranteed | yes | yes  
+Regula Falsi (false position) Method | univariate real-valued functions | linear, guaranteed | yes | yes  
+Ridder's Method | univariate real-valued functions | super-linear | yes | no  
+Secant Method | univariate real-valued functions | super-linear, non-guaranteed | yes | no",UnivariateSolver,0
+"### 4.3 Root-finding  
+  
+UnivariateSolver ,  UnivariateDifferentiableSolver  and  PolynomialSolver  provide means to find roots of univariate real-valued functions, differentiable univariate real-valued functions, and polynomial functions respectively. A root is the value where the function takes the value 0. Commons-Math includes implementations of the several root-finding algorithms: 
+
+Root solvers  
+---  
+Name | Function type | Convergence | Needs initial bracketing | Bracket side selection  
+Bisection | univariate real-valued functions | linear, guaranteed | yes | yes  
+Brent-Dekker | univariate real-valued functions | super-linear, guaranteed | yes | no  
+bracketing nth order Brent | univariate real-valued functions | variable order, guaranteed | yes | yes  
+Illinois Method | univariate real-valued functions | super-linear, guaranteed | yes | yes  
+Laguerre's Method | polynomial functions | cubic for simple root, linear for multiple root | yes | no  
+Muller's Method using bracketing to deal with real-valued functions | univariate real-valued functions | quadratic close to roots | yes | no  
+Muller's Method using modulus to deal with real-valued functions | univariate real-valued functions | quadratic close to root | yes | no  
+Newton-Raphson's Method | differentiable univariate real-valued functions | quadratic, non-guaranteed | no | no  
+Pegasus Method | univariate real-valued functions | super-linear, guaranteed | yes | yes  
+Regula Falsi (false position) Method | univariate real-valued functions | linear, guaranteed | yes | yes  
+Ridder's Method | univariate real-valued functions | super-linear | yes | no  
+Secant Method | univariate real-valued functions | super-linear, non-guaranteed | yes | no",UnivariateDifferentiableSolver,0
+"### 4.3 Root-finding  
+  
+UnivariateSolver ,  UnivariateDifferentiableSolver  and  PolynomialSolver  provide means to find roots of univariate real-valued functions, differentiable univariate real-valued functions, and polynomial functions respectively. A root is the value where the function takes the value 0. Commons-Math includes implementations of the several root-finding algorithms: 
+
+Root solvers  
+---  
+Name | Function type | Convergence | Needs initial bracketing | Bracket side selection  
+Bisection | univariate real-valued functions | linear, guaranteed | yes | yes  
+Brent-Dekker | univariate real-valued functions | super-linear, guaranteed | yes | no  
+bracketing nth order Brent | univariate real-valued functions | variable order, guaranteed | yes | yes  
+Illinois Method | univariate real-valued functions | super-linear, guaranteed | yes | yes  
+Laguerre's Method | polynomial functions | cubic for simple root, linear for multiple root | yes | no  
+Muller's Method using bracketing to deal with real-valued functions | univariate real-valued functions | quadratic close to roots | yes | no  
+Muller's Method using modulus to deal with real-valued functions | univariate real-valued functions | quadratic close to root | yes | no  
+Newton-Raphson's Method | differentiable univariate real-valued functions | quadratic, non-guaranteed | no | no  
+Pegasus Method | univariate real-valued functions | super-linear, guaranteed | yes | yes  
+Regula Falsi (false position) Method | univariate real-valued functions | linear, guaranteed | yes | yes  
+Ridder's Method | univariate real-valued functions | super-linear | yes | no  
+Secant Method | univariate real-valued functions | super-linear, non-guaranteed | yes | no",PolynomialSolver,0
+"### 4.3 Root-finding - part 4  
+  
+In order to use the root-finding features, first a solver object must be created by calling its constructor, often providing relative and absolute accuracy. Using a solver object, roots of functions are easily found using the ` BracketingNthOrderBrentSolver.solve ` methods. These methods takes a maximum iteration count `maxEval`, a function `f`, and either two domain values, `min` and `max`, or a `startValue` as parameters. If the maximal number of iterations count is exceeded, non-convergence is assumed and a ` ConvergenceException ` exception is thrown. A suggested value is 100, which should be plenty, given that a bisection algorithm can't get any more accurate after 52 iterations because of the number of mantissa bits in a double precision floating point number. If a number of ill-conditioned problems is to be solved, this number can be decreased in order to avoid wasting time. Bracketed solvers also take an allowed solution enum parameter to specify which side of the final convergence interval should be selected as the root. It can be `ANY_SIDE`, `LEFT_SIDE`, `RIGHT_SIDE`, `BELOW_SIDE` or `ABOVE_SIDE`. Left and right are used to specify the root along the function parameter axis while below and above refer to the function value axis. The solve methods compute a value `c` such that: 
+
+  * `f(c) = 0.0` (see ""function value accuracy"")
+  * `min <= c <= max` (except for the secant method, which may find a solution outside the interval)",BracketingNthOrderBrentSolver,1
+"### 4.3 Root-finding - part 4
+
+In order to use the root-finding features, first a solver object must be created by calling its constructor, often providing relative and absolute accuracy. Using a solver object, roots of functions are easily found using the ` BracketingNthOrderBrentSolver.solve ` methods. These methods takes a maximum iteration count `maxEval`, a function `f`, and either two domain values, `min` and `max`, or a `startValue` as parameters. If the maximal number of iterations count is exceeded, non-convergence is assumed and a ` ConvergenceException ` exception is thrown. A suggested value is 100, which should be plenty, given that a bisection algorithm can't get any more accurate after 52 iterations because of the number of mantissa bits in a double precision floating point number. If a number of ill-conditioned problems is to be solved, this number can be decreased in order to avoid wasting time. Bracketed solvers also take an allowed solution enum parameter to specify which side of the final convergence interval should be selected as the root. It can be `ANY_SIDE`, `LEFT_SIDE`, `RIGHT_SIDE`, `BELOW_SIDE` or `ABOVE_SIDE`. Left and right are used to specify the root along the function parameter axis while below and above refer to the function value axis. The solve methods compute a value `c` such that: 
+
+  * `f(c) = 0.0` (see ""function value accuracy"")
+  * `min <= c <= max` (except for the secant method, which may find a solution outside the interval)",ConvergenceException,1
+"### 4.3 Root-finding - part 5
+
+Typical usage: 
+    
+    
+    UnivariateFunction function = // some user defined function object
+    final double relativeAccuracy = 1.0e-12;
+    final double absoluteAccuracy = 1.0e-8;
+    final int    maxOrder         = 5;
+    UnivariateSolver solver   = new BracketingNthOrderBrentSolver(relativeAccuracy, absoluteAccuracy, maxOrder);
+    double c = solver.solve(100, function, 1.0, 5.0, AllowedSolution.LEFT_SIDE);
+
+Force bracketing, by refining a base solution found by a non-bracketing solver: 
+    
+    
+    UnivariateFunction function = // some user defined function object
+    final double relativeAccuracy = 1.0e-12;
+    final double absoluteAccuracy = 1.0e-8;
+    UnivariateSolver nonBracketing = new BrentSolver(relativeAccuracy, absoluteAccuracy);
+    double baseRoot = nonBracketing.solve(100, function, 1.0, 5.0);
+    double c = UnivariateSolverUtils.forceSide(100, function,
+                                               new PegasusSolver(relativeAccuracy, absoluteAccuracy),
+                                               baseRoot, 1.0, 5.0, AllowedSolution.LEFT_SIDE);
+    
+
+The ` BrentSolver ` uses the Brent-Dekker algorithm which is fast and robust. If there are multiple roots in the interval, or there is a large domain of indeterminacy, the algorithm will converge to a random root in the interval without indication that there are problems. Interestingly, the examined text book implementations all disagree in details of the convergence criteria. Also each implementation had problems for one of the test cases, so the expressions had to be fudged further. Don't expect to get exactly the same root values as for other implementations of this algorithm. 
+
+The ` BracketingNthOrderBrentSolver ` uses an extension of the Brent-Dekker algorithm which uses inverse nth order polynomial interpolation instead of inverse quadratic interpolation, and which allows selection of the side of the convergence interval for result bracketing. This is now the recommended algorithm for most users since it has the largest order, doesn't require derivatives, has guaranteed convergence and allows result bracket selection.",BrentSolver,1
+"### 4.3 Root-finding - part 5
+
+Typical usage: 
+    
+    
+    UnivariateFunction function = // some user defined function object
+    final double relativeAccuracy = 1.0e-12;
+    final double absoluteAccuracy = 1.0e-8;
+    final int    maxOrder         = 5;
+    UnivariateSolver solver   = new BracketingNthOrderBrentSolver(relativeAccuracy, absoluteAccuracy, maxOrder);
+    double c = solver.solve(100, function, 1.0, 5.0, AllowedSolution.LEFT_SIDE);
+
+Force bracketing, by refining a base solution found by a non-bracketing solver: 
+    
+    
+    UnivariateFunction function = // some user defined function object
+    final double relativeAccuracy = 1.0e-12;
+    final double absoluteAccuracy = 1.0e-8;
+    UnivariateSolver nonBracketing = new BrentSolver(relativeAccuracy, absoluteAccuracy);
+    double baseRoot = nonBracketing.solve(100, function, 1.0, 5.0);
+    double c = UnivariateSolverUtils.forceSide(100, function,
+                                               new PegasusSolver(relativeAccuracy, absoluteAccuracy),
+                                               baseRoot, 1.0, 5.0, AllowedSolution.LEFT_SIDE);
+    
+
+The ` BrentSolver ` uses the Brent-Dekker algorithm which is fast and robust. If there are multiple roots in the interval, or there is a large domain of indeterminacy, the algorithm will converge to a random root in the interval without indication that there are problems. Interestingly, the examined text book implementations all disagree in details of the convergence criteria. Also each implementation had problems for one of the test cases, so the expressions had to be fudged further. Don't expect to get exactly the same root values as for other implementations of this algorithm. 
+
+The ` BracketingNthOrderBrentSolver ` uses an extension of the Brent-Dekker algorithm which uses inverse nth order polynomial interpolation instead of inverse quadratic interpolation, and which allows selection of the side of the convergence interval for result bracketing. This is now the recommended algorithm for most users since it has the largest order, doesn't require derivatives, has guaranteed convergence and allows result bracket selection.",BracketingNthOrderBrentSolver,1
+"### 4.3 Root-finding - part 6
+
+The ` SecantSolver ` uses a straightforward secant algorithm which does not bracket the search and therefore does not guarantee convergence. It may be faster than Brent on some well-behaved functions. 
+
+The ` RegulaFalsiSolver ` is variation of secant preserving bracketing, but then it may be slow, as one end point of the search interval will become fixed after and only the other end point will converge to the root, hence resulting in a search interval size that does not decrease to zero. 
+
+The ` IllinoisSolver ` and ` PegasusSolver ` are well-known variations of regula falsi that fix the problem of stuck end points by slightly weighting one endpoint to balance the interval at next iteration. Pegasus is often faster than Illinois. Pegasus may be the algorithm of choice for selecting a specific side of the convergence interval. 
+
+The ` BisectionSolver ` is included for completeness and for establishing a fall back in cases of emergency. The algorithm is simple, most likely bug free and guaranteed to converge even in very adverse circumstances which might cause other algorithms to malfunction. The drawback is of course that it is also guaranteed to be slow.",SecantSolver,1
+"### 4.3 Root-finding - part 6
+
+The ` SecantSolver ` uses a straightforward secant algorithm which does not bracket the search and therefore does not guarantee convergence. It may be faster than Brent on some well-behaved functions. 
+
+The ` RegulaFalsiSolver ` is variation of secant preserving bracketing, but then it may be slow, as one end point of the search interval will become fixed after and only the other end point will converge to the root, hence resulting in a search interval size that does not decrease to zero. 
+
+The ` IllinoisSolver ` and ` PegasusSolver ` are well-known variations of regula falsi that fix the problem of stuck end points by slightly weighting one endpoint to balance the interval at next iteration. Pegasus is often faster than Illinois. Pegasus may be the algorithm of choice for selecting a specific side of the convergence interval. 
+
+The ` BisectionSolver ` is included for completeness and for establishing a fall back in cases of emergency. The algorithm is simple, most likely bug free and guaranteed to converge even in very adverse circumstances which might cause other algorithms to malfunction. The drawback is of course that it is also guaranteed to be slow.",RegulaFalsiSolver,1
+"### 4.3 Root-finding - part 6
+
+The ` SecantSolver ` uses a straightforward secant algorithm which does not bracket the search and therefore does not guarantee convergence. It may be faster than Brent on some well-behaved functions. 
+
+The ` RegulaFalsiSolver ` is variation of secant preserving bracketing, but then it may be slow, as one end point of the search interval will become fixed after and only the other end point will converge to the root, hence resulting in a search interval size that does not decrease to zero. 
+
+The ` IllinoisSolver ` and ` PegasusSolver ` are well-known variations of regula falsi that fix the problem of stuck end points by slightly weighting one endpoint to balance the interval at next iteration. Pegasus is often faster than Illinois. Pegasus may be the algorithm of choice for selecting a specific side of the convergence interval. 
+
+The ` BisectionSolver ` is included for completeness and for establishing a fall back in cases of emergency. The algorithm is simple, most likely bug free and guaranteed to converge even in very adverse circumstances which might cause other algorithms to malfunction. The drawback is of course that it is also guaranteed to be slow.",IllinoisSolver,1
+"### 4.3 Root-finding - part 6
+
+The ` SecantSolver ` uses a straightforward secant algorithm which does not bracket the search and therefore does not guarantee convergence. It may be faster than Brent on some well-behaved functions. 
+
+The ` RegulaFalsiSolver ` is variation of secant preserving bracketing, but then it may be slow, as one end point of the search interval will become fixed after and only the other end point will converge to the root, hence resulting in a search interval size that does not decrease to zero. 
+
+The ` IllinoisSolver ` and ` PegasusSolver ` are well-known variations of regula falsi that fix the problem of stuck end points by slightly weighting one endpoint to balance the interval at next iteration. Pegasus is often faster than Illinois. Pegasus may be the algorithm of choice for selecting a specific side of the convergence interval. 
+
+The ` BisectionSolver ` is included for completeness and for establishing a fall back in cases of emergency. The algorithm is simple, most likely bug free and guaranteed to converge even in very adverse circumstances which might cause other algorithms to malfunction. The drawback is of course that it is also guaranteed to be slow.",PegasusSolver,1
+"### 4.3 Root-finding - part 6
+
+The ` SecantSolver ` uses a straightforward secant algorithm which does not bracket the search and therefore does not guarantee convergence. It may be faster than Brent on some well-behaved functions. 
+
+The ` RegulaFalsiSolver ` is variation of secant preserving bracketing, but then it may be slow, as one end point of the search interval will become fixed after and only the other end point will converge to the root, hence resulting in a search interval size that does not decrease to zero. 
+
+The ` IllinoisSolver ` and ` PegasusSolver ` are well-known variations of regula falsi that fix the problem of stuck end points by slightly weighting one endpoint to balance the interval at next iteration. Pegasus is often faster than Illinois. Pegasus may be the algorithm of choice for selecting a specific side of the convergence interval. 
+
+The ` BisectionSolver ` is included for completeness and for establishing a fall back in cases of emergency. The algorithm is simple, most likely bug free and guaranteed to converge even in very adverse circumstances which might cause other algorithms to malfunction. The drawback is of course that it is also guaranteed to be slow.",BisectionSolver,1
+"### 4.3 Root-finding - part 7
+
+The ` UnivariateSolver ` interface exposes many properties to control the convergence of a solver. The accuracy properties are set at solver instance creation and cannot be changed afterwards, there are only getters to retriveve their values, no setters are available. 
+
+Property | Purpose  
+---|---  
+Absolute accuracy |  The Absolute Accuracy is (estimated) maximal difference between the computed root and the true root of the function. This is what most people think of as ""accuracy"" intuitively. The default value is chosen as a sane value for most real world problems, for roots in the range from -100 to +100. For accurate computation of roots near zero, in the range form -0.0001 to +0.0001, the value may be decreased. For computing roots much larger in absolute value than 100, the default absolute accuracy may never be reached because the given relative accuracy is reached first.   
+Relative accuracy |  The Relative Accuracy is the maximal difference between the computed root and the true root, divided by the maximum of the absolute values of the numbers. This accuracy measurement is better suited for numerical calculations with computers, due to the way floating point numbers are represented. The default value is chosen so that algorithms will get a result even for roots with large absolute values, even while it may be impossible to reach the given absolute accuracy.   
+Function value accuracy |  This value is used by some algorithms in order to prevent numerical instabilities. If the function is evaluated to an absolute value smaller than the Function Value Accuracy, the algorithms assume they hit a root and return the value immediately. The default value is a ""very small value"". If the goal is to get a near zero function value rather than an accurate root, computation may be sped up by setting this value appropriately.",UnivariateSolver,1
+"### 4.4 Interpolation  
+  
+A  UnivariateInterpolator  is used to find a univariate real-valued function `f` which for a given set of ordered pairs (`xi`,`yi`) yields `f(xi)=yi` to the best accuracy possible. The result is provided as an object implementing the  UnivariateFunction  interface. It can therefore be evaluated at any point, including point not belonging to the original set. Currently, only an interpolator for generating natural cubic splines and a polynomial interpolator are available. There is no interpolator factory, mainly because the interpolation algorithm is more determined by the kind of the interpolated function rather than the set of points to interpolate. There aren't currently any accuracy controls either, as interpolation accuracy is in general determined by the algorithm. 
+
+Typical usage:
+    
+    
+    double x[] = { 0.0, 1.0, 2.0 };
+    double y[] = { 1.0, -1.0, 2.0);
+    UnivariateInterpolator interpolator = new SplineInterpolator();
+    UnivariateFunction function = interpolator.interpolate(x, y);
+    double interpolationX = 0.5;
+    double interpolatedY = function.evaluate(x);
+    System.out println(""f("" + interpolationX + "") = "" + interpolatedY);
+
+A natural cubic spline is a function consisting of a polynomial of third degree for each subinterval determined by the x-coordinates of the interpolated points. A function interpolating `N` value pairs consists of `N-1` polynomials. The function is continuous, smooth and can be differentiated twice. The second derivative is continuous but not smooth. The x values passed to the interpolator must be ordered in ascending order. It is not valid to evaluate the function for values outside the range `x0`..`xN`.",UnivariateInterpolator,0
+"### 4.4 Interpolation
+
+A  UnivariateInterpolator  is used to find a univariate real-valued function `f` which for a given set of ordered pairs (`xi`,`yi`) yields `f(xi)=yi` to the best accuracy possible. The result is provided as an object implementing the  UnivariateFunction  interface. It can therefore be evaluated at any point, including point not belonging to the original set. Currently, only an interpolator for generating natural cubic splines and a polynomial interpolator are available. There is no interpolator factory, mainly because the interpolation algorithm is more determined by the kind of the interpolated function rather than the set of points to interpolate. There aren't currently any accuracy controls either, as interpolation accuracy is in general determined by the algorithm. 
+
+Typical usage:
+    
+    
+    double x[] = { 0.0, 1.0, 2.0 };
+    double y[] = { 1.0, -1.0, 2.0);
+    UnivariateInterpolator interpolator = new SplineInterpolator();
+    UnivariateFunction function = interpolator.interpolate(x, y);
+    double interpolationX = 0.5;
+    double interpolatedY = function.evaluate(x);
+    System.out println(""f("" + interpolationX + "") = "" + interpolatedY);
+
+A natural cubic spline is a function consisting of a polynomial of third degree for each subinterval determined by the x-coordinates of the interpolated points. A function interpolating `N` value pairs consists of `N-1` polynomials. The function is continuous, smooth and can be differentiated twice. The second derivative is continuous but not smooth. The x values passed to the interpolator must be ordered in ascending order. It is not valid to evaluate the function for values outside the range `x0`..`xN`.",UnivariateFunction,0
+"### 4.4 Interpolation - part 3
+
+Microsphere interpolation is a robust multidimensional interpolation algorithm. It has been described in William Dudziak's MS thesis. 
+
+Hermite interpolation is an interpolation method that can use derivatives in addition to function values at sample points. The  HermiteInterpolator  class implements this method for vector-valued functions. The sampling points can have any spacing (there are no requirements for a regular grid) and some points may provide derivatives while others don't provide them (or provide derivatives to a smaller order). Points are added one at a time, as shown in the following example: 
+    
+    
+    HermiteInterpolator interpolator = new HermiteInterpolator;
+    // at x = 0, we provide both value and first derivative
+    interpolator.addSamplePoint(0.0, new double[] { 1.0 }, new double[] { 2.0 });
+    // at x = 1, we provide only function value
+    interpolator.addSamplePoint(1.0, new double[] { 4.0 });
+    // at x = 2, we provide both value and first derivative
+    interpolator.addSamplePoint(2.0, new double[] { 5.0 }, new double[] { 2.0 });
+    // should print ""value at x = 0.5: 2.5625""
+    System.out.println(""value at x = 0.5: "" + interpolator.value(0.5)[0]);
+    // should print ""derivative at x = 0.5: 3.5""
+    System.out.println(""derivative at x = 0.5: "" + interpolator.derivative(0.5)[0]);
+    // should print ""interpolation polynomial: 1 + 2 x + 4 x^2 - 4 x^3 + x^4""
+    System.out.println(""interpolation polynomial: "" + interpolator.getPolynomials()[0]);
+
+A  BivariateGridInterpolator  is used to find a bivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`fij`) yields `f(xi,yj)=fij` to the best accuracy possible. The result is provided as an object implementing the  BivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi` and `yj` must be sorted in increasing order in order to define a two-dimensional grid.",HermiteInterpolator,1
+"### 4.4 Interpolation - part 3
+
+Microsphere interpolation is a robust multidimensional interpolation algorithm. It has been described in William Dudziak's MS thesis. 
+
+Hermite interpolation is an interpolation method that can use derivatives in addition to function values at sample points. The  HermiteInterpolator  class implements this method for vector-valued functions. The sampling points can have any spacing (there are no requirements for a regular grid) and some points may provide derivatives while others don't provide them (or provide derivatives to a smaller order). Points are added one at a time, as shown in the following example: 
+    
+    
+    HermiteInterpolator interpolator = new HermiteInterpolator;
+    // at x = 0, we provide both value and first derivative
+    interpolator.addSamplePoint(0.0, new double[] { 1.0 }, new double[] { 2.0 });
+    // at x = 1, we provide only function value
+    interpolator.addSamplePoint(1.0, new double[] { 4.0 });
+    // at x = 2, we provide both value and first derivative
+    interpolator.addSamplePoint(2.0, new double[] { 5.0 }, new double[] { 2.0 });
+    // should print ""value at x = 0.5: 2.5625""
+    System.out.println(""value at x = 0.5: "" + interpolator.value(0.5)[0]);
+    // should print ""derivative at x = 0.5: 3.5""
+    System.out.println(""derivative at x = 0.5: "" + interpolator.derivative(0.5)[0]);
+    // should print ""interpolation polynomial: 1 + 2 x + 4 x^2 - 4 x^3 + x^4""
+    System.out.println(""interpolation polynomial: "" + interpolator.getPolynomials()[0]);
+
+A  BivariateGridInterpolator  is used to find a bivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`fij`) yields `f(xi,yj)=fij` to the best accuracy possible. The result is provided as an object implementing the  BivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi` and `yj` must be sorted in increasing order in order to define a two-dimensional grid.",BivariateGridInterpolator,1
+"### 4.4 Interpolation - part 3
+
+Microsphere interpolation is a robust multidimensional interpolation algorithm. It has been described in William Dudziak's MS thesis. 
+
+Hermite interpolation is an interpolation method that can use derivatives in addition to function values at sample points. The  HermiteInterpolator  class implements this method for vector-valued functions. The sampling points can have any spacing (there are no requirements for a regular grid) and some points may provide derivatives while others don't provide them (or provide derivatives to a smaller order). Points are added one at a time, as shown in the following example: 
+    
+    
+    HermiteInterpolator interpolator = new HermiteInterpolator;
+    // at x = 0, we provide both value and first derivative
+    interpolator.addSamplePoint(0.0, new double[] { 1.0 }, new double[] { 2.0 });
+    // at x = 1, we provide only function value
+    interpolator.addSamplePoint(1.0, new double[] { 4.0 });
+    // at x = 2, we provide both value and first derivative
+    interpolator.addSamplePoint(2.0, new double[] { 5.0 }, new double[] { 2.0 });
+    // should print ""value at x = 0.5: 2.5625""
+    System.out.println(""value at x = 0.5: "" + interpolator.value(0.5)[0]);
+    // should print ""derivative at x = 0.5: 3.5""
+    System.out.println(""derivative at x = 0.5: "" + interpolator.derivative(0.5)[0]);
+    // should print ""interpolation polynomial: 1 + 2 x + 4 x^2 - 4 x^3 + x^4""
+    System.out.println(""interpolation polynomial: "" + interpolator.getPolynomials()[0]);
+
+A  BivariateGridInterpolator  is used to find a bivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`fij`) yields `f(xi,yj)=fij` to the best accuracy possible. The result is provided as an object implementing the  BivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi` and `yj` must be sorted in increasing order in order to define a two-dimensional grid.",BivariateFunction,0
+"### 4.4 Interpolation - part 4
+
+In bicubic interpolation, the interpolation function is a 3rd-degree polynomial of two variables. The coefficients are computed from the function values sampled on a grid, as well as the values of the partial derivatives of the function at those grid points. From two-dimensional data sampled on a grid, the  BicubicSplineInterpolator  computes a  bicubic interpolating function. Prior to computing an interpolating function, the  SmoothingPolynomialBicubicSplineInterpolator  class performs smoothing of the data by computing the polynomial that best fits each of the one-dimensional curves along each of the coordinate axes. 
+
+A  TrivariateGridInterpolator  is used to find a trivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`zk`, `fijk`) yields `f(xi,yj,zk)=fijk` to the best accuracy possible. The result is provided as an object implementing the  TrivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi`, `yj` and `zk` must be sorted in increasing order in order to define a three-dimensional grid.",BicubicSplineInterpolator,1
+"### 4.4 Interpolation - part 4
+
+In bicubic interpolation, the interpolation function is a 3rd-degree polynomial of two variables. The coefficients are computed from the function values sampled on a grid, as well as the values of the partial derivatives of the function at those grid points. From two-dimensional data sampled on a grid, the  BicubicSplineInterpolator  computes a  bicubic interpolating function. Prior to computing an interpolating function, the  SmoothingPolynomialBicubicSplineInterpolator  class performs smoothing of the data by computing the polynomial that best fits each of the one-dimensional curves along each of the coordinate axes. 
+
+A  TrivariateGridInterpolator  is used to find a trivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`zk`, `fijk`) yields `f(xi,yj,zk)=fijk` to the best accuracy possible. The result is provided as an object implementing the  TrivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi`, `yj` and `zk` must be sorted in increasing order in order to define a three-dimensional grid.",SmoothingPolynomialBicubicSplineInterpolator,1
+"### 4.4 Interpolation - part 4
+
+In bicubic interpolation, the interpolation function is a 3rd-degree polynomial of two variables. The coefficients are computed from the function values sampled on a grid, as well as the values of the partial derivatives of the function at those grid points. From two-dimensional data sampled on a grid, the  BicubicSplineInterpolator  computes a  bicubic interpolating function. Prior to computing an interpolating function, the  SmoothingPolynomialBicubicSplineInterpolator  class performs smoothing of the data by computing the polynomial that best fits each of the one-dimensional curves along each of the coordinate axes. 
+
+A  TrivariateGridInterpolator  is used to find a trivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`zk`, `fijk`) yields `f(xi,yj,zk)=fijk` to the best accuracy possible. The result is provided as an object implementing the  TrivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi`, `yj` and `zk` must be sorted in increasing order in order to define a three-dimensional grid.",TrivariateGridInterpolator,1
+"### 4.4 Interpolation - part 4
+
+In bicubic interpolation, the interpolation function is a 3rd-degree polynomial of two variables. The coefficients are computed from the function values sampled on a grid, as well as the values of the partial derivatives of the function at those grid points. From two-dimensional data sampled on a grid, the  BicubicSplineInterpolator  computes a  bicubic interpolating function. Prior to computing an interpolating function, the  SmoothingPolynomialBicubicSplineInterpolator  class performs smoothing of the data by computing the polynomial that best fits each of the one-dimensional curves along each of the coordinate axes. 
+
+A  TrivariateGridInterpolator  is used to find a trivariate real-valued function `f` which for a given set of tuples (`xi`,`yj`,`zk`, `fijk`) yields `f(xi,yj,zk)=fijk` to the best accuracy possible. The result is provided as an object implementing the  TrivariateFunction  interface. It can therefore be evaluated at any point, including a point not belonging to the original set. The arrays `xi`, `yj` and `zk` must be sorted in increasing order in order to define a three-dimensional grid.",TrivariateFunction,0
+"### 4.4 Interpolation - part 5
+
+In tricubic interpolation, the interpolation function is a 3rd-degree polynomial of three variables. The coefficients are computed from the function values sampled on a grid, as well as the values of the partial derivatives of the function at those grid points. From three-dimensional data sampled on a grid, the  TricubicSplineInterpolator  computes a  tricubic interpolating function.",TricubicSplineInterpolator,1
+"### 4.5 Integration
+
+A  UnivariateIntegrator  provides the means to numerically integrate  univariate real-valued functions. Commons-Math includes implementations of the following integration algorithms: 
+
+  * Romberg's method
+  * Simpson's method
+  * trapezoid method
+  * Legendre-Gauss method",UnivariateIntegrator,0
+"### 4.6 Polynomials
+
+The  org.apache.commons.math3.analysis.polynomials package provides real coefficients polynomials. 
+
+The  PolynomialFunction  class is the most general one, using traditional coefficients arrays. The  PolynomialsUtils  utility class provides static factory methods to build Chebyshev, Hermite, Jacobi, Laguerre and Legendre polynomials. Coefficients are computed using exact fractions so these factory methods can build polynomials up to any degree.",PolynomialFunction,0
+"### 4.6 Polynomials
+
+The  org.apache.commons.math3.analysis.polynomials package provides real coefficients polynomials. 
+
+The  PolynomialFunction  class is the most general one, using traditional coefficients arrays. The  PolynomialsUtils  utility class provides static factory methods to build Chebyshev, Hermite, Jacobi, Laguerre and Legendre polynomials. Coefficients are computed using exact fractions so these factory methods can build polynomials up to any degree.",PolynomialsUtils,1
+"### 4.7 Differentiation
+
+The  org.apache.commons.math3.analysis.differentiation package provides a general-purpose differentiation framework. 
+
+The core class is  DerivativeStructure  which holds the value and the differentials of a function. This class handles some arbitrary number of free parameters and arbitrary derivation order. It is used both as the input and the output type for the  UnivariateDifferentiableFunction  interface. Any differentiable function should implement this interface. 
+
+The main idea behind the  DerivativeStructure  class is that it can be used almost as a number (i.e. it can be added, multiplied, its square root can be extracted or its cosine computed... However, in addition to computed the value itself when doing these computations, the partial derivatives are also computed alongside. This is an extension of what is sometimes called Rall's numbers. This extension is described in Dan Kalman's paper Doubly Recursive Multivariate Automatic Differentiation, Mathematics Magazine, vol. 75, no. 3, June 2002. Rall's numbers only hold the first derivative with respect to one free parameter whereas Dan Kalman's derivative structures hold all partial derivatives up to any specified order, with respect to any number of free parameters. Rall's numbers therefore can be seen as derivative structures for order one derivative and one free parameter, and primitive real numbers can be seen as derivative structures with zero order derivative and no free parameters.",DerivativeStructure,1
+"### 4.7 Differentiation
+
+The  org.apache.commons.math3.analysis.differentiation package provides a general-purpose differentiation framework. 
+
+The core class is  DerivativeStructure  which holds the value and the differentials of a function. This class handles some arbitrary number of free parameters and arbitrary derivation order. It is used both as the input and the output type for the  UnivariateDifferentiableFunction  interface. Any differentiable function should implement this interface. 
+
+The main idea behind the  DerivativeStructure  class is that it can be used almost as a number (i.e. it can be added, multiplied, its square root can be extracted or its cosine computed... However, in addition to computed the value itself when doing these computations, the partial derivatives are also computed alongside. This is an extension of what is sometimes called Rall's numbers. This extension is described in Dan Kalman's paper Doubly Recursive Multivariate Automatic Differentiation, Mathematics Magazine, vol. 75, no. 3, June 2002. Rall's numbers only hold the first derivative with respect to one free parameter whereas Dan Kalman's derivative structures hold all partial derivatives up to any specified order, with respect to any number of free parameters. Rall's numbers therefore can be seen as derivative structures for order one derivative and one free parameter, and primitive real numbers can be seen as derivative structures with zero order derivative and no free parameters.",UnivariateDifferentiableFunction,0
+"### 4.7 Differentiation - part 2
+
+The workflow of computation of a derivatives of an expression `y=f(x)` is the following one. First we configure an input parameter `x` of type  DerivativeStructure  so it will drive the function to compute all derivatives up to order 3 for example. Then we compute `y=f(x)` normally by passing this parameter to the f function.At the end, we extract from `y` the value and the derivatives we want. As we have specified 3rd order when we built `x`, we can retrieve the derivatives up to 3rd order from `y`. The following example shows that (the 0 parameter in the DerivativeStructure constructor will be explained in the next paragraph): 
+    
+    
+    int params = 1;
+    int order = 3;
+    double xRealValue = 2.5;
+    DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
+    DerivativeStructure y = f(x);
+    System.out.println(""y    = "" + y.getValue();
+    System.out.println(""y'   = "" + y.getPartialDerivative(1);
+    System.out.println(""y''  = "" + y.getPartialDerivative(2);
+    System.out.println(""y''' = "" + y.getPartialDerivative(3);",DerivativeStructure,1
+"### 4.7 Differentiation - part 4
+
+When we compute `y` from this setting, what we really do is chain `f` after the identity function, so the net result is that the derivatives are computed with respect to the indexed free parameters (i.e. only free parameter number 0 here since there is only one free parameter) of the identity function x. Going one step further, if we compute `z = g(y)`, we will also compute `z` as a function of the initial free parameter. The very important consequence is that if we call ` z.DerivativeStructure.getPartialDerivative(1) `, we will not get the first derivative of `g` with respect to `y`, but with respect to the free parameter `p0`: the derivatives of g and f will be chained together automatically, without user intervention. 
+
+This design choice is a very classical one in many algorithmic differentiation frameworks, either based on operator overloading (like the one we implemented here) or based on code generation. It implies the user has to bootstrap the system by providing initial derivatives, and this is essentially done by setting up identity function, i.e. functions that represent the variables themselves and have only unit first derivative.",DerivativeStructure,1
+"### 4.7 Differentiation - part 5
+
+This design also allow a very interesting feature which can be explained with the following example. Suppose we have a two arguments function `f` and a one argument function `g`. If we compute `g(f(x, y))` with `x` and `y` be two variables, we want to be able to compute the partial derivatives `dg/dx`, `dg/dy`, `d2g/dx2` `d2g/dxdy` `d2g/dy2`. This does make sense since we combined the two functions, and it does make sense despite g is a one argument function only. In order to do this, we simply set up `x` as an identity function of an implicit free parameter `p0` and `y` as an identity function of a different implicit free parameter `p1` and compute everything directly. In order to be able to combine everything, however, both `x` and `y` must be built with the appropriate dimensions, so they will both be declared to handle two free parameters, but `x` will depend only on parameter 0 while `y` will depend on parameter 1. Here is how we do this (note that ` DerivativeStructure.getPartialDerivative ` is a variable arguments method which take as arguments the derivation order with respect to all free parameters, i.e. the first argument is derivation order with respect to free parameter 0 and the second argument is derivation order with respect to free parameter 1):",DerivativeStructure,0
+"### 4.7 Differentiation - part 6
+    
+    
+    int params = 2;
+    int order = 2;
+    double xRealValue =  2.5;
+    double yRealValue = -1.3;
+    DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
+    DerivativeStructure y = new DerivativeStructure(params, order, 1, yRealValue);
+    DerivativeStructure f = DerivativeStructure.hypot(x, y);
+    DerivativeStructure g = f.log();
+    System.out.println(""g        = "" + g.getValue();
+    System.out.println(""dg/dx    = "" + g.getPartialDerivative(1, 0);
+    System.out.println(""dg/dy    = "" + g.getPartialDerivative(0, 1);
+    System.out.println(""d2g/dx2  = "" + g.getPartialDerivative(2, 0);
+    System.out.println(""d2g/dxdy = "" + g.getPartialDerivative(1, 1);
+    System.out.println(""d2g/dy2  = "" + g.getPartialDerivative(0, 2);
+
+There are several ways a user can create an implementation of the  UnivariateDifferentiableFunction  interface. The first method is to simply write it directly using the appropriate methods from  DerivativeStructure  to compute addition, subtraction, sine, cosine... This is often quite straigthforward and there is no need to remember the rules for differentiation: the user code only represent the function itself, the differentials will be computed automatically under the hood. The second method is to write a classical  UnivariateFunction  and to pass it to an existing implementation of the  UnivariateFunctionDifferentiator  interface to retrieve a differentiated version of the same function. The first method is more suited to small functions for which user already control all the underlying code. The second method is more suited to either large functions that would be cumbersome to write using the  DerivativeStructure  API, or functions for which user does not have control to the full underlying code (for example functions that call external libraries).",UnivariateDifferentiableFunction,1
+"### 4.7 Differentiation - part 6
+    
+    
+    int params = 2;
+    int order = 2;
+    double xRealValue =  2.5;
+    double yRealValue = -1.3;
+    DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
+    DerivativeStructure y = new DerivativeStructure(params, order, 1, yRealValue);
+    DerivativeStructure f = DerivativeStructure.hypot(x, y);
+    DerivativeStructure g = f.log();
+    System.out.println(""g        = "" + g.getValue();
+    System.out.println(""dg/dx    = "" + g.getPartialDerivative(1, 0);
+    System.out.println(""dg/dy    = "" + g.getPartialDerivative(0, 1);
+    System.out.println(""d2g/dx2  = "" + g.getPartialDerivative(2, 0);
+    System.out.println(""d2g/dxdy = "" + g.getPartialDerivative(1, 1);
+    System.out.println(""d2g/dy2  = "" + g.getPartialDerivative(0, 2);
+
+There are several ways a user can create an implementation of the  UnivariateDifferentiableFunction  interface. The first method is to simply write it directly using the appropriate methods from  DerivativeStructure  to compute addition, subtraction, sine, cosine... This is often quite straigthforward and there is no need to remember the rules for differentiation: the user code only represent the function itself, the differentials will be computed automatically under the hood. The second method is to write a classical  UnivariateFunction  and to pass it to an existing implementation of the  UnivariateFunctionDifferentiator  interface to retrieve a differentiated version of the same function. The first method is more suited to small functions for which user already control all the underlying code. The second method is more suited to either large functions that would be cumbersome to write using the  DerivativeStructure  API, or functions for which user does not have control to the full underlying code (for example functions that call external libraries).",DerivativeStructure,0
+"### 4.7 Differentiation - part 6
+    
+    
+    int params = 2;
+    int order = 2;
+    double xRealValue =  2.5;
+    double yRealValue = -1.3;
+    DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
+    DerivativeStructure y = new DerivativeStructure(params, order, 1, yRealValue);
+    DerivativeStructure f = DerivativeStructure.hypot(x, y);
+    DerivativeStructure g = f.log();
+    System.out.println(""g        = "" + g.getValue();
+    System.out.println(""dg/dx    = "" + g.getPartialDerivative(1, 0);
+    System.out.println(""dg/dy    = "" + g.getPartialDerivative(0, 1);
+    System.out.println(""d2g/dx2  = "" + g.getPartialDerivative(2, 0);
+    System.out.println(""d2g/dxdy = "" + g.getPartialDerivative(1, 1);
+    System.out.println(""d2g/dy2  = "" + g.getPartialDerivative(0, 2);
+
+There are several ways a user can create an implementation of the  UnivariateDifferentiableFunction  interface. The first method is to simply write it directly using the appropriate methods from  DerivativeStructure  to compute addition, subtraction, sine, cosine... This is often quite straigthforward and there is no need to remember the rules for differentiation: the user code only represent the function itself, the differentials will be computed automatically under the hood. The second method is to write a classical  UnivariateFunction  and to pass it to an existing implementation of the  UnivariateFunctionDifferentiator  interface to retrieve a differentiated version of the same function. The first method is more suited to small functions for which user already control all the underlying code. The second method is more suited to either large functions that would be cumbersome to write using the  DerivativeStructure  API, or functions for which user does not have control to the full underlying code (for example functions that call external libraries).",UnivariateFunction,0
+"### 4.7 Differentiation - part 6
+    
+    
+    int params = 2;
+    int order = 2;
+    double xRealValue =  2.5;
+    double yRealValue = -1.3;
+    DerivativeStructure x = new DerivativeStructure(params, order, 0, xRealValue);
+    DerivativeStructure y = new DerivativeStructure(params, order, 1, yRealValue);
+    DerivativeStructure f = DerivativeStructure.hypot(x, y);
+    DerivativeStructure g = f.log();
+    System.out.println(""g        = "" + g.getValue();
+    System.out.println(""dg/dx    = "" + g.getPartialDerivative(1, 0);
+    System.out.println(""dg/dy    = "" + g.getPartialDerivative(0, 1);
+    System.out.println(""d2g/dx2  = "" + g.getPartialDerivative(2, 0);
+    System.out.println(""d2g/dxdy = "" + g.getPartialDerivative(1, 1);
+    System.out.println(""d2g/dy2  = "" + g.getPartialDerivative(0, 2);
+
+There are several ways a user can create an implementation of the  UnivariateDifferentiableFunction  interface. The first method is to simply write it directly using the appropriate methods from  DerivativeStructure  to compute addition, subtraction, sine, cosine... This is often quite straigthforward and there is no need to remember the rules for differentiation: the user code only represent the function itself, the differentials will be computed automatically under the hood. The second method is to write a classical  UnivariateFunction  and to pass it to an existing implementation of the  UnivariateFunctionDifferentiator  interface to retrieve a differentiated version of the same function. The first method is more suited to small functions for which user already control all the underlying code. The second method is more suited to either large functions that would be cumbersome to write using the  DerivativeStructure  API, or functions for which user does not have control to the full underlying code (for example functions that call external libraries).",UnivariateFunctionDifferentiator,0
+"### 4.7 Differentiation - part 7
+
+Apache Commons Math provides one implementation of the  UnivariateFunctionDifferentiator  interface:  FiniteDifferencesDifferentiator . This class creates a wrapper that will call the user-provided function on a grid sample and will use finite differences to compute the derivatives. It takes care of boundaries if the variable is not defined on the whole real line. It is possible to use more points than strictly required by the derivation order (for example one can specify an 8-points scheme to compute first derivative only). However, one must be aware that tuning the parameters for finite differences is highly problem-dependent. Choosing the wrong step size or the wrong number of sampling points can lead to huge errors. Finite differences are also not well suited to compute high order derivatives. 
+
+Another implementation of the  UnivariateFunctionDifferentiator  interface is under development in the related project Apache Commons Nabla. This implementation uses automatic code analysis and generation at binary level. However, at time of writing (end 2012), this project is not yet suitable for production use.",UnivariateFunctionDifferentiator,1
+"### 4.7 Differentiation - part 7
+
+Apache Commons Math provides one implementation of the  UnivariateFunctionDifferentiator  interface:  FiniteDifferencesDifferentiator . This class creates a wrapper that will call the user-provided function on a grid sample and will use finite differences to compute the derivatives. It takes care of boundaries if the variable is not defined on the whole real line. It is possible to use more points than strictly required by the derivation order (for example one can specify an 8-points scheme to compute first derivative only). However, one must be aware that tuning the parameters for finite differences is highly problem-dependent. Choosing the wrong step size or the wrong number of sampling points can lead to huge errors. Finite differences are also not well suited to compute high order derivatives. 
+
+Another implementation of the  UnivariateFunctionDifferentiator  interface is under development in the related project Apache Commons Nabla. This implementation uses automatic code analysis and generation at binary level. However, at time of writing (end 2012), this project is not yet suitable for production use.",FiniteDifferencesDifferentiator,1
+"### 7.2  Complex  Numbers
+
+Complex  provides a complex number type that forms the basis for the complex functionality found in commons-math. 
+
+Complex functions and arithmetic operations are implemented in commons-math by applying standard computational formulas and following the rules for `java.lang.Double` arithmetic in handling infinite and ` NaN ` values. No attempt is made to comply with ANSII/IEC C99x Annex G or any other standard for Complex arithmetic. See the class and method javadocs for the  Complex  and  ComplexUtils  classes for details on computing formulas. 
+
+To create a complex number, simply call the constructor passing in two floating-point arguments, the first being the real part of the complex number and the second being the imaginary part: 
+    
+    
+    Complex c = new Complex(1.0, 3.0); // 1 + 3i
+
+Complex numbers may also be created from polar representations using the ` ComplexUtils.polar2Complex ` method in ` ComplexUtils `. 
+
+The ` Complex ` class provides basic unary and binary complex number operations. These operations provide the means to add, subtract, multiply and divide complex numbers along with other complex number functions similar to the real number functions found in `java.math.BigDecimal`: 
+    
+    
+    Complex lhs = new Complex(1.0, 3.0);
+    Complex rhs = new Complex(2.0, 5.0);
+    
+    Complex answer = lhs.add(rhs);       // add two complex numbers
+            answer = lhs.subtract(rhs);  // subtract two complex numbers
+            answer = lhs.abs();          // absolute value
+            answer = lhs.conjugate(rhs); // complex conjugate",Complex,1
+"### 7.2  Complex  Numbers
+
+Complex  provides a complex number type that forms the basis for the complex functionality found in commons-math. 
+
+Complex functions and arithmetic operations are implemented in commons-math by applying standard computational formulas and following the rules for `java.lang.Double` arithmetic in handling infinite and ` NaN ` values. No attempt is made to comply with ANSII/IEC C99x Annex G or any other standard for Complex arithmetic. See the class and method javadocs for the  Complex  and  ComplexUtils  classes for details on computing formulas. 
+
+To create a complex number, simply call the constructor passing in two floating-point arguments, the first being the real part of the complex number and the second being the imaginary part: 
+    
+    
+    Complex c = new Complex(1.0, 3.0); // 1 + 3i
+
+Complex numbers may also be created from polar representations using the ` ComplexUtils.polar2Complex ` method in ` ComplexUtils `. 
+
+The ` Complex ` class provides basic unary and binary complex number operations. These operations provide the means to add, subtract, multiply and divide complex numbers along with other complex number functions similar to the real number functions found in `java.math.BigDecimal`: 
+    
+    
+    Complex lhs = new Complex(1.0, 3.0);
+    Complex rhs = new Complex(2.0, 5.0);
+    
+    Complex answer = lhs.add(rhs);       // add two complex numbers
+            answer = lhs.subtract(rhs);  // subtract two complex numbers
+            answer = lhs.abs();          // absolute value
+            answer = lhs.conjugate(rhs); // complex conjugate",,0
+"### 7.2  Complex  Numbers
+
+Complex  provides a complex number type that forms the basis for the complex functionality found in commons-math. 
+
+Complex functions and arithmetic operations are implemented in commons-math by applying standard computational formulas and following the rules for `java.lang.Double` arithmetic in handling infinite and ` NaN ` values. No attempt is made to comply with ANSII/IEC C99x Annex G or any other standard for Complex arithmetic. See the class and method javadocs for the  Complex  and  ComplexUtils  classes for details on computing formulas. 
+
+To create a complex number, simply call the constructor passing in two floating-point arguments, the first being the real part of the complex number and the second being the imaginary part: 
+    
+    
+    Complex c = new Complex(1.0, 3.0); // 1 + 3i
+
+Complex numbers may also be created from polar representations using the ` ComplexUtils.polar2Complex ` method in ` ComplexUtils `. 
+
+The ` Complex ` class provides basic unary and binary complex number operations. These operations provide the means to add, subtract, multiply and divide complex numbers along with other complex number functions similar to the real number functions found in `java.math.BigDecimal`: 
+    
+    
+    Complex lhs = new Complex(1.0, 3.0);
+    Complex rhs = new Complex(2.0, 5.0);
+    
+    Complex answer = lhs.add(rhs);       // add two complex numbers
+            answer = lhs.subtract(rhs);  // subtract two complex numbers
+            answer = lhs.abs();          // absolute value
+            answer = lhs.conjugate(rhs); // complex conjugate",ComplexUtils,0
+"### 7.3  Complex  Transcendental Functions
+
+Complex  also provides implementations of serveral transcendental functions involving complex number arguments. Prior to version 1.2, these functions were provided by  ComplexUtils  in a way similar to the real number functions found in `java.lang.Math`, but this has been deprecated. These operations provide the means to compute the log, sine, tangent, and other complex values : 
+    
+    
+    Complex first  = new Complex(1.0, 3.0);
+    Complex second = new Complex(2.0, 5.0);
+    
+    Complex answer = first.log();        // natural logarithm.
+            answer = first.cos();        // cosine
+            answer = first.pow(second);  // first raised to the power of second",Complex,1
+"### 7.3  Complex  Transcendental Functions
+
+Complex  also provides implementations of serveral transcendental functions involving complex number arguments. Prior to version 1.2, these functions were provided by  ComplexUtils  in a way similar to the real number functions found in `java.lang.Math`, but this has been deprecated. These operations provide the means to compute the log, sine, tangent, and other complex values : 
+    
+    
+    Complex first  = new Complex(1.0, 3.0);
+    Complex second = new Complex(2.0, 5.0);
+    
+    Complex answer = first.log();        // natural logarithm.
+            answer = first.cos();        // cosine
+            answer = first.pow(second);  // first raised to the power of second",ComplexUtils,0
+"### 7.4  Complex  Formatting and Parsing
+
+` Complex ` instances can be converted to and from strings using the ComplexFormat  class. ` ComplexFormat ` is a `java.text.Format` extension and, as such, is used like other formatting objects (e.g. `java.text.SimpleDateFormat`): 
+    
+    
+    ComplexFormat format = new ComplexFormat(); // default format
+    Complex c = new Complex(1.1111, 2.2222);
+    String s = format.format(c); // s contains ""1.11 + 2.22i""
+
+To customize the formatting output, one or two `java.text.NumberFormat` instances can be used to construct a ` ComplexFormat `. These number formats control the formatting of the real and imaginary values of the complex number: 
+    
+    
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMinimumFractionDigits(3);
+    nf.setMaximumFractionDigits(3);
+    
+    // create complex format with custom number format
+    // when one number format is used, both real and
+    // imaginary parts are formatted the same
+    ComplexFormat cf = new ComplexFormat(nf);
+    Complex c = new Complex(1.11, 2.2222);
+    String s = format.format(c); // s contains ""1.110 + 2.222i""
+    
+    NumberFormat nf2 = NumberFormat.getInstance();
+    nf.setMinimumFractionDigits(1);
+    nf.setMaximumFractionDigits(1);
+    
+    // create complex format with custom number formats
+    cf = new ComplexFormat(nf, nf2);
+    s = format.format(c); // s contains ""1.110 + 2.2i""
+
+Another formatting customization provided by ` ComplexFormat ` is the text used for the imaginary designation. By default, the imaginary notation is ""i"" but, it can be manipulated using the `setImaginaryCharacter` method. 
+
+Formatting inverse operation, parsing, can also be performed by ` ComplexFormat `. Parse a complex number from a string, simply call the ` ComplexFormat.parse ` method: 
+    
+    
+    ComplexFormat cf = new ComplexFormat();
+    Complex c = cf.parse(""1.110 + 2.222i"");",Complex,1
+"### 7.4  Complex  Formatting and Parsing
+
+` Complex ` instances can be converted to and from strings using the ComplexFormat  class. ` ComplexFormat ` is a `java.text.Format` extension and, as such, is used like other formatting objects (e.g. `java.text.SimpleDateFormat`): 
+    
+    
+    ComplexFormat format = new ComplexFormat(); // default format
+    Complex c = new Complex(1.1111, 2.2222);
+    String s = format.format(c); // s contains ""1.11 + 2.22i""
+
+To customize the formatting output, one or two `java.text.NumberFormat` instances can be used to construct a ` ComplexFormat `. These number formats control the formatting of the real and imaginary values of the complex number: 
+    
+    
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMinimumFractionDigits(3);
+    nf.setMaximumFractionDigits(3);
+    
+    // create complex format with custom number format
+    // when one number format is used, both real and
+    // imaginary parts are formatted the same
+    ComplexFormat cf = new ComplexFormat(nf);
+    Complex c = new Complex(1.11, 2.2222);
+    String s = format.format(c); // s contains ""1.110 + 2.222i""
+    
+    NumberFormat nf2 = NumberFormat.getInstance();
+    nf.setMinimumFractionDigits(1);
+    nf.setMaximumFractionDigits(1);
+    
+    // create complex format with custom number formats
+    cf = new ComplexFormat(nf, nf2);
+    s = format.format(c); // s contains ""1.110 + 2.2i""
+
+Another formatting customization provided by ` ComplexFormat ` is the text used for the imaginary designation. By default, the imaginary notation is ""i"" but, it can be manipulated using the `setImaginaryCharacter` method. 
+
+Formatting inverse operation, parsing, can also be performed by ` ComplexFormat `. Parse a complex number from a string, simply call the ` ComplexFormat.parse ` method: 
+    
+    
+    ComplexFormat cf = new ComplexFormat();
+    Complex c = cf.parse(""1.110 + 2.222i"");",ComplexFormat,1
+"### 8.2 Distribution Framework
+
+The distribution framework provides the means to compute probability density function (PDF) probabilities and cumulative distribution function (CDF) probabilities for common probability distributions. Along with the direct computation of PDF and CDF probabilities, the framework also allows for the computation of inverse PDF and inverse CDF values. 
+
+Using a distribution object, PDF and CDF probabilities are easily computed using the ` AbstractIntegerDistribution.cumulativeProbability ` methods. For a distribution `X`, and a domain value, `x`, ` AbstractIntegerDistribution.cumulativeProbability ` computes `P(X <= x)` (i.e. the lower tail probability of `X`). 
+    
+    
+    TDistribution t = new TDistribution(29);
+    double lowerTail = t.cumulativeProbability(-2.656);     // P(T <= -2.656)
+    double upperTail = 1.0 - t.cumulativeProbability(2.75); // P(T >= 2.75)
+
+The inverse PDF and CDF values are just as easily computed using the ` AbstractIntegerDistribution.inverseCumulativeProbability ` methods. For a distribution `X`, and a probability, `p`, ` AbstractIntegerDistribution.inverseCumulativeProbability ` computes the domain value `x`, such that: 
+
+  * `P(X <= x) = p`, for continuous distributions
+  * `P(X <= x) <= p`, for discrete distributions",AbstractIntegerDistribution,1
+"### 8.3 User Defined Distributions
+
+Since there are numerous distributions and Commons-Math only directly supports a handful, it may be necessary to extend the distribution framework to satisfy individual needs. It is recommended that the Distribution,  ContinuousDistribution,  DiscreteDistribution, and  IntegerDistribution  interfaces serve as base types for any extension. These serve as the basis for all the distributions directly supported by Commons-Math and using those interfaces for implementation purposes will ensure any extension is compatible with the remainder of Commons-Math. To aid in implementing a distribution extension, the  AbstractDistribution,  AbstractContinuousDistribution, and  AbstractIntegerDistribution  provide implementation building blocks and offer basic distribution functionality. By extending these abstract classes directly, much of the repetitive distribution implementation is already developed and should save time and effort in developing user-defined distributions.",IntegerDistribution,0
+"### 8.3 User Defined Distributions
+
+Since there are numerous distributions and Commons-Math only directly supports a handful, it may be necessary to extend the distribution framework to satisfy individual needs. It is recommended that the Distribution,  ContinuousDistribution,  DiscreteDistribution, and  IntegerDistribution  interfaces serve as base types for any extension. These serve as the basis for all the distributions directly supported by Commons-Math and using those interfaces for implementation purposes will ensure any extension is compatible with the remainder of Commons-Math. To aid in implementing a distribution extension, the  AbstractDistribution,  AbstractContinuousDistribution, and  AbstractIntegerDistribution  provide implementation building blocks and offer basic distribution functionality. By extending these abstract classes directly, much of the repetitive distribution implementation is already developed and should save time and effort in developing user-defined distributions.",AbstractIntegerDistribution,0
+"### 16.3 Hierarchies
+
+The exceptions defined by Commons Math follow the Java standard hierarchies: 
+
+  * `IllegalArgumentException`: A  ` MathIllegalArgumentException ` is thrown when some input parameter fails a precondition check. 
+  * `IllegalStateException`: A  ` MathIllegalStateException ` is thrown when some inconsistency has been detected. 
+  * `ArithmeticException`: A  ` MathArithmeticException ` is thrown when conditions such as ""division by zero"" or ""overflow"" are encountered. 
+  * `UnsupportedOperationException`: A  ` MathUnsupportedOperationException ` indicates that a feature is missing or does not make sense in the given context. 
+
+
+
+In all of the above exception hierarchies, several subclasses can exist, each conveying a specific underlying cause of the problem.",MathIllegalArgumentException,0
+"### 16.3 Hierarchies
+
+The exceptions defined by Commons Math follow the Java standard hierarchies: 
+
+  * `IllegalArgumentException`: A  ` MathIllegalArgumentException ` is thrown when some input parameter fails a precondition check. 
+  * `IllegalStateException`: A  ` MathIllegalStateException ` is thrown when some inconsistency has been detected. 
+  * `ArithmeticException`: A  ` MathArithmeticException ` is thrown when conditions such as ""division by zero"" or ""overflow"" are encountered. 
+  * `UnsupportedOperationException`: A  ` MathUnsupportedOperationException ` indicates that a feature is missing or does not make sense in the given context. 
+
+
+
+In all of the above exception hierarchies, several subclasses can exist, each conveying a specific underlying cause of the problem.",MathIllegalStateException,0
+"### 16.3 Hierarchies
+
+The exceptions defined by Commons Math follow the Java standard hierarchies: 
+
+  * `IllegalArgumentException`: A  ` MathIllegalArgumentException ` is thrown when some input parameter fails a precondition check. 
+  * `IllegalStateException`: A  ` MathIllegalStateException ` is thrown when some inconsistency has been detected. 
+  * `ArithmeticException`: A  ` MathArithmeticException ` is thrown when conditions such as ""division by zero"" or ""overflow"" are encountered. 
+  * `UnsupportedOperationException`: A  ` MathUnsupportedOperationException ` indicates that a feature is missing or does not make sense in the given context. 
+
+
+
+In all of the above exception hierarchies, several subclasses can exist, each conveying a specific underlying cause of the problem.",MathArithmeticException,0
+"### 16.3 Hierarchies
+
+The exceptions defined by Commons Math follow the Java standard hierarchies: 
+
+  * `IllegalArgumentException`: A  ` MathIllegalArgumentException ` is thrown when some input parameter fails a precondition check. 
+  * `IllegalStateException`: A  ` MathIllegalStateException ` is thrown when some inconsistency has been detected. 
+  * `ArithmeticException`: A  ` MathArithmeticException ` is thrown when conditions such as ""division by zero"" or ""overflow"" are encountered. 
+  * `UnsupportedOperationException`: A  ` MathUnsupportedOperationException ` indicates that a feature is missing or does not make sense in the given context. 
+
+
+
+In all of the above exception hierarchies, several subclasses can exist, each conveying a specific underlying cause of the problem.",MathUnsupportedOperationException,0
+"### 16.4 Features
+
+  * Localization 
+
+The detailed error messages (i.e. the string returned by the  ExceptionContext.getLocalizedMessage  method) can be localized. However, besides the American/English default, French is the only language for which a translation resource is available. 
+
+  * Exception ""context""
+
+Every exception generated by Commons Math implements the  ExceptionContextProvider  interface. A call to the  ExceptionContextProvider.getContext  method will return the  ExceptionContext  instance stored in the exception, which the user can further customize by adding messages and/or any object.",ExceptionContext,1
+"### 16.4 Features
+
+  * Localization 
+
+The detailed error messages (i.e. the string returned by the  ExceptionContext.getLocalizedMessage  method) can be localized. However, besides the American/English default, French is the only language for which a translation resource is available. 
+
+  * Exception ""context""
+
+Every exception generated by Commons Math implements the  ExceptionContextProvider  interface. A call to the  ExceptionContextProvider.getContext  method will return the  ExceptionContext  instance stored in the exception, which the user can further customize by adding messages and/or any object.",ExceptionContextProvider,0
+"### 15.2 Kalman Filter
+
+KalmanFilter  provides a discrete-time filter to estimate a stochastic linear process.
+
+A Kalman filter is initialized with a  ProcessModel  and a  MeasurementModel , which contain the corresponding transformation and noise covariance matrices. The parameter names used in the respective models correspond to the following names commonly used in the mathematical literature: 
+
+  * A - state transition matrix
+  * B - control input matrix
+  * H - measurement matrix
+  * Q - process noise covariance matrix
+  * R - measurement noise covariance matrix
+  * P - error covariance matrix
+
+Initialization 
+     The following code will create a Kalman filter using the provided DefaultMeasurementModel and DefaultProcessModel classes. To support dynamically changing process and measurement noises, simply implement your own models. 
+    
+    
+    // A = [ 1 ]
+    RealMatrix A = new Array2DRowRealMatrix(new double[] { 1d });
+    // no control input
+    RealMatrix B = null;
+    // H = [ 1 ]
+    RealMatrix H = new Array2DRowRealMatrix(new double[] { 1d });
+    // Q = [ 0 ]
+    RealMatrix Q = new Array2DRowRealMatrix(new double[] { 0 });
+    // R = [ 0 ]
+    RealMatrix R = new Array2DRowRealMatrix(new double[] { 0 });
+    
+    ProcessModel pm
+       = new DefaultProcessModel(A, B, Q, new ArrayRealVector(new double[] { 0 }), null);
+    MeasurementModel mm = new DefaultMeasurementModel(H, R);
+    KalmanFilter filter = new KalmanFilter(pm, mm);
+     			
+
+Iteration 
+     The following code illustrates how to perform the predict/correct cycle: 
+    
+    
+    for (;;) {
+       // predict the state estimate one time-step ahead
+       // optionally provide some control input
+       filter.predict();
+    
+       // obtain measurement vector z
+       RealVector z = getMeasurement();
+    
+       // correct the state estimate with the latest measurement
+       filter.correct(z);
+       
+       double[] stateEstimate = filter.getStateEstimation();
+       // do something with it
+    }
+    		  
+
+Constant Voltage Example 
+     The following example creates a Kalman filter for a static process: a system with a constant voltage as internal state. We observe this process with an artificially imposed measurement noise of 0.1V and assume an internal process noise of 1e-5V. 
+    
+    
+    double constantVoltage = 10d;
+    double measurementNoise = 0.1d;
+    double processNoise = 1e-5d;
+    
+    // A = [ 1 ]
+    RealMatrix A = new Array2DRowRealMatrix(new double[] { 1d });
+    // B = null
+    RealMatrix B = null;
+    // H = [ 1 ]
+    RealMatrix H = new Array2DRowRealMatrix(new double[] { 1d });
+    // x = [ 10 ]
+    RealVector x = new ArrayRealVector(new double[] { constantVoltage });
+    // Q = [ 1e-5 ]
+    RealMatrix Q = new Array2DRowRealMatrix(new double[] { processNoise });
+    // P = [ 1 ]
+    RealMatrix P0 = new Array2DRowRealMatrix(new double[] { 1d });
+    // R = [ 0.1 ]
+    RealMatrix R = new Array2DRowRealMatrix(new double[] { measurementNoise });
+    
+    ProcessModel pm = new DefaultProcessModel(A, B, Q, x, P0);
+    MeasurementModel mm = new DefaultMeasurementModel(H, R);
+    KalmanFilter filter = new KalmanFilter(pm, mm);  
+    
+    // process and measurement noise vectors
+    RealVector pNoise = new ArrayRealVector(1);
+    RealVector mNoise = new ArrayRealVector(1);
+    
+    RandomGenerator rand = new JDKRandomGenerator();
+    // iterate 60 steps
+    for (int i = 0; i < 60; i++) {
+        filter.predict();
+    
+        // simulate the process
+        pNoise.setEntry(0, processNoise * rand.nextGaussian());
+    
+        // x = A * x + p_noise
+        x = A.operate(x).add(pNoise);
+    
+        // simulate the measurement
+        mNoise.setEntry(0, measurementNoise * rand.nextGaussian());
+    
+        // z = H * x + m_noise
+        RealVector z = H.operate(x).add(mNoise);
+    
+        filter.correct(z);
+    
+        double voltage = filter.getStateEstimation()[0];
+    }",KalmanFilter,1
+"### 15.2 Kalman Filter
+
+KalmanFilter  provides a discrete-time filter to estimate a stochastic linear process.
+
+A Kalman filter is initialized with a  ProcessModel  and a  MeasurementModel , which contain the corresponding transformation and noise covariance matrices. The parameter names used in the respective models correspond to the following names commonly used in the mathematical literature: 
+
+  * A - state transition matrix
+  * B - control input matrix
+  * H - measurement matrix
+  * Q - process noise covariance matrix
+  * R - measurement noise covariance matrix
+  * P - error covariance matrix
+
+Initialization 
+     The following code will create a Kalman filter using the provided DefaultMeasurementModel and DefaultProcessModel classes. To support dynamically changing process and measurement noises, simply implement your own models. 
+    
+    
+    // A = [ 1 ]
+    RealMatrix A = new Array2DRowRealMatrix(new double[] { 1d });
+    // no control input
+    RealMatrix B = null;
+    // H = [ 1 ]
+    RealMatrix H = new Array2DRowRealMatrix(new double[] { 1d });
+    // Q = [ 0 ]
+    RealMatrix Q = new Array2DRowRealMatrix(new double[] { 0 });
+    // R = [ 0 ]
+    RealMatrix R = new Array2DRowRealMatrix(new double[] { 0 });
+    
+    ProcessModel pm
+       = new DefaultProcessModel(A, B, Q, new ArrayRealVector(new double[] { 0 }), null);
+    MeasurementModel mm = new DefaultMeasurementModel(H, R);
+    KalmanFilter filter = new KalmanFilter(pm, mm);
+     			
+
+Iteration 
+     The following code illustrates how to perform the predict/correct cycle: 
+    
+    
+    for (;;) {
+       // predict the state estimate one time-step ahead
+       // optionally provide some control input
+       filter.predict();
+    
+       // obtain measurement vector z
+       RealVector z = getMeasurement();
+    
+       // correct the state estimate with the latest measurement
+       filter.correct(z);
+       
+       double[] stateEstimate = filter.getStateEstimation();
+       // do something with it
+    }
+    		  
+
+Constant Voltage Example 
+     The following example creates a Kalman filter for a static process: a system with a constant voltage as internal state. We observe this process with an artificially imposed measurement noise of 0.1V and assume an internal process noise of 1e-5V. 
+    
+    
+    double constantVoltage = 10d;
+    double measurementNoise = 0.1d;
+    double processNoise = 1e-5d;
+    
+    // A = [ 1 ]
+    RealMatrix A = new Array2DRowRealMatrix(new double[] { 1d });
+    // B = null
+    RealMatrix B = null;
+    // H = [ 1 ]
+    RealMatrix H = new Array2DRowRealMatrix(new double[] { 1d });
+    // x = [ 10 ]
+    RealVector x = new ArrayRealVector(new double[] { constantVoltage });
+    // Q = [ 1e-5 ]
+    RealMatrix Q = new Array2DRowRealMatrix(new double[] { processNoise });
+    // P = [ 1 ]
+    RealMatrix P0 = new Array2DRowRealMatrix(new double[] { 1d });
+    // R = [ 0.1 ]
+    RealMatrix R = new Array2DRowRealMatrix(new double[] { measurementNoise });
+    
+    ProcessModel pm = new DefaultProcessModel(A, B, Q, x, P0);
+    MeasurementModel mm = new DefaultMeasurementModel(H, R);
+    KalmanFilter filter = new KalmanFilter(pm, mm);  
+    
+    // process and measurement noise vectors
+    RealVector pNoise = new ArrayRealVector(1);
+    RealVector mNoise = new ArrayRealVector(1);
+    
+    RandomGenerator rand = new JDKRandomGenerator();
+    // iterate 60 steps
+    for (int i = 0; i < 60; i++) {
+        filter.predict();
+    
+        // simulate the process
+        pNoise.setEntry(0, processNoise * rand.nextGaussian());
+    
+        // x = A * x + p_noise
+        x = A.operate(x).add(pNoise);
+    
+        // simulate the measurement
+        mNoise.setEntry(0, measurementNoise * rand.nextGaussian());
+    
+        // z = H * x + m_noise
+        RealVector z = H.operate(x).add(mNoise);
+    
+        filter.correct(z);
+    
+        double voltage = filter.getStateEstimation()[0];
+    }",ProcessModel,1
+"### 15.2 Kalman Filter
+
+KalmanFilter  provides a discrete-time filter to estimate a stochastic linear process.
+
+A Kalman filter is initialized with a  ProcessModel  and a  MeasurementModel , which contain the corresponding transformation and noise covariance matrices. The parameter names used in the respective models correspond to the following names commonly used in the mathematical literature: 
+
+  * A - state transition matrix
+  * B - control input matrix
+  * H - measurement matrix
+  * Q - process noise covariance matrix
+  * R - measurement noise covariance matrix
+  * P - error covariance matrix
+
+Initialization 
+     The following code will create a Kalman filter using the provided DefaultMeasurementModel and DefaultProcessModel classes. To support dynamically changing process and measurement noises, simply implement your own models. 
+    
+    
+    // A = [ 1 ]
+    RealMatrix A = new Array2DRowRealMatrix(new double[] { 1d });
+    // no control input
+    RealMatrix B = null;
+    // H = [ 1 ]
+    RealMatrix H = new Array2DRowRealMatrix(new double[] { 1d });
+    // Q = [ 0 ]
+    RealMatrix Q = new Array2DRowRealMatrix(new double[] { 0 });
+    // R = [ 0 ]
+    RealMatrix R = new Array2DRowRealMatrix(new double[] { 0 });
+    
+    ProcessModel pm
+       = new DefaultProcessModel(A, B, Q, new ArrayRealVector(new double[] { 0 }), null);
+    MeasurementModel mm = new DefaultMeasurementModel(H, R);
+    KalmanFilter filter = new KalmanFilter(pm, mm);
+     			
+
+Iteration 
+     The following code illustrates how to perform the predict/correct cycle: 
+    
+    
+    for (;;) {
+       // predict the state estimate one time-step ahead
+       // optionally provide some control input
+       filter.predict();
+    
+       // obtain measurement vector z
+       RealVector z = getMeasurement();
+    
+       // correct the state estimate with the latest measurement
+       filter.correct(z);
+       
+       double[] stateEstimate = filter.getStateEstimation();
+       // do something with it
+    }
+    		  
+
+Constant Voltage Example 
+     The following example creates a Kalman filter for a static process: a system with a constant voltage as internal state. We observe this process with an artificially imposed measurement noise of 0.1V and assume an internal process noise of 1e-5V. 
+    
+    
+    double constantVoltage = 10d;
+    double measurementNoise = 0.1d;
+    double processNoise = 1e-5d;
+    
+    // A = [ 1 ]
+    RealMatrix A = new Array2DRowRealMatrix(new double[] { 1d });
+    // B = null
+    RealMatrix B = null;
+    // H = [ 1 ]
+    RealMatrix H = new Array2DRowRealMatrix(new double[] { 1d });
+    // x = [ 10 ]
+    RealVector x = new ArrayRealVector(new double[] { constantVoltage });
+    // Q = [ 1e-5 ]
+    RealMatrix Q = new Array2DRowRealMatrix(new double[] { processNoise });
+    // P = [ 1 ]
+    RealMatrix P0 = new Array2DRowRealMatrix(new double[] { 1d });
+    // R = [ 0.1 ]
+    RealMatrix R = new Array2DRowRealMatrix(new double[] { measurementNoise });
+    
+    ProcessModel pm = new DefaultProcessModel(A, B, Q, x, P0);
+    MeasurementModel mm = new DefaultMeasurementModel(H, R);
+    KalmanFilter filter = new KalmanFilter(pm, mm);  
+    
+    // process and measurement noise vectors
+    RealVector pNoise = new ArrayRealVector(1);
+    RealVector mNoise = new ArrayRealVector(1);
+    
+    RandomGenerator rand = new JDKRandomGenerator();
+    // iterate 60 steps
+    for (int i = 0; i < 60; i++) {
+        filter.predict();
+    
+        // simulate the process
+        pNoise.setEntry(0, processNoise * rand.nextGaussian());
+    
+        // x = A * x + p_noise
+        x = A.operate(x).add(pNoise);
+    
+        // simulate the measurement
+        mNoise.setEntry(0, measurementNoise * rand.nextGaussian());
+    
+        // z = H * x + m_noise
+        RealVector z = H.operate(x).add(mNoise);
+    
+        filter.correct(z);
+    
+        double voltage = filter.getStateEstimation()[0];
+    }",MeasurementModel,1
+"### 9.2  Fraction  Numbers
+
+Fraction  and  BigFraction  provide fraction number type that forms the basis for the fraction functionality found in Commons-Math. The former one can be used for fractions whose numerators and denominators are small enough to fit in an int (taking care of intermediate values) while the second class should be used when there is a risk the numerator and denominator grow very large. 
+
+A fraction number, can be built from two integer arguments representing numerator and denominator or from a double which will be approximated: 
+    
+    
+    Fraction f = new Fraction(1, 3); // 1 / 3
+    Fraction g = new Fraction(0.25); // 1 / 4
+
+Of special note with fraction construction, when a fraction is created it is always reduced to lowest terms. 
+
+The ` Fraction ` class provides many unary and binary fraction operations. These operations provide the means to add, subtract, multiple and, divide fractions along with other functions similar to the real number functions found in `java.math.BigDecimal`: 
+    
+    
+    Fraction lhs = new Fraction(1, 3);
+    Fraction rhs = new Fraction(2, 5);
+    
+    Fraction answer = lhs.add(rhs);     // add two fractions
+            answer = lhs.subtract(rhs); // subtract two fractions
+            answer = lhs.abs();         // absolute value
+            answer = lhs.reciprocal();  // reciprocal of lhs
+
+Like fraction construction, for each of the fraction functions, the resulting fraction is reduced to lowest terms.",Fraction,1
+"### 9.2  Fraction  Numbers
+
+Fraction  and  BigFraction  provide fraction number type that forms the basis for the fraction functionality found in Commons-Math. The former one can be used for fractions whose numerators and denominators are small enough to fit in an int (taking care of intermediate values) while the second class should be used when there is a risk the numerator and denominator grow very large. 
+
+A fraction number, can be built from two integer arguments representing numerator and denominator or from a double which will be approximated: 
+    
+    
+    Fraction f = new Fraction(1, 3); // 1 / 3
+    Fraction g = new Fraction(0.25); // 1 / 4
+
+Of special note with fraction construction, when a fraction is created it is always reduced to lowest terms. 
+
+The ` Fraction ` class provides many unary and binary fraction operations. These operations provide the means to add, subtract, multiple and, divide fractions along with other functions similar to the real number functions found in `java.math.BigDecimal`: 
+    
+    
+    Fraction lhs = new Fraction(1, 3);
+    Fraction rhs = new Fraction(2, 5);
+    
+    Fraction answer = lhs.add(rhs);     // add two fractions
+            answer = lhs.subtract(rhs); // subtract two fractions
+            answer = lhs.abs();         // absolute value
+            answer = lhs.reciprocal();  // reciprocal of lhs
+
+Like fraction construction, for each of the fraction functions, the resulting fraction is reduced to lowest terms.",BigFraction,1
+"### 9.3  Fraction  Formatting and Parsing
+
+` Fraction ` instances can be converted to and from strings using the FractionFormat  class. ` FractionFormat ` is a `java.text.Format` extension and, as such, is used like other formatting objects (e.g. `java.text.SimpleDateFormat`): 
+    
+    
+    FractionFormat format = new FractionFormat(); // default format
+    Fraction f = new Fraction(2, 4);
+    String s = format.format(f); // s contains ""1 / 2"", note the reduced fraction
+
+To customize the formatting output, one or two `java.text.NumberFormat` instances can be used to construct a ` FractionFormat `. These number formats control the formatting of the numerator and denominator of the fraction: 
+    
+    
+    NumberFormat nf = NumberFormat.getInstance(Locale.FRANCE);
+    // create fraction format with custom number format
+    // when one number format is used, both numerator and
+    // denominator are formatted the same
+    FractionFormat format = new FractionFormat(nf);
+    Fraction f = new Fraction(2000, 3333);
+    String s = format.format(c); // s contains ""2.000 / 3.333""
+    
+    NumberFormat nf2 = NumberFormat.getInstance(Locale.US);
+    // create fraction format with custom number formats
+    format = new FractionFormat(nf, nf2);
+    s = format.format(f); // s contains ""2.000 / 3,333""
+
+Formatting's inverse operation, parsing, can also be performed by ` FractionFormat `. To parse a fraction from a string, simply call the ` FractionFormat.parse ` method: 
+    
+    
+    FractionFormat ff = new FractionFormat();
+    Fraction f = ff.parse(""-10 / 21"");",Fraction,1
+"### 9.3  Fraction  Formatting and Parsing
+
+` Fraction ` instances can be converted to and from strings using the FractionFormat  class. ` FractionFormat ` is a `java.text.Format` extension and, as such, is used like other formatting objects (e.g. `java.text.SimpleDateFormat`): 
+    
+    
+    FractionFormat format = new FractionFormat(); // default format
+    Fraction f = new Fraction(2, 4);
+    String s = format.format(f); // s contains ""1 / 2"", note the reduced fraction
+
+To customize the formatting output, one or two `java.text.NumberFormat` instances can be used to construct a ` FractionFormat `. These number formats control the formatting of the numerator and denominator of the fraction: 
+    
+    
+    NumberFormat nf = NumberFormat.getInstance(Locale.FRANCE);
+    // create fraction format with custom number format
+    // when one number format is used, both numerator and
+    // denominator are formatted the same
+    FractionFormat format = new FractionFormat(nf);
+    Fraction f = new Fraction(2000, 3333);
+    String s = format.format(c); // s contains ""2.000 / 3.333""
+    
+    NumberFormat nf2 = NumberFormat.getInstance(Locale.US);
+    // create fraction format with custom number formats
+    format = new FractionFormat(nf, nf2);
+    s = format.format(f); // s contains ""2.000 / 3,333""
+
+Formatting's inverse operation, parsing, can also be performed by ` FractionFormat `. To parse a fraction from a string, simply call the ` FractionFormat.parse ` method: 
+    
+    
+    FractionFormat ff = new FractionFormat();
+    Fraction f = ff.parse(""-10 / 21"");",FractionFormat,1
+"### 14.2 GA Framework
+
+GeneticAlgorithm  provides an execution framework for Genetic Algorithms (GA).  Populations, consisting of  Chromosomes are evolved by the ` GeneticAlgorithm ` until a  StoppingCondition  is reached. Evolution is determined by  SelectionPolicy ,  MutationPolicy  and  Fitness . 
+
+The GA itself is implemented by the ` GeneticAlgorithm.evolve ` method of the ` GeneticAlgorithm ` class, which looks like this: 
+    
+    
+    public Population evolve(Population initial, StoppingCondition condition) {
+        Population current = initial;
+        while (!condition.isSatisfied(current)) {
+            current = nextGeneration(current);
+        }
+        return current;
+    }
+              
+
+The ` GeneticAlgorithm.nextGeneration ` method implements the following algorithm: 
+
+  1. Get nextGeneration population to fill from `current` generation, using its nextGeneration method
+  2. Loop until new generation is filled:
+     * Apply configured ` SelectionPolicy ` to select a pair of parents from `current`
+     * With probability =  GeneticAlgorithm.getCrossoverRate() , apply configured ` CrossoverPolicy ` to parents
+     * With probability =  GeneticAlgorithm.getMutationRate() , apply configured ` MutationPolicy ` to each of the offspring
+     * Add offspring individually to nextGeneration, space permitting
+  3. Return nextGeneration",GeneticAlgorithm,1
+"### 14.2 GA Framework
+
+GeneticAlgorithm  provides an execution framework for Genetic Algorithms (GA).  Populations, consisting of  Chromosomes are evolved by the ` GeneticAlgorithm ` until a  StoppingCondition  is reached. Evolution is determined by  SelectionPolicy ,  MutationPolicy  and  Fitness . 
+
+The GA itself is implemented by the ` GeneticAlgorithm.evolve ` method of the ` GeneticAlgorithm ` class, which looks like this: 
+    
+    
+    public Population evolve(Population initial, StoppingCondition condition) {
+        Population current = initial;
+        while (!condition.isSatisfied(current)) {
+            current = nextGeneration(current);
+        }
+        return current;
+    }
+              
+
+The ` GeneticAlgorithm.nextGeneration ` method implements the following algorithm: 
+
+  1. Get nextGeneration population to fill from `current` generation, using its nextGeneration method
+  2. Loop until new generation is filled:
+     * Apply configured ` SelectionPolicy ` to select a pair of parents from `current`
+     * With probability =  GeneticAlgorithm.getCrossoverRate() , apply configured ` CrossoverPolicy ` to parents
+     * With probability =  GeneticAlgorithm.getMutationRate() , apply configured ` MutationPolicy ` to each of the offspring
+     * Add offspring individually to nextGeneration, space permitting
+  3. Return nextGeneration",StoppingCondition,0
+"### 14.2 GA Framework
+
+GeneticAlgorithm  provides an execution framework for Genetic Algorithms (GA).  Populations, consisting of  Chromosomes are evolved by the ` GeneticAlgorithm ` until a  StoppingCondition  is reached. Evolution is determined by  SelectionPolicy ,  MutationPolicy  and  Fitness . 
+
+The GA itself is implemented by the ` GeneticAlgorithm.evolve ` method of the ` GeneticAlgorithm ` class, which looks like this: 
+    
+    
+    public Population evolve(Population initial, StoppingCondition condition) {
+        Population current = initial;
+        while (!condition.isSatisfied(current)) {
+            current = nextGeneration(current);
+        }
+        return current;
+    }
+              
+
+The ` GeneticAlgorithm.nextGeneration ` method implements the following algorithm: 
+
+  1. Get nextGeneration population to fill from `current` generation, using its nextGeneration method
+  2. Loop until new generation is filled:
+     * Apply configured ` SelectionPolicy ` to select a pair of parents from `current`
+     * With probability =  GeneticAlgorithm.getCrossoverRate() , apply configured ` CrossoverPolicy ` to parents
+     * With probability =  GeneticAlgorithm.getMutationRate() , apply configured ` MutationPolicy ` to each of the offspring
+     * Add offspring individually to nextGeneration, space permitting
+  3. Return nextGeneration",SelectionPolicy,0
+"### 14.2 GA Framework
+
+GeneticAlgorithm  provides an execution framework for Genetic Algorithms (GA).  Populations, consisting of  Chromosomes are evolved by the ` GeneticAlgorithm ` until a  StoppingCondition  is reached. Evolution is determined by  SelectionPolicy ,  MutationPolicy  and  Fitness . 
+
+The GA itself is implemented by the ` GeneticAlgorithm.evolve ` method of the ` GeneticAlgorithm ` class, which looks like this: 
+    
+    
+    public Population evolve(Population initial, StoppingCondition condition) {
+        Population current = initial;
+        while (!condition.isSatisfied(current)) {
+            current = nextGeneration(current);
+        }
+        return current;
+    }
+              
+
+The ` GeneticAlgorithm.nextGeneration ` method implements the following algorithm: 
+
+  1. Get nextGeneration population to fill from `current` generation, using its nextGeneration method
+  2. Loop until new generation is filled:
+     * Apply configured ` SelectionPolicy ` to select a pair of parents from `current`
+     * With probability =  GeneticAlgorithm.getCrossoverRate() , apply configured ` CrossoverPolicy ` to parents
+     * With probability =  GeneticAlgorithm.getMutationRate() , apply configured ` MutationPolicy ` to each of the offspring
+     * Add offspring individually to nextGeneration, space permitting
+  3. Return nextGeneration",MutationPolicy,0
+"### 14.2 GA Framework
+
+GeneticAlgorithm  provides an execution framework for Genetic Algorithms (GA).  Populations, consisting of  Chromosomes are evolved by the ` GeneticAlgorithm ` until a  StoppingCondition  is reached. Evolution is determined by  SelectionPolicy ,  MutationPolicy  and  Fitness . 
+
+The GA itself is implemented by the ` GeneticAlgorithm.evolve ` method of the ` GeneticAlgorithm ` class, which looks like this: 
+    
+    
+    public Population evolve(Population initial, StoppingCondition condition) {
+        Population current = initial;
+        while (!condition.isSatisfied(current)) {
+            current = nextGeneration(current);
+        }
+        return current;
+    }
+              
+
+The ` GeneticAlgorithm.nextGeneration ` method implements the following algorithm: 
+
+  1. Get nextGeneration population to fill from `current` generation, using its nextGeneration method
+  2. Loop until new generation is filled:
+     * Apply configured ` SelectionPolicy ` to select a pair of parents from `current`
+     * With probability =  GeneticAlgorithm.getCrossoverRate() , apply configured ` CrossoverPolicy ` to parents
+     * With probability =  GeneticAlgorithm.getMutationRate() , apply configured ` MutationPolicy ` to each of the offspring
+     * Add offspring individually to nextGeneration, space permitting
+  3. Return nextGeneration",Fitness,0
+"### 14.2 GA Framework
+
+GeneticAlgorithm  provides an execution framework for Genetic Algorithms (GA).  Populations, consisting of  Chromosomes are evolved by the ` GeneticAlgorithm ` until a  StoppingCondition  is reached. Evolution is determined by  SelectionPolicy ,  MutationPolicy  and  Fitness . 
+
+The GA itself is implemented by the ` GeneticAlgorithm.evolve ` method of the ` GeneticAlgorithm ` class, which looks like this: 
+    
+    
+    public Population evolve(Population initial, StoppingCondition condition) {
+        Population current = initial;
+        while (!condition.isSatisfied(current)) {
+            current = nextGeneration(current);
+        }
+        return current;
+    }
+              
+
+The ` GeneticAlgorithm.nextGeneration ` method implements the following algorithm: 
+
+  1. Get nextGeneration population to fill from `current` generation, using its nextGeneration method
+  2. Loop until new generation is filled:
+     * Apply configured ` SelectionPolicy ` to select a pair of parents from `current`
+     * With probability =  GeneticAlgorithm.getCrossoverRate() , apply configured ` CrossoverPolicy ` to parents
+     * With probability =  GeneticAlgorithm.getMutationRate() , apply configured ` MutationPolicy ` to each of the offspring
+     * Add offspring individually to nextGeneration, space permitting
+  3. Return nextGeneration",CrossoverPolicy,0
+"### 14.3 Implementation
+
+Here is an example GA execution: 
+    
+    
+    // initialize a new genetic algorithm
+    GeneticAlgorithm ga = new GeneticAlgorithm(
+        new OnePointCrossover<Integer>(),
+        1,
+        new RandomKeyMutation(),
+        0.10,
+        new TournamentSelection(TOURNAMENT_ARITY)
+    );
+            
+    // initial population
+    Population initial = getInitialPopulation();
+            
+    // stopping condition
+    StoppingCondition stopCond = new FixedGenerationCount(NUM_GENERATIONS);
+            
+    // run the algorithm
+    Population finalPopulation = ga.evolve(initial, stopCond);
+            
+    // best chromosome from the final population
+    Chromosome bestFinal = finalPopulation.getFittestChromosome();
+            
+
+The arguments to the ` GeneticAlgorithm ` constructor above are:  Parameter | value in example | meaning  
+---|---|---  
+crossoverPolicy |  OnePointCrossover  | A random crossover point is selected and the first part from each parent is copied to the corresponding child, and the second parts are copied crosswise.  
+crossoverRate | 1 | Always apply crossover  
+mutationPolicy |  RandomKeyMutation  | Changes a randomly chosen element of the array representation to a random value uniformly distributed in [0,1].  
+mutationRate | .1 | Apply mutation with probability 0.1 - that is, 10% of the time.  
+selectionPolicy |  TournamentSelection  | Each of the two selected chromosomes is selected based on an n-ary tournament -- this is done by drawing n random chromosomes without replacement from the population, and then selecting the fittest chromosome among them.  
+The algorithm starts with an `initial` population of `Chromosomes.` and executes until the specified  StoppingCondition  is reached. In the example above, a  FixedGenerationCount  stopping condition is used, which means the algorithm proceeds through a fixed number of generations.",GeneticAlgorithm,1
+"### 14.3 Implementation
+
+Here is an example GA execution: 
+    
+    
+    // initialize a new genetic algorithm
+    GeneticAlgorithm ga = new GeneticAlgorithm(
+        new OnePointCrossover<Integer>(),
+        1,
+        new RandomKeyMutation(),
+        0.10,
+        new TournamentSelection(TOURNAMENT_ARITY)
+    );
+            
+    // initial population
+    Population initial = getInitialPopulation();
+            
+    // stopping condition
+    StoppingCondition stopCond = new FixedGenerationCount(NUM_GENERATIONS);
+            
+    // run the algorithm
+    Population finalPopulation = ga.evolve(initial, stopCond);
+            
+    // best chromosome from the final population
+    Chromosome bestFinal = finalPopulation.getFittestChromosome();
+            
+
+The arguments to the ` GeneticAlgorithm ` constructor above are:  Parameter | value in example | meaning  
+---|---|---  
+crossoverPolicy |  OnePointCrossover  | A random crossover point is selected and the first part from each parent is copied to the corresponding child, and the second parts are copied crosswise.  
+crossoverRate | 1 | Always apply crossover  
+mutationPolicy |  RandomKeyMutation  | Changes a randomly chosen element of the array representation to a random value uniformly distributed in [0,1].  
+mutationRate | .1 | Apply mutation with probability 0.1 - that is, 10% of the time.  
+selectionPolicy |  TournamentSelection  | Each of the two selected chromosomes is selected based on an n-ary tournament -- this is done by drawing n random chromosomes without replacement from the population, and then selecting the fittest chromosome among them.  
+The algorithm starts with an `initial` population of `Chromosomes.` and executes until the specified  StoppingCondition  is reached. In the example above, a  FixedGenerationCount  stopping condition is used, which means the algorithm proceeds through a fixed number of generations.",OnePointCrossover,1
+"### 14.3 Implementation
+
+Here is an example GA execution: 
+    
+    
+    // initialize a new genetic algorithm
+    GeneticAlgorithm ga = new GeneticAlgorithm(
+        new OnePointCrossover<Integer>(),
+        1,
+        new RandomKeyMutation(),
+        0.10,
+        new TournamentSelection(TOURNAMENT_ARITY)
+    );
+            
+    // initial population
+    Population initial = getInitialPopulation();
+            
+    // stopping condition
+    StoppingCondition stopCond = new FixedGenerationCount(NUM_GENERATIONS);
+            
+    // run the algorithm
+    Population finalPopulation = ga.evolve(initial, stopCond);
+            
+    // best chromosome from the final population
+    Chromosome bestFinal = finalPopulation.getFittestChromosome();
+            
+
+The arguments to the ` GeneticAlgorithm ` constructor above are:  Parameter | value in example | meaning  
+---|---|---  
+crossoverPolicy |  OnePointCrossover  | A random crossover point is selected and the first part from each parent is copied to the corresponding child, and the second parts are copied crosswise.  
+crossoverRate | 1 | Always apply crossover  
+mutationPolicy |  RandomKeyMutation  | Changes a randomly chosen element of the array representation to a random value uniformly distributed in [0,1].  
+mutationRate | .1 | Apply mutation with probability 0.1 - that is, 10% of the time.  
+selectionPolicy |  TournamentSelection  | Each of the two selected chromosomes is selected based on an n-ary tournament -- this is done by drawing n random chromosomes without replacement from the population, and then selecting the fittest chromosome among them.  
+The algorithm starts with an `initial` population of `Chromosomes.` and executes until the specified  StoppingCondition  is reached. In the example above, a  FixedGenerationCount  stopping condition is used, which means the algorithm proceeds through a fixed number of generations.",RandomKeyMutation,1
+"### 14.3 Implementation
+
+Here is an example GA execution: 
+    
+    
+    // initialize a new genetic algorithm
+    GeneticAlgorithm ga = new GeneticAlgorithm(
+        new OnePointCrossover<Integer>(),
+        1,
+        new RandomKeyMutation(),
+        0.10,
+        new TournamentSelection(TOURNAMENT_ARITY)
+    );
+            
+    // initial population
+    Population initial = getInitialPopulation();
+            
+    // stopping condition
+    StoppingCondition stopCond = new FixedGenerationCount(NUM_GENERATIONS);
+            
+    // run the algorithm
+    Population finalPopulation = ga.evolve(initial, stopCond);
+            
+    // best chromosome from the final population
+    Chromosome bestFinal = finalPopulation.getFittestChromosome();
+            
+
+The arguments to the ` GeneticAlgorithm ` constructor above are:  Parameter | value in example | meaning  
+---|---|---  
+crossoverPolicy |  OnePointCrossover  | A random crossover point is selected and the first part from each parent is copied to the corresponding child, and the second parts are copied crosswise.  
+crossoverRate | 1 | Always apply crossover  
+mutationPolicy |  RandomKeyMutation  | Changes a randomly chosen element of the array representation to a random value uniformly distributed in [0,1].  
+mutationRate | .1 | Apply mutation with probability 0.1 - that is, 10% of the time.  
+selectionPolicy |  TournamentSelection  | Each of the two selected chromosomes is selected based on an n-ary tournament -- this is done by drawing n random chromosomes without replacement from the population, and then selecting the fittest chromosome among them.  
+The algorithm starts with an `initial` population of `Chromosomes.` and executes until the specified  StoppingCondition  is reached. In the example above, a  FixedGenerationCount  stopping condition is used, which means the algorithm proceeds through a fixed number of generations.",TournamentSelection,1
+"### 14.3 Implementation
+
+Here is an example GA execution: 
+    
+    
+    // initialize a new genetic algorithm
+    GeneticAlgorithm ga = new GeneticAlgorithm(
+        new OnePointCrossover<Integer>(),
+        1,
+        new RandomKeyMutation(),
+        0.10,
+        new TournamentSelection(TOURNAMENT_ARITY)
+    );
+            
+    // initial population
+    Population initial = getInitialPopulation();
+            
+    // stopping condition
+    StoppingCondition stopCond = new FixedGenerationCount(NUM_GENERATIONS);
+            
+    // run the algorithm
+    Population finalPopulation = ga.evolve(initial, stopCond);
+            
+    // best chromosome from the final population
+    Chromosome bestFinal = finalPopulation.getFittestChromosome();
+            
+
+The arguments to the ` GeneticAlgorithm ` constructor above are:  Parameter | value in example | meaning  
+---|---|---  
+crossoverPolicy |  OnePointCrossover  | A random crossover point is selected and the first part from each parent is copied to the corresponding child, and the second parts are copied crosswise.  
+crossoverRate | 1 | Always apply crossover  
+mutationPolicy |  RandomKeyMutation  | Changes a randomly chosen element of the array representation to a random value uniformly distributed in [0,1].  
+mutationRate | .1 | Apply mutation with probability 0.1 - that is, 10% of the time.  
+selectionPolicy |  TournamentSelection  | Each of the two selected chromosomes is selected based on an n-ary tournament -- this is done by drawing n random chromosomes without replacement from the population, and then selecting the fittest chromosome among them.  
+The algorithm starts with an `initial` population of `Chromosomes.` and executes until the specified  StoppingCondition  is reached. In the example above, a  FixedGenerationCount  stopping condition is used, which means the algorithm proceeds through a fixed number of generations.",StoppingCondition,0
+"### 14.3 Implementation
+
+Here is an example GA execution: 
+    
+    
+    // initialize a new genetic algorithm
+    GeneticAlgorithm ga = new GeneticAlgorithm(
+        new OnePointCrossover<Integer>(),
+        1,
+        new RandomKeyMutation(),
+        0.10,
+        new TournamentSelection(TOURNAMENT_ARITY)
+    );
+            
+    // initial population
+    Population initial = getInitialPopulation();
+            
+    // stopping condition
+    StoppingCondition stopCond = new FixedGenerationCount(NUM_GENERATIONS);
+            
+    // run the algorithm
+    Population finalPopulation = ga.evolve(initial, stopCond);
+            
+    // best chromosome from the final population
+    Chromosome bestFinal = finalPopulation.getFittestChromosome();
+            
+
+The arguments to the ` GeneticAlgorithm ` constructor above are:  Parameter | value in example | meaning  
+---|---|---  
+crossoverPolicy |  OnePointCrossover  | A random crossover point is selected and the first part from each parent is copied to the corresponding child, and the second parts are copied crosswise.  
+crossoverRate | 1 | Always apply crossover  
+mutationPolicy |  RandomKeyMutation  | Changes a randomly chosen element of the array representation to a random value uniformly distributed in [0,1].  
+mutationRate | .1 | Apply mutation with probability 0.1 - that is, 10% of the time.  
+selectionPolicy |  TournamentSelection  | Each of the two selected chromosomes is selected based on an n-ary tournament -- this is done by drawing n random chromosomes without replacement from the population, and then selecting the fittest chromosome among them.  
+The algorithm starts with an `initial` population of `Chromosomes.` and executes until the specified  StoppingCondition  is reached. In the example above, a  FixedGenerationCount  stopping condition is used, which means the algorithm proceeds through a fixed number of generations.",FixedGenerationCount,0
+"### 11.2 Euclidean spaces
+
+Interval  and  IntervalsSet  represent one dimensional regions. All classical set operations are available for intervals sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size. Intervals sets can be built by constructive geometry (union, intersection ...) or from a boundary representation. 
+
+PolygonsSet  represent two dimensional regions. All classical set operations are available for polygons sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size and to extract the vertices. Polygons sets can be built by constructive geometry (union, intersection ...) or from a boundary representation.",Interval,1
+"### 11.2 Euclidean spaces
+
+Interval  and  IntervalsSet  represent one dimensional regions. All classical set operations are available for intervals sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size. Intervals sets can be built by constructive geometry (union, intersection ...) or from a boundary representation. 
+
+PolygonsSet  represent two dimensional regions. All classical set operations are available for polygons sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size and to extract the vertices. Polygons sets can be built by constructive geometry (union, intersection ...) or from a boundary representation.",IntervalsSet,1
+"### 11.2 Euclidean spaces
+
+Interval  and  IntervalsSet  represent one dimensional regions. All classical set operations are available for intervals sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size. Intervals sets can be built by constructive geometry (union, intersection ...) or from a boundary representation. 
+
+PolygonsSet  represent two dimensional regions. All classical set operations are available for polygons sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size and to extract the vertices. Polygons sets can be built by constructive geometry (union, intersection ...) or from a boundary representation.",PolygonsSet,1
+"### 11.2 Euclidean spaces - part 2
+
+PolyhedronsSet  represent three dimensional regions. All classical set operations are available for polyhedrons sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size and to extract the vertices. Polyhedrons sets can be built by constructive geometry (union, intersection ...) or from a boundary representation. 
+
+Vector3D  provides a simple vector type. One important feature is that instances of this class are guaranteed to be immutable, this greatly simplifies modelling dynamical systems with changing states: once a vector has been computed, a reference to it is known to preserve its state as long as the reference itself is preserved. 
+
+Numerous constructors are available to create vectors. In addition to the straightforward cartesian coordinates constructor, a constructor using azimuthal coordinates can build normalized vectors and linear constructors from one, two, three or four base vectors are also available. Constants have been defined for the most commons vectors (plus and minus canonical axes, null vector, and special vectors with infinite or NaN coordinates).",PolyhedronsSet,1
+"### 11.2 Euclidean spaces - part 2
+
+PolyhedronsSet  represent three dimensional regions. All classical set operations are available for polyhedrons sets: union, intersection, symmetric difference (exclusive or), difference, complement, as well as region predicates (point inside/outside/on boundary, emptiness, other region contained). It is also possible to compute geometrical properties like size, barycenter or boundary size and to extract the vertices. Polyhedrons sets can be built by constructive geometry (union, intersection ...) or from a boundary representation. 
+
+Vector3D  provides a simple vector type. One important feature is that instances of this class are guaranteed to be immutable, this greatly simplifies modelling dynamical systems with changing states: once a vector has been computed, a reference to it is known to preserve its state as long as the reference itself is preserved. 
+
+Numerous constructors are available to create vectors. In addition to the straightforward cartesian coordinates constructor, a constructor using azimuthal coordinates can build normalized vectors and linear constructors from one, two, three or four base vectors are also available. Constants have been defined for the most commons vectors (plus and minus canonical axes, null vector, and special vectors with infinite or NaN coordinates).",Vector3D,1
+"### 11.2 Euclidean spaces - part 3
+
+The generic vectorial space operations are available including dot product, normalization, orthogonal vector finding and angular separation computation which have a specific meaning in 3D. The 3D geometry specific cross product is of course also implemented. 
+
+Vector3DFormat  is a specialized format for formatting output or parsing input with text representation of 3D vectors. 
+
+Rotation  represents 3D rotations. Rotation instances are also immutable objects, as Vector3D instances. 
+
+Rotations can be represented by several different mathematical entities (matrices, axe and angle, Cardan or Euler angles, quaternions). This class presents a higher level abstraction, more user-oriented and hiding implementation details. Well, for the curious, we use quaternions for the internal representation. The user can build a rotation from any of these representations, and any of these representations can be retrieved from a ` Rotation ` instance (see the various constructors and getters). In addition, a rotation can also be built implicitely from a set of vectors and their image.",Vector3DFormat,0
+"### 11.2 Euclidean spaces - part 3
+
+The generic vectorial space operations are available including dot product, normalization, orthogonal vector finding and angular separation computation which have a specific meaning in 3D. The 3D geometry specific cross product is of course also implemented. 
+
+Vector3DFormat  is a specialized format for formatting output or parsing input with text representation of 3D vectors. 
+
+Rotation  represents 3D rotations. Rotation instances are also immutable objects, as Vector3D instances. 
+
+Rotations can be represented by several different mathematical entities (matrices, axe and angle, Cardan or Euler angles, quaternions). This class presents a higher level abstraction, more user-oriented and hiding implementation details. Well, for the curious, we use quaternions for the internal representation. The user can build a rotation from any of these representations, and any of these representations can be retrieved from a ` Rotation ` instance (see the various constructors and getters). In addition, a rotation can also be built implicitely from a set of vectors and their image.",Rotation,1
+"### 11.2 Euclidean spaces - part 6
+
+These examples show that a rotation means what the user wants it to mean, so this class does not push the user towards one specific definition and hence does not provide methods like `projectVectorIntoDestinationFrame` or `computeTransformedDirection`. It provides simpler and more generic methods: ` Rotation.applyTo(Vector3D) ` and ` Rotation.applyInverseTo(Vector3D) `. 
+
+Since a rotation is basically a vectorial operator, several rotations can be composed together and the composite operation `r = r1 o r2` (which means that for each vector `u`, `r(u) = r1(r2(u))`) is also a rotation. Hence we can consider that in addition to vectors, a rotation can be applied to other rotations as well (or to itself). With our previous notations, we would say we can apply `r1` to `r2` and the result we get is `r = r1 o r2`. For this purpose, the class provides the methods: ` Rotation.applyTo(Rotation) ` and ` Rotation.applyInverseTo(Rotation) `.",Rotation,1
+"### 11.3 Binary  Space  Partitioning
+
+BSP trees are an efficient way to represent space partitions and to associate attributes with each cell. Each node in a BSP tree represents a convex region which is partitioned in two convex sub-regions at each side of a cut hyperplane. The root tree contains the complete space. 
+
+The main use of such partitions is to use a boolean attribute to define an inside/outside property, hence representing arbitrary polytopes (line segments in 1D, polygons in 2D and polyhedrons in 3D) and to operate on them. 
+
+Another example would be to represent Voronoi tesselations, the attribute of each cell holding the defining point of the cell.",Space,0
+"### 3.2 Real matrices
+
+The  RealMatrix  interface represents a matrix with real numbers as entries. The following basic matrix operations are supported: 
+
+  * Matrix addition, subtraction, multiplication
+  * Scalar addition and multiplication
+  * transpose
+  * Norm and Trace
+  * Operation on a vector
+
+
+
+Example: 
+    
+    
+    // Create a real matrix with two rows and three columns
+    double[][] matrixData = { {1d,2d,3d}, {2d,5d,3d}};
+    RealMatrix m = new Array2DRowRealMatrix(matrixData);
+    
+    // One more with three rows, two columns
+    double[][] matrixData2 = { {1d,2d}, {2d,5d}, {1d, 7d}};
+    RealMatrix n = new Array2DRowRealMatrix(matrixData2);
+    
+    // Note: The constructor copies  the input double[][] array.
+    
+    // Now multiply m by n
+    RealMatrix p = m.multiply(n);
+    System.out.println(p.getRowDimension());    // 2
+    System.out.println(p.getColumnDimension()); // 2
+    
+    // Invert p, using LU decomposition
+    RealMatrix pInverse = new LUDecompositionImpl(p).getSolver().getInverse();
+             
+
+The three main implementations of the interface are  Array2DRowRealMatrix  and  BlockRealMatrix  for dense matrices (the second one being more suited to dimensions above 50 or 100) and  SparseRealMatrix  for sparse matrices.",RealMatrix,1
+"### 3.2 Real matrices
+
+The  RealMatrix  interface represents a matrix with real numbers as entries. The following basic matrix operations are supported: 
+
+  * Matrix addition, subtraction, multiplication
+  * Scalar addition and multiplication
+  * transpose
+  * Norm and Trace
+  * Operation on a vector
+
+
+
+Example: 
+    
+    
+    // Create a real matrix with two rows and three columns
+    double[][] matrixData = { {1d,2d,3d}, {2d,5d,3d}};
+    RealMatrix m = new Array2DRowRealMatrix(matrixData);
+    
+    // One more with three rows, two columns
+    double[][] matrixData2 = { {1d,2d}, {2d,5d}, {1d, 7d}};
+    RealMatrix n = new Array2DRowRealMatrix(matrixData2);
+    
+    // Note: The constructor copies  the input double[][] array.
+    
+    // Now multiply m by n
+    RealMatrix p = m.multiply(n);
+    System.out.println(p.getRowDimension());    // 2
+    System.out.println(p.getColumnDimension()); // 2
+    
+    // Invert p, using LU decomposition
+    RealMatrix pInverse = new LUDecompositionImpl(p).getSolver().getInverse();
+             
+
+The three main implementations of the interface are  Array2DRowRealMatrix  and  BlockRealMatrix  for dense matrices (the second one being more suited to dimensions above 50 or 100) and  SparseRealMatrix  for sparse matrices.",Array2DRowRealMatrix,0
+"### 3.2 Real matrices
+
+The  RealMatrix  interface represents a matrix with real numbers as entries. The following basic matrix operations are supported: 
+
+  * Matrix addition, subtraction, multiplication
+  * Scalar addition and multiplication
+  * transpose
+  * Norm and Trace
+  * Operation on a vector
+
+
+
+Example: 
+    
+    
+    // Create a real matrix with two rows and three columns
+    double[][] matrixData = { {1d,2d,3d}, {2d,5d,3d}};
+    RealMatrix m = new Array2DRowRealMatrix(matrixData);
+    
+    // One more with three rows, two columns
+    double[][] matrixData2 = { {1d,2d}, {2d,5d}, {1d, 7d}};
+    RealMatrix n = new Array2DRowRealMatrix(matrixData2);
+    
+    // Note: The constructor copies  the input double[][] array.
+    
+    // Now multiply m by n
+    RealMatrix p = m.multiply(n);
+    System.out.println(p.getRowDimension());    // 2
+    System.out.println(p.getColumnDimension()); // 2
+    
+    // Invert p, using LU decomposition
+    RealMatrix pInverse = new LUDecompositionImpl(p).getSolver().getInverse();
+             
+
+The three main implementations of the interface are  Array2DRowRealMatrix  and  BlockRealMatrix  for dense matrices (the second one being more suited to dimensions above 50 or 100) and  SparseRealMatrix  for sparse matrices.",BlockRealMatrix,0
+"### 3.2 Real matrices
+
+The  RealMatrix  interface represents a matrix with real numbers as entries. The following basic matrix operations are supported: 
+
+  * Matrix addition, subtraction, multiplication
+  * Scalar addition and multiplication
+  * transpose
+  * Norm and Trace
+  * Operation on a vector
+
+
+
+Example: 
+    
+    
+    // Create a real matrix with two rows and three columns
+    double[][] matrixData = { {1d,2d,3d}, {2d,5d,3d}};
+    RealMatrix m = new Array2DRowRealMatrix(matrixData);
+    
+    // One more with three rows, two columns
+    double[][] matrixData2 = { {1d,2d}, {2d,5d}, {1d, 7d}};
+    RealMatrix n = new Array2DRowRealMatrix(matrixData2);
+    
+    // Note: The constructor copies  the input double[][] array.
+    
+    // Now multiply m by n
+    RealMatrix p = m.multiply(n);
+    System.out.println(p.getRowDimension());    // 2
+    System.out.println(p.getColumnDimension()); // 2
+    
+    // Invert p, using LU decomposition
+    RealMatrix pInverse = new LUDecompositionImpl(p).getSolver().getInverse();
+             
+
+The three main implementations of the interface are  Array2DRowRealMatrix  and  BlockRealMatrix  for dense matrices (the second one being more suited to dimensions above 50 or 100) and  SparseRealMatrix  for sparse matrices.",SparseRealMatrix,0
+"### 3.3 Real vectors
+
+The  RealVector  interface represents a vector with real numbers as entries. The following basic matrix operations are supported: 
+
+  * Vector addition, subtraction
+  * Element by element multiplication, division
+  * Scalar addition, subtraction, multiplication, division and power
+  * Mapping of mathematical functions (cos, sin ...)
+  * Dot product, outer product
+  * Distance and norm according to norms L1, L2 and Linf
+
+
+
+The  RealVectorFormat  class handles input/output of vectors in a customizable textual format.",RealVector,1
+"### 3.3 Real vectors
+
+The  RealVector  interface represents a vector with real numbers as entries. The following basic matrix operations are supported: 
+
+  * Vector addition, subtraction
+  * Element by element multiplication, division
+  * Scalar addition, subtraction, multiplication, division and power
+  * Mapping of mathematical functions (cos, sin ...)
+  * Dot product, outer product
+  * Distance and norm according to norms L1, L2 and Linf
+
+
+
+The  RealVectorFormat  class handles input/output of vectors in a customizable textual format.",RealVectorFormat,0
+"### 3.4 Solving linear systems
+
+The ` DecompositionSolver.solve() ` methods of the  DecompositionSolver  interface support solving linear systems of equations of the form AX=B, either in linear sense or in least square sense. A ` RealMatrix ` instance is used to represent the coefficient matrix of the system. Solving the system is a two phases process: first the coefficient matrix is decomposed in some way and then a solver built from the decomposition solves the system. This allows to compute the decomposition and build the solver only once if several systems have to be solved with the same coefficient matrix. 
+
+For example, to solve the linear system 
+    
+    
+               2x + 3y - 2z = 1
+               -x + 7y + 6x = -2
+               4x - 3y - 5z = 1
+              
+    
+    
+    RealMatrix coefficients =
+        new Array2DRowRealMatrix(new double[][] { { 2, 3, -2 }, { -1, 7, 6 }, { 4, -3, -5 } },
+                           false);
+    DecompositionSolver solver = new LUDecompositionImpl(coefficients).getSolver();
+              
+
+` RealVector ` ` DecompositionSolver.solve(RealVector) `
+    
+    
+    RealVector constants = new ArrayRealVector(new double[] { 1, -2, 1 }, false);
+    RealVector solution = solver.solve(constants);
+              
+
+`solution` ` solution.RealVector.getEntry(0) ` ` solution.RealVector.getEntry(1) ` ` solution.RealVector.getEntry(2) `",DecompositionSolver,1
+"### 3.4 Solving linear systems
+
+The ` DecompositionSolver.solve() ` methods of the  DecompositionSolver  interface support solving linear systems of equations of the form AX=B, either in linear sense or in least square sense. A ` RealMatrix ` instance is used to represent the coefficient matrix of the system. Solving the system is a two phases process: first the coefficient matrix is decomposed in some way and then a solver built from the decomposition solves the system. This allows to compute the decomposition and build the solver only once if several systems have to be solved with the same coefficient matrix. 
+
+For example, to solve the linear system 
+    
+    
+               2x + 3y - 2z = 1
+               -x + 7y + 6x = -2
+               4x - 3y - 5z = 1
+              
+    
+    
+    RealMatrix coefficients =
+        new Array2DRowRealMatrix(new double[][] { { 2, 3, -2 }, { -1, 7, 6 }, { 4, -3, -5 } },
+                           false);
+    DecompositionSolver solver = new LUDecompositionImpl(coefficients).getSolver();
+              
+
+` RealVector ` ` DecompositionSolver.solve(RealVector) `
+    
+    
+    RealVector constants = new ArrayRealVector(new double[] { 1, -2, 1 }, false);
+    RealVector solution = solver.solve(constants);
+              
+
+`solution` ` solution.RealVector.getEntry(0) ` ` solution.RealVector.getEntry(1) ` ` solution.RealVector.getEntry(2) `",RealMatrix,0
+"### 3.4 Solving linear systems
+
+The ` DecompositionSolver.solve() ` methods of the  DecompositionSolver  interface support solving linear systems of equations of the form AX=B, either in linear sense or in least square sense. A ` RealMatrix ` instance is used to represent the coefficient matrix of the system. Solving the system is a two phases process: first the coefficient matrix is decomposed in some way and then a solver built from the decomposition solves the system. This allows to compute the decomposition and build the solver only once if several systems have to be solved with the same coefficient matrix. 
+
+For example, to solve the linear system 
+    
+    
+               2x + 3y - 2z = 1
+               -x + 7y + 6x = -2
+               4x - 3y - 5z = 1
+              
+    
+    
+    RealMatrix coefficients =
+        new Array2DRowRealMatrix(new double[][] { { 2, 3, -2 }, { -1, 7, 6 }, { 4, -3, -5 } },
+                           false);
+    DecompositionSolver solver = new LUDecompositionImpl(coefficients).getSolver();
+              
+
+` RealVector ` ` DecompositionSolver.solve(RealVector) `
+    
+    
+    RealVector constants = new ArrayRealVector(new double[] { 1, -2, 1 }, false);
+    RealVector solution = solver.solve(constants);
+              
+
+`solution` ` solution.RealVector.getEntry(0) ` ` solution.RealVector.getEntry(1) ` ` solution.RealVector.getEntry(2) `",RealVector,0
+"### 3.4 Solving linear systems - part 2
+
+Each type of decomposition has its specific semantics and constraints on the coefficient matrix as shown in the following table. For algorithms that solve AX=B in least squares sense the value returned for X is such that the residual AX-B has minimal norm. If an exact solution exist (i.e. if for some X the residual AX-B is exactly 0), then this exact solution is also the solution in least square sense. This implies that algorithms suited for least squares problems can also be used to solve exact problems, but the reverse is not true. 
+
+Decomposition algorithms  
+---  
+Name | coefficients matrix | problem type  
+LU | square | exact solution only  
+Cholesky | symmetric positive definite | exact solution only  
+QR | any | least squares solution  
+eigen decomposition | square | exact solution only  
+SVD | any | least squares solution  
+  
+It is possible to use a simple array of double instead of a ` RealVector `. In this case, the solution will be provided also as an array of double.",RealVector,0
+"### 3.4 Solving linear systems - part 3
+
+It is possible to solve multiple systems with the same coefficient matrix in one method call. To do this, create a matrix whose column vectors correspond to the constant vectors for the systems to be solved and use ` DecompositionSolver.solve(RealMatrix), ` which returns a matrix with column vectors representing the solutions.",DecompositionSolver,1
+"### 3.5 Eigenvalues/eigenvectors and singular values/singular vectors
+
+Decomposition algorithms may be used for themselves and not only for linear system solving. This is of prime interest with eigen decomposition and singular value decomposition. 
+
+The `getEigenvalue()`, `getEigenvalues()`, `getEigenVector()`, ` EigenDecomposition.getV() `, ` EigenDecomposition.getD() ` and ` EigenDecomposition.getVT() ` methods of the ` EigenDecomposition ` interface support solving eigenproblems of the form AX = lambda X where lambda is a real scalar. 
+
+The ` SingularValueDecomposition.getSingularValues() `, ` SingularValueDecomposition.getU() `, ` SingularValueDecomposition.getS() ` and ` SingularValueDecomposition.getV() ` methods of the ` SingularValueDecomposition ` interface allow to solve singular values problems of the form AXi = lambda Yi where lambda is a real scalar, and where the Xi and Yi vectors form orthogonal bases of their respective vector spaces (which may have different dimensions).",EigenDecomposition,1
+"### 3.5 Eigenvalues/eigenvectors and singular values/singular vectors
+
+Decomposition algorithms may be used for themselves and not only for linear system solving. This is of prime interest with eigen decomposition and singular value decomposition. 
+
+The `getEigenvalue()`, `getEigenvalues()`, `getEigenVector()`, ` EigenDecomposition.getV() `, ` EigenDecomposition.getD() ` and ` EigenDecomposition.getVT() ` methods of the ` EigenDecomposition ` interface support solving eigenproblems of the form AX = lambda X where lambda is a real scalar. 
+
+The ` SingularValueDecomposition.getSingularValues() `, ` SingularValueDecomposition.getU() `, ` SingularValueDecomposition.getS() ` and ` SingularValueDecomposition.getV() ` methods of the ` SingularValueDecomposition ` interface allow to solve singular values problems of the form AXi = lambda Yi where lambda is a real scalar, and where the Xi and Yi vectors form orthogonal bases of their respective vector spaces (which may have different dimensions).",SingularValueDecomposition,1
+"### 3.6 Non-real fields (complex, fractions ...)
+
+In addition to the real field, matrices and vectors using non-real field elements can be used. The fields already supported by the library are: 
+
+  * Complex 
+  * Fraction 
+  * BigFraction 
+  * BigReal",Complex,0
+"### 3.6 Non-real fields (complex, fractions ...)
+
+In addition to the real field, matrices and vectors using non-real field elements can be used. The fields already supported by the library are: 
+
+  * Complex 
+  * Fraction 
+  * BigFraction 
+  * BigReal",Fraction,0
+"### 3.6 Non-real fields (complex, fractions ...)
+
+In addition to the real field, matrices and vectors using non-real field elements can be used. The fields already supported by the library are: 
+
+  * Complex 
+  * Fraction 
+  * BigFraction 
+  * BigReal",BigFraction,0
+"### 3.6 Non-real fields (complex, fractions ...)
+
+In addition to the real field, matrices and vectors using non-real field elements can be used. The fields already supported by the library are: 
+
+  * Complex 
+  * Fraction 
+  * BigFraction 
+  * BigReal",BigReal,0

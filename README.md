@@ -11,3 +11,4 @@ LAMIC constructs $\langle$API, KU$\rangle$ tuples from API tutorials and Stack O
 - `application/`: materials used in the API knowledge retrieval application study.
 - `user-study/`: anonymized evaluation sheets and ground-truth data used in the user study.
 
+- `datasets/`: API tutorials and Stack Overflow <API, KU> used in the experiment.
