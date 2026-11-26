@@ -11,5 +11,6 @@ LAMIC constructs <API, KU> tuples from API tutorials and Stack Overflow. It then
 - `application/`: materials used in the API knowledge retrieval application study.
 - `user-study/`: anonymized evaluation sheets and ground-truth data used in the user study.
 
+## Supplementary Materials
 
-
+The appendix PDF, application study materials, user study materials, and manual verification results for irrelevant Stack Overflow API–Q&A pairs are available in the [LAMIC Supplementary Materials folder on Google Drive](https://drive.google.com/drive/folders/1Co7bTHHrbNyp3V5C2NSWc14c7yzYLzE0).
